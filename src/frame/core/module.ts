@@ -5,7 +5,7 @@ import { Components, ModuleConfig, RoutesObj } from "../tools/interfaces";
 export class Module{
     private components: Components[];
     private bootstrapComponent: AppComponent;
-    private routes: RoutesObj[];
+    private routes: RoutesObj[] | undefined;
 
     constructor(private config:ModuleConfig){
         this.components = config.components,
@@ -30,20 +30,21 @@ export class Module{
 
     private renderRoute(): void{
         const url = router.getUrl();
-        let route: RoutesObj | undefined = this.routes.find(currentRoute => currentRoute.path === url);
-        if(typeof route === 'undefined'){
-            console.log("I m here")
-            route = this.routes.find(currentRoute => currentRoute.path === '**');
-            
-        }
-        if(route){
-            (document.querySelector('router-outlet') as HTMLElement).innerHTML = `<${route.component.selector}></${route.component.selector}>`;
-            this.renderComponent(route.component);    
-        }
-        
+        if(this.routes){
+            let route: RoutesObj | undefined = this.routes.find(currentRoute => currentRoute.path === url);
+            if(typeof route === 'undefined'){
+                route = this.routes.find(currentRoute => currentRoute.path === '**');  
+            }
+            if(route){
+                (document.querySelector('router-outlet') as HTMLElement).innerHTML = `<${route.component.bootstrapComponent.selector}></${route.component.bootstrapComponent.selector}>`;
+                this.renderComponent(route.component.bootstrapComponent);   
+                route.component.components.forEach(this.renderComponent.bind(this));
+            }
+        }        
     }
 
     private renderComponent(component: Components): void{
         component.render();
+        console.log(`render ${component}`)
     }
 }

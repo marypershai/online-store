@@ -1,10 +1,10 @@
 import { RoutesObj } from "../frame/tools/interfaces";
-import { notFound } from "./common/not-found.component";
-import { cartPageComponent } from "./pages/cart-page.component";
-import { homePageComponent } from "./pages/home-page.component";
+import { homePageFeatureComponent } from "./pages/feature-components/home-page.fcomponent";
+import { cartPageFeatureComponent } from "./pages/feature-components/cart-page.fcomponent";
+import { notFoundPageFeatureComponent } from "./pages/feature-components/not-found.fcomponent";
 
 export const appRoutes: RoutesObj[] = [
-    { path: '', component: homePageComponent},
-    { path: 'cart', component: cartPageComponent},
-    { path: '**', component: notFound}
+    { path: '', component: homePageFeatureComponent},
+    { path: 'cart', component: cartPageFeatureComponent},
+    { path: '**', component: notFoundPageFeatureComponent}
 ];

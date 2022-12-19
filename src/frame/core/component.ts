@@ -1,10 +1,10 @@
 import { ComponentConfig } from "../tools/interfaces";
 
 export class Component{
-    private template: string;
+    public template: string;
     public selector: string;
     private element: HTMLElement | null;
-    constructor(private config: ComponentConfig){
+    constructor(public config: ComponentConfig){
         this.template = config.template,
         this.selector = config.selector,
         this.element = null;
