@@ -1,0 +1,39 @@
+.header {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__brand {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+.header__logo {
+  width: 60px;
+  height: 60px;
+}
+
+.header__title {
+  font-size: 36px;
+}
+
+.header__info {
+  display: flex;
+  gap: 1.5em;
+  align-items: center;
+}
+
+.info__cart {
+  display: flex;
+  min-width: 100px;
+  gap: .5em;
+  align-items: center;
+}
+
+.cart__number {
+  font-size: 24px;
+}
