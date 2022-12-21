@@ -1,7 +1,7 @@
 import { AppComponent } from '../../app/app.component';
 import { AppHeader } from '../../app/common/app.header';
 import { NotFound } from '../../app/common/not-found.component';
-import { ProductListComponent } from '../../app/pages/components/product-list.component';
+import { ProductListComponent } from '../../app/components/product-list.component';
 
 export type Components = AppComponent | AppHeader | NotFound | ProductListComponent;
 

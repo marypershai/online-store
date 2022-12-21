@@ -1,5 +1,5 @@
-import { DMComponent } from '../../../frame/index';
-import { ComponentConfig } from '../../../frame/tools/interfaces';
+import { DMComponent } from '../../frame/index';
+import { ComponentConfig } from '../../frame/tools/interfaces';
 
 class FilterComponent extends DMComponent {
   constructor(config: ComponentConfig) {
