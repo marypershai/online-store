@@ -1,5 +1,6 @@
 import { appModule } from './app/app.module';
 import { bootstrap } from './frame/index';
+import './assets/styles/styles.scss';
 
 bootstrap(appModule);
 
