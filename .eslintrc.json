@@ -1,16 +1,36 @@
 {
     "root": true,
     "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": "**/tsconfig.json"
+      },
     "plugins": [
         "@typescript-eslint"
     ],
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "airbnb-base"
     ],
     "rules": {
         "no-console": 0,
-        "@typescript-eslint/no-explicit-any": "error"
+        "@typescript-eslint/no-explicit-any": "error",
+        "import/extensions": "off",
+        "no-useless-constructor": "off",
+        "import/prefer-default-export": "off",
+        "class-methods-use-this": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"],
+                "moduleDirectory": ["node_modules", "src/"]
+            }
+        }
+    },
+    "env": {
+        "browser": true,
+        "node": true
     }
 }
