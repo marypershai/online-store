@@ -13,7 +13,7 @@ export const appHeader = new AppHeader({
         <header>
             <div class="header__logo"><a href="#">Logo here</a></div>
             <nav><a href="#cart">Cart</a></nav>
-        </header>
+         </header>
     `,
   childComponents: [],
 });
