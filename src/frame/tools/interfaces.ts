@@ -26,3 +26,17 @@ export interface FeatureComponentConfig{
     components: Components[];
     bootstrap: Components;
 }
+
+export interface ProductData{
+    id: number;
+    title: string;
+    price: number;
+    discountPercentage: number;
+    stock: number;
+    rating: number;
+    brand: string;
+    category: string;
+    description: string;
+    thumbnail: string;
+    images: string[];
+}

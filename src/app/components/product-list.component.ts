@@ -1,10 +1,11 @@
+import { Product } from '../service/product';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 
 class ProductListComponent extends DMComponent {
-  constructor(config: ComponentConfig, productQuantity: number) {
+  constructor(config: ComponentConfig) {
     super(config);
-    this.template = this.createListOfProducts(productQuantity);
+    this.template = this.createListOfProducts();
   }
 
   private createListOfProducts(number: number): string {
@@ -47,8 +48,18 @@ class ProductListComponent extends DMComponent {
       
       `;
     }
-    this.config.template += '</ul></div>';
+    this.config.template += '</div>';
     return this.config.template;
+  }
+
+  public events(): unknown {
+    return {
+      'click .product-list': 'showProduct',
+    };
+  }
+
+  private showProduct(event: unknown) {
+    console.log(event);
   }
 }
 
@@ -59,6 +70,6 @@ const productListComponent = new ProductListComponent({
     <h2 class="visibility-hidden">List of products</h2>
   `,
   childComponents: [],
-}, 20);
+});
 
 export { productListComponent, ProductListComponent };

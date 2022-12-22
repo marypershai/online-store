@@ -24,5 +24,21 @@ export class Component {
       console.log(this.childComponents);
       this.childComponents.forEach((component) => component.render());
     }
+
+    this.initEvents();
+  }
+
+  private initEvents(): void {
+    if (Object.getPrototypeOf(this).events) {
+      const events = Object.getPrototypeOf(this).events();
+
+      Object.keys(events).forEach((key) => {
+        const listner = key.split(' ');
+        if (this.element) {
+          (this.element.querySelector(listner[1]) as HTMLElement)
+            .addEventListener(listner[0], Object.getPrototypeOf(this)[events[key]].bind(this));
+        }
+      });
+    }
   }
 }
