@@ -1,6 +1,9 @@
+@import "base/variables";
 @import "base/reset";
 @import "base/fonts";
-@import "base/variables";
+@import "base/helpers";
 @import "base/layout";
 @import "elements/images";
-@import "components/header"
+@import "elements/links";
+@import "components/header";
+@import "components/footer";  
