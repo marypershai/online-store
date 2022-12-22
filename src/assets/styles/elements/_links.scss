@@ -1,0 +1,52 @@
+.link {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-decoration: none;
+  color: $link;
+  position: relative;
+  transition: 2s ease-in-out;
+}
+
+.link:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: $link;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.link:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
+
+
+.link:visited {
+  color: $link;
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+.focus:focus,
+.link:focus {
+  outline: 3px solid transparent;
+  color: $link;
+  background-color: $link-bg;
+  -webkit-box-shadow: 0 -2px $link-bg, 0 4px $link-active;
+  box-shadow: 0 -2px $link-bg, 0 4px $link-active;
+  text-decoration: none;}
+
+.link:hover {
+  color: $link-hover;
+}
+
+.link:active {
+  color: $link-active;
+}

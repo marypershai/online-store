@@ -4,6 +4,7 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const EslingPlugin = require('eslint-webpack-plugin');
 
 const baseConfig = {
@@ -17,30 +18,20 @@ const baseConfig = {
                 include: [path.resolve(__dirname, 'src')],
             },
             {
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: "asset/resource",
-                generator: {
-                    filename: 'assets/img/[name][ext][query]',
-                  },
-
+                test: /\.html$/i,
+                loader: "html-loader",
             },
             {
-                test: /\.scss$/,
-                exclude: /node_modules/,
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: "asset/resource",
-                generator: {
-                    filename: 'assets/css/[name].css[query]',
-                },
-                use: [{
-                    loader: 'sass-loader',
-                    options: {
-                        sassOptions: {
-                            sourceMap: true,
-                            sourceMapEmbed: true,
-                            outputStyle: 'expanded',
-                        },
-                    },
-                }],
+            },
+            {
+                test: /\.(sa|sc|c)ss$/i,
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,        
+                type: 'asset/resource',
             },
         ],
     },
@@ -51,14 +42,6 @@ const baseConfig = {
         path: path.resolve(__dirname, 'dist'),  
         clean: true,
         filename: 'index.[contenthash].js',
-        assetModuleFilename: pathData => {
-            const filepath = path
-              .dirname(pathData.filename)
-              .split('/')
-              .slice(1)
-              .join('/');
-              return `assets/${filepath}/[name][ext]`;
-          },
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -66,6 +49,11 @@ const baseConfig = {
             filename: 'index.html',
         }),
         new CleanWebpackPlugin(),
+        new CopyPlugin({
+            patterns: [
+              { from: './src/assets/public/' },
+            ],
+          }),
         new EslingPlugin({ extensions: 'ts' }),
     ],
 };

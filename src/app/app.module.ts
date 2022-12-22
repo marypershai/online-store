@@ -2,6 +2,7 @@ import { DMModule } from '../frame/index';
 import { ModuleConfig } from '../frame/tools/interfaces';
 import { appComponent } from './app.component';
 import { appRoutes } from './app.routes';
+import { appFooter } from './common/app.footer';
 import { appHeader } from './common/app.header';
 
 class AppModule extends DMModule {
@@ -13,6 +14,7 @@ class AppModule extends DMModule {
 export const appModule = new AppModule({
   components: [
     appHeader,
+    appFooter,
   ],
   bootstrap: appComponent,
   routes: appRoutes,
