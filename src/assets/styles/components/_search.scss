@@ -1,0 +1,15 @@
+.search {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1em;
+  padding: 1.1em 0 .8em 0;
+}
+
+.search__text-input {
+  font-family:inherit;
+  border: 0;
+  width:100%;
+  padding: 10px;
+  font-size: 16px;  
+}
