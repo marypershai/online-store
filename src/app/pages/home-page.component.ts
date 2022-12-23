@@ -21,8 +21,10 @@ export const homePageComponent = new HomePageComponent({
           <section class=filter>
           <app-filter></app-filter>
           </section>
-            
-            <app-product-list></app-product-list>  
+          <section class="product-list">
+          <app-product-list></app-product-list> 
+          </section>
+             
           </section> 
         </main>        
     `,

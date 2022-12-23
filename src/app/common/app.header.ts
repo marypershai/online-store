@@ -13,7 +13,7 @@ export const appHeader = new AppHeader({
         <header class="page__container header">
           <div class="header__brand">
             <a href="/">
-              <img class="header__logo" src="https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671659722/rs-school/online/logo.png" alt="">
+              <img class="header__logo" src="https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671804535/rs-school/online/store__logo.png" alt="">
             </a>
             <h1 class="header__title">giftsToProgrammers</h1>
           </div>

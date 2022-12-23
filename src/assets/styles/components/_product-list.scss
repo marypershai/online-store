@@ -1,4 +1,131 @@
-.product__item {
+.product-list {
+  width: 100%;
+}
+
+.products {
+  padding: 3em 0;
   list-style: none;
+}
+
+.product__item + .product__item {
+  margin-top: 2.5rem;
+}
+
+@supports (display: grid) {
+  .products {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(14em, 1fr));
+      grid-column-gap: 2.5rem;
+      grid-row-gap: 2.5rem;
+  }
+
+  .product__item + .product__item  {
+      margin-top: 0;
+  }
+}
+
+.product__item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.item__image {
+  background-color: #fff;
+  overflow: hidden;
+  display: grid;
+  grid-template-areas: "card";
+  place-items: end;
+  aspect-ratio: 1;
+}
+  
+.item__image > * {
+  grid-area: card;
+}
+
+.item__image > img {
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+  transform: scale(1);
+  transition: transform .4s linear;
+  filter: grayscale(10%);
+}
+
+.item__links {
+ background-color: #f1ecdc;
+ height: 60px; 
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ align-items: center;
+ transform: translateY(100%);
+ transition: transform .4s linear;
+ position: relative;
+ width: 100%;
+ z-index: 2;
+}
+
+.item__image:hover .item__links {
+  transform: translateY(0);
+}
+
+.item__image:hover img:hover {
+  transform: scale(1.1);
+}
+
+.button--card {
   padding: 10px;
+  margin: 10px;
+  border: 1px solid $text-colour;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 16px;
+  transition: all .8s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.button--card:hover {
+  color: #fff;
+}
+
+.button--card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #252525;
+  transition: all .5s;
+  z-index: -1;
+  transform: translateX(-100%);
+}
+
+.button--card:hover::before {
+  transform: translateX(0);
+}
+
+.button--card:active::before {
+  background: #252525;
+}
+
+.button--info {
+  padding: 10px;
+  margin: 10px;
+}
+
+.item__info {
+  padding-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+.info__details {
+  display: flex;
+  justify-content: flex-start;
+  gap: 2em;
 }
