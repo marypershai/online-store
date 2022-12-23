@@ -1,6 +1,9 @@
 import { Product } from '../service/product';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
+import { addRoute } from '../app.routes';
+import { productPageComponent } from '../pages/product-page.component';
+import { productList } from '../service/product-list';
 
 class ProductListComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -52,14 +55,22 @@ class ProductListComponent extends DMComponent {
     return this.config.template;
   }
 
-  public events(): unknown {
+  public events(): object {
     return {
       'click .product-list': 'showProduct',
     };
   }
 
-  private showProduct(event: unknown) {
-    console.log(event);
+  private showProduct(event: Event): void {
+    const targetEl = event.target as HTMLElement;
+    const parentEl = targetEl.parentNode as HTMLElement;
+    const productID: string | null = parentEl.getAttribute('data-id');
+    if (productID) {
+      const productHash = `productID=${productID}`;
+      window.location.hash = productHash;
+      productPageComponent.createProductItem(+productID);
+      addRoute(productHash);
+    }
   }
 }
 

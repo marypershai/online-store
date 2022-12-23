@@ -5,38 +5,38 @@ import { ProductListComponent } from '../../app/components/product-list.componen
 
 export type Components = AppComponent | AppHeader | NotFound | ProductListComponent;
 
-export interface ComponentConfig{
-    template: string;
-    selector: string;
-    childComponents: Components[];
+export interface ComponentConfig {
+  template: string;
+  selector: string;
+  childComponents: Components[];
 }
 
-export interface RoutesObj{
-    path: string;
-    component: Components;
+export interface RoutesObj {
+  path: string;
+  component: Components;
 }
 
-export interface ModuleConfig{
-    components: Components[];
-    bootstrap: AppComponent;
-    routes: RoutesObj[];
+export interface ModuleConfig {
+  components: Components[];
+  bootstrap: AppComponent;
+  routes: RoutesObj[];
 }
 
-export interface FeatureComponentConfig{
-    components: Components[];
-    bootstrap: Components;
+export interface FeatureComponentConfig {
+  components: Components[];
+  bootstrap: Components;
 }
 
-export interface ProductData{
-    id: number;
-    title: string;
-    price: number;
-    discountPercentage: number;
-    stock: number;
-    rating: number;
-    brand: string;
-    category: string;
-    description: string;
-    thumbnail: string;
-    images: string[];
+export interface ProductData {
+  id: number;
+  title: string;
+  price: number;
+  discountPercentage: number;
+  stock: number;
+  rating: number;
+  brand: string;
+  category: string;
+  description: string;
+  thumbnail: string;
+  images: string[];
 }

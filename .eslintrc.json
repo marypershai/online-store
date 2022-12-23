@@ -2,16 +2,17 @@
     "root": true,
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
-        "project": "**/tsconfig.json"
-      },
+        "project": "./tsconfig.json"
+    },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "import"
     ],
     "extends": [
+        "airbnb-typescript/base",
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "airbnb-base"
+        "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
         "no-console": 0,
@@ -19,15 +20,31 @@
         "@typescript-eslint/no-var-requires": 0,
         "@typescript-eslint/no-explicit-any": "error",
         "import/extensions": "off",
-        "no-useless-constructor": "off",
-        "import/prefer-default-export": "off",
+        "@typescript-eslint/no-useless-constructor": "off",
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": false,
+                "optionalDependencies": false,
+                "peerDependencies": false,
+                "packageDir": "./"
+            }
+        ],
         "class-methods-use-this": "off"
     },
     "settings": {
         "import/resolver": {
             "node": {
-                "extensions": [".js", ".jsx", ".ts", ".tsx"],
-                "moduleDirectory": ["node_modules", "src/"]
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ],
+                "moduleDirectory": [
+                    "node_modules",
+                    "src/"
+                ]
             }
         }
     },
