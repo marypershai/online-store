@@ -43,7 +43,9 @@ class ProductListComponent extends DMComponent {
         </div
 
       
-      <app-product></app-product></li>`;
+      <app-product></app-product></li>
+      
+      `;
     }
     this.config.template += '</ul></div>';
     return this.config.template;
