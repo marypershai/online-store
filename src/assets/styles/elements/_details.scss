@@ -16,7 +16,7 @@ details summary::-webkit-details-marker {
 
 details summary {
   width: 100%;
-  padding: 0.5rem 0;
+  padding: 1em 0 .5em 0;
   position: relative;
   cursor: pointer;
   list-style: none;
@@ -40,7 +40,4 @@ details[open] summary:after {
 details summary {
   outline: 0;
 }
-details p {
-  margin: 0 0 1rem;
-  padding-top: 1rem;
-}
+

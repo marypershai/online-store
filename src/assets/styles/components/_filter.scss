@@ -13,18 +13,15 @@
 
 .filter--open {
   width: 20%;
+  margin-right: 2em;
   border-right: 1px dashed $text-colour;
   transform: translateX(0);  
-  position: sticky;
-  top: 0;
 }
 
 .filter__content {
   display: flex;
   flex-direction: column;
   gap: 2em;
-  position: sticky;
-  top: 0;
 }
 
 .filter__item {
