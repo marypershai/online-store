@@ -17,9 +17,13 @@ export const homePageComponent = new HomePageComponent({
         <main>
           <app-search></app-search>
           <app-controlpanel></app-controlpanel>
-          <app-product-list></app-product-list>
+          <section class="page__container workspace">
+          <section class=filter>
           <app-filter></app-filter>
-          <div><h4>Here page with products</h4></div>
+          </section>
+            
+            <app-product-list></app-product-list>  
+          </section> 
         </main>        
     `,
   childComponents: [searchComponent, controlComponent, filterComponent, productListComponent],

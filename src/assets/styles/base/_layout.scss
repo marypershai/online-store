@@ -14,3 +14,9 @@
 .page__container--full {
   max-width: 100%;
 }
+
+.workspace {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}

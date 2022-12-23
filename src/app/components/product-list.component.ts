@@ -9,8 +9,8 @@ class ProductListComponent extends DMComponent {
 
   private createListOfProducts(number: number): string {
     this.config.template += '<div><ul>';
-    for (let i = 0; i < number; i += 1) {
-      this.config.template += `<li>${i}<app-product></app-product></li>`;
+    for (let i = 0; i < number * 3; i += 1) {
+      this.config.template += `<li class="product__item">${i}<app-product></app-product></li>`;
     }
     this.config.template += '</ul></div>';
     return this.config.template;

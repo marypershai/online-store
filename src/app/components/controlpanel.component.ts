@@ -15,7 +15,7 @@ export const controlComponent = new ControlComponent({
     <div class="page__container controlpanel__content">
     <div class="controlpanel__item">
       
-      <button class="button button--search">
+      <button class="button button--filter" onclick="document.querySelector('.filter').classList.toggle('filter--open')">
       <svg class="icon">
         <title>Filter</title>
         <use xlink:href="./icons.svg#filter"></use>
