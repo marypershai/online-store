@@ -7,10 +7,16 @@
 }
 
 .page__container {
-  max-width: 80%;
+  max-width: 90%;
   margin: 0 auto;
 }
 
 .page__container--full {
   max-width: 100%;
+}
+
+.workspace {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
 }
