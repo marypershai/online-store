@@ -1,3 +1,4 @@
+import { addProductRoute } from '../../app/app.routes';
 import { AppComponent } from '../../app/app.component';
 import { router } from '../index';
 import { Components, ModuleConfig, RoutesObj } from '../tools/interfaces';
@@ -16,8 +17,21 @@ export class Module {
   }
 
   public start(): void {
+    this.checkUrl();
     this.initComponents();
     if (this.routes) this.initRoutes();
+  }
+
+  private checkUrl() {
+    const currentUrl = router.getUrl();
+    const regExp = /productID=\d+/gm;
+
+    if (currentUrl.match(regExp)) {
+      const id: string = currentUrl.substring(10);
+      // addProductRoute(`${id}`);
+      console.log(id);
+      console.log("Doesn't work");
+    }
   }
 
   private initComponents(): void {

@@ -1,7 +1,7 @@
 import { Product } from '../service/product';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
-import { addRoute } from '../app.routes';
+import { addProductRoute } from '../app.routes';
 import { productPageComponent } from '../pages/product-page.component';
 import { productList } from '../service/product-list';
 
@@ -69,7 +69,7 @@ class ProductListComponent extends DMComponent {
       const productHash = `productID=${productID}`;
       window.location.hash = productHash;
       productPageComponent.createProductItem(+productID);
-      addRoute(productHash);
+      addProductRoute(productHash);
     }
   }
 }

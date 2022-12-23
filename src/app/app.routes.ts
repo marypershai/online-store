@@ -10,7 +10,7 @@ export const appRoutes: RoutesObj[] = [
   { path: '**', component: notFound },
 ];
 
-export function addRoute(id: string) {
+export function addProductRoute(id: string) {
   appRoutes.push({
     path: id, component: productPageComponent,
   });
