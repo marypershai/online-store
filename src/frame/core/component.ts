@@ -21,7 +21,6 @@ export class Component {
     if (!this.element) throw new Error(`Component with selector ${this.selector} wasn't found`);
     this.element.innerHTML = this.template;
     if (this.childComponents) {
-      console.log(this.childComponents);
       this.childComponents.forEach((component) => component.render());
     }
 

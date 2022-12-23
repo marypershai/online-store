@@ -1,4 +1,3 @@
-import { Product } from '../service/product';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { addProductRoute } from '../app.routes';
@@ -11,14 +10,13 @@ class ProductListComponent extends DMComponent {
     this.template = this.createListOfProducts();
   }
 
-  private createListOfProducts(number: number): string {
-    this.config.template += '<div><ul class="products">';
-    for (let i = 0; i < number; i += 1) {
-      this.config.template += `     
-      
-      <li class="product__item">
+  private createListOfProducts(): string {
+    this.config.template = '<div class="product-list products">';
+    for (let i = 0; i < productList.length; i += 1) {
+      this.config.template += `
+      <div class="product__item" data-id=${productList[i].id}>
         <div class="item__image">
-          <img class=" image" src="https://res.cloudinary.com/bartoshevich/image/upload/v1671355831/rs-school/online/aeron/aeron_chair.jpg" alt="" decoding="async">
+          <img class=" image" src="${productList[i].thumbnail}" alt="" decoding="async">
         
           <div class="item__links">
             <button class="button button--card">Add to cart</button>
@@ -29,26 +27,22 @@ class ProductListComponent extends DMComponent {
               </svg>
             </button>
           </div>    
-        
         </div>
-  
+
         <div class="item__info">
-          <h3 class="item__name">Aeron Chair</h3>
+          <h3 class="item__name">${productList[i].title}</h3>
           <div class="info__details">
             <div>
-              <p class="item__brand">Brand: HermanMiller</p>
-              <p class="item__category">Category: chair </p>
+              <p class="item__brand">Brand: ${productList[i].brand}</p>
+              <p class="item__category">Category: ${productList[i].category} </p>
             </div>
             <div>
-              <p class="item__price">Price, $: 1560 </p>
-              <p class="item__stock">Stock: 35 </p>
+              <p class="item__price">Price, $: ${productList[i].price} </p>
+              <p class="item__stock">Stock: ${productList[i].stock} </p>
             </div>
           </div>
-        </div
-
-      
-      <app-product></app-product></li>
-      
+        </div>
+      </div>
       `;
     }
     this.config.template += '</div>';
@@ -63,7 +57,7 @@ class ProductListComponent extends DMComponent {
 
   private showProduct(event: Event): void {
     const targetEl = event.target as HTMLElement;
-    const parentEl = targetEl.parentNode as HTMLElement;
+    const parentEl = targetEl.closest('.product__item') as HTMLElement;
     const productID: string | null = parentEl.getAttribute('data-id');
     if (productID) {
       const productHash = `productID=${productID}`;
@@ -76,10 +70,7 @@ class ProductListComponent extends DMComponent {
 
 const productListComponent = new ProductListComponent({
   selector: 'app-product-list',
-  template: `
-
-    <h2 class="visibility-hidden">List of products</h2>
-  `,
+  template: '',
   childComponents: [],
 });
 
