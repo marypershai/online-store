@@ -11,7 +11,7 @@ class ProductPageComponent extends DMComponent {
   createProductItem(id: number) {
     const product: Product | undefined = getProduct(id);
     if (product) {
-      this.template += `
+      this.template = `
         <div>
           <div>Title ${product.title}</div>
           <div>Price ${product.price}$</div>
