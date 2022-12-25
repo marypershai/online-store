@@ -21,8 +21,23 @@ export class Component {
     if (!this.element) throw new Error(`Component with selector ${this.selector} wasn't found`);
     this.element.innerHTML = this.template;
     if (this.childComponents) {
-      console.log(this.childComponents);
       this.childComponents.forEach((component) => component.render());
+    }
+
+    this.initEvents();
+  }
+
+  private initEvents(): void {
+    if (Object.getPrototypeOf(this).events) {
+      const events = Object.getPrototypeOf(this).events();
+
+      Object.keys(events).forEach((key) => {
+        const listner = key.split(' ');
+        if (this.element) {
+          (this.element.querySelector(listner[1]) as HTMLElement)
+            .addEventListener(listner[0], Object.getPrototypeOf(this)[events[key]].bind(this));
+        }
+      });
     }
   }
 }
