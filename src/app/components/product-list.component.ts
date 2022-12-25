@@ -63,7 +63,7 @@ class ProductListComponent extends DMComponent {
       if (productID) {
         const productHash = `productID=${productID}`;
         window.location.hash = productHash;
-        productPageComponent.createProductItem(+productID);
+        productPageComponent.createProductItem();
         addProductRoute(productHash);
       }
     }

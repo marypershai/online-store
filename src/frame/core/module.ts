@@ -1,4 +1,3 @@
-import { addProductRoute } from '../../app/app.routes';
 import { AppComponent } from '../../app/app.component';
 import { router } from '../index';
 import { Components, ModuleConfig, RoutesObj } from '../tools/interfaces';
@@ -10,28 +9,18 @@ export class Module {
 
   private routes: RoutesObj[] | undefined;
 
+  private dynamicRoutes: Function;
+
   constructor(private config: ModuleConfig) {
     this.components = config.components;
     this.bootstrapComponent = this.config.bootstrap;
     this.routes = config.routes;
+    this.dynamicRoutes = config.dynamicRoutes;
   }
 
   public start(): void {
-    this.checkUrl();
     this.initComponents();
     if (this.routes) this.initRoutes();
-  }
-
-  private checkUrl() {
-    const currentUrl = router.getUrl();
-    const regExp = /productID=\d+/gm;
-
-    if (currentUrl.match(regExp)) {
-      const id: string = currentUrl.substring(10);
-      // addProductRoute(`${id}`);
-      console.log(id);
-      console.log("Doesn't work");
-    }
   }
 
   private initComponents(): void {
@@ -46,6 +35,12 @@ export class Module {
 
   private renderRoute(): void {
     const url: string = router.getUrl();
+    const regExp = /productID=\d+/gm;
+    if (url.match(regExp)) {
+      const id: string = router.getUrl().substring(10);
+      this.dynamicRoutes(`productID=${id}`);
+    }
+
     if (this.routes) {
       let route: RoutesObj | undefined = this.routes
         .find((currentRoute) => currentRoute.path === url);
