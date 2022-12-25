@@ -49,7 +49,7 @@ class ProductListComponent extends DMComponent {
     return this.config.template;
   }
 
-  public events(): object {
+  public events(): Record<string, string> {
     return {
       'click .product-list': 'showProduct',
     };
@@ -57,13 +57,15 @@ class ProductListComponent extends DMComponent {
 
   private showProduct(event: Event): void {
     const targetEl = event.target as HTMLElement;
-    const parentEl = targetEl.closest('.product__item') as HTMLElement;
-    const productID: string | null = parentEl.getAttribute('data-id');
-    if (productID) {
-      const productHash = `productID=${productID}`;
-      window.location.hash = productHash;
-      productPageComponent.createProductItem(+productID);
-      addProductRoute(productHash);
+    if (targetEl.classList.contains('icon')) {
+      const parentEl = targetEl.closest('.product__item') as HTMLElement;
+      const productID: string | null = parentEl.getAttribute('data-id');
+      if (productID) {
+        const productHash = `productID=${productID}`;
+        window.location.hash = productHash;
+        productPageComponent.createProductItem(+productID);
+        addProductRoute(productHash);
+      }
     }
   }
 }

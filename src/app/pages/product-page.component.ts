@@ -8,7 +8,7 @@ class ProductPageComponent extends DMComponent {
     super(config);
   }
 
-  createProductItem(id: number) {
+  createProductItem(id: number): void {
     const product: Product | undefined = getProduct(id);
     if (product) {
       this.template = `
