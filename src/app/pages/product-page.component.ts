@@ -1,15 +1,17 @@
 import { Product } from '../service/product';
 import { getProduct } from '../service/product-list';
-import { DMComponent } from '../../frame/index';
+import { DMComponent, router } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 
 class ProductPageComponent extends DMComponent {
   constructor(config: ComponentConfig) {
     super(config);
+    this.createProductItem();
   }
 
-  createProductItem(id: number): void {
-    const product: Product | undefined = getProduct(id);
+  createProductItem(): void {
+    const id: string = router.getUrl().substring(10);
+    const product: Product | undefined = getProduct(+id);
     if (product) {
       this.template = `
         <div>
