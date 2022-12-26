@@ -5,46 +5,53 @@ import { productPageComponent } from '../pages/product-page.component';
 import { productList } from '../service/product-list';
 
 class ProductListComponent extends DMComponent {
-  constructor(config: ComponentConfig) {
+  constructor(config: ComponentConfig, view: string | undefined) {
     super(config);
-    this.template = this.createListOfProducts();
+    this.template = this.createListOfProducts(view);
   }
 
-  private createListOfProducts(): string {
-    this.config.template = '<div class="product-list products">';
-    for (let i = 0; i < productList.length; i += 1) {
-      this.config.template += `
-      <div class="product__item" data-id=${productList[i].id}>
-        <div class="item__image">
-          <img class=" image" src="${productList[i].thumbnail}" alt="" decoding="async">
-        
-          <div class="item__links">
-            <button class="button button--card">Add to cart</button>
-            <button class="button button--info">
-              <svg class="icon">
-                <title>Click to receive information</title>
-                <use xlink:href="./icons.svg#info"></use>
-              </svg>
-            </button>
-          </div>    
-        </div>
+  public createListOfProducts(view: string | undefined): string {
 
-        <div class="item__info">
-          <h3 class="item__name">${productList[i].title}</h3>
-          <div class="info__details">
-            <div>
-              <p class="item__brand">Brand: ${productList[i].brand}</p>
-              <p class="item__category">Category: ${productList[i].category} </p>
+    this.config.template = '<div class="product-list products">';
+    console.log(view);
+    if (view == 'view-card' || view == undefined) {
+      for (let i = 0; i < productList.length; i += 1) {
+        this.config.template += `
+          <div class="product__item" data-id=${productList[i].id}>
+            <div class="item__image">
+              <img class=" image" src="${productList[i].thumbnail}" alt="" decoding="async">
+            
+              <div class="item__links">
+                <button class="button button--card">Add to cart</button>
+                <button class="button button--info">
+                  <svg class="icon">
+                    <title>Click to receive information</title>
+                    <use xlink:href="./icons.svg#info"></use>
+                  </svg>
+                </button>
+              </div>    
             </div>
-            <div>
-              <p class="item__price">Price, $: ${productList[i].price} </p>
-              <p class="item__stock">Stock: ${productList[i].stock} </p>
+    
+            <div class="item__info">
+              <h3 class="item__name">${productList[i].title}</h3>
+              <div class="info__details">
+                <div>
+                  <p class="item__brand">Brand: ${productList[i].brand}</p>
+                  <p class="item__category">Category: ${productList[i].category} </p>
+                </div>
+                <div>
+                  <p class="item__price">Price, $: ${productList[i].price} </p>
+                  <p class="item__stock">Stock: ${productList[i].stock} </p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      `;
+          `;
+      }
+    } else {
+      this.config.template += 'new view';
     }
+
     this.config.template += '</div>';
     return this.config.template;
   }
@@ -68,12 +75,13 @@ class ProductListComponent extends DMComponent {
       }
     }
   }
+
 }
 
 const productListComponent = new ProductListComponent({
   selector: 'app-product-list',
   template: '',
   childComponents: [],
-});
+}, 'view-card');
 
 export { productListComponent, ProductListComponent };
