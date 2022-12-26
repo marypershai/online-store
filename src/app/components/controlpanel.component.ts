@@ -16,16 +16,21 @@ class ControlComponent extends DMComponent {
 
   private changeProductListView(event: Event) {
     const targetEl = event.target as HTMLElement;
-    console.log(targetEl);
-    const view: string | undefined = targetEl.getAttribute('class')?.split(' ')[1];
-    console.log('my-view ' + view);
-    const newview = new ProductListComponent({
-      selector: 'app-product-list',
-      template: '',
-      childComponents: [],
-    }, view);
-    newview.render();
-    // window.location.search = `view=${view}`;
+    if (targetEl.classList.contains('icon')) {
+      const view: string | undefined = (targetEl.closest('.button') as HTMLElement).getAttribute('class')?.split(' ')[1];
+      if (view) {
+        localStorage.setItem('view', view);
+      }
+      console.log('my-view ' + view);
+      const newview = new ProductListComponent({
+        selector: 'app-product-list',
+        template: '',
+        childComponents: [],
+      });
+      newview.render();
+      // window.location.search = `view=${view}`;
+    }
+
   }
 
 }

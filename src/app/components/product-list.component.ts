@@ -5,13 +5,13 @@ import { productPageComponent } from '../pages/product-page.component';
 import { productList } from '../service/product-list';
 
 class ProductListComponent extends DMComponent {
-  constructor(config: ComponentConfig, view: string | undefined) {
+  constructor(config: ComponentConfig) {
     super(config);
-    this.template = this.createListOfProducts(view);
+    this.template = this.createListOfProducts();
   }
 
-  public createListOfProducts(view: string | undefined): string {
-
+  public createListOfProducts(): string {
+    const view: string | null = localStorage.getItem('view');
     this.config.template = '<div class="product-list products">';
     console.log(view);
     if (view == 'view-card' || view == undefined) {
@@ -82,6 +82,6 @@ const productListComponent = new ProductListComponent({
   selector: 'app-product-list',
   template: '',
   childComponents: [],
-}, 'view-card');
+});
 
 export { productListComponent, ProductListComponent };
