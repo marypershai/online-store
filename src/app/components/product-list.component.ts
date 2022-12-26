@@ -13,7 +13,6 @@ class ProductListComponent extends DMComponent {
   public createListOfProducts(): string {
     const view: string | null = localStorage.getItem('view');
     this.config.template = '<div class="product-list products">';
-    console.log(view);
     if (view == 'view-card' || view == undefined) {
       for (let i = 0; i < productList.length; i += 1) {
         this.config.template += `

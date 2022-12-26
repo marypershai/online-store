@@ -9,27 +9,24 @@ class ControlComponent extends DMComponent {
 
   public events(): Record<string, string> {
     return {
-      'click .view-card': 'changeProductListView',
       'click .view-list': 'changeProductListView',
+      'click .view-card': 'changeProductListView',
     };
   }
 
   private changeProductListView(event: Event) {
-    const targetEl = event.target as HTMLElement;
-    if (targetEl.classList.contains('icon')) {
-      const view: string | undefined = (targetEl.closest('.button') as HTMLElement).getAttribute('class')?.split(' ')[1];
-      if (view) {
-        localStorage.setItem('view', view);
-      }
-      console.log('my-view ' + view);
-      const newview = new ProductListComponent({
-        selector: 'app-product-list',
-        template: '',
-        childComponents: [],
-      });
-      newview.render();
-      // window.location.search = `view=${view}`;
+    const targetEl = event.currentTarget as HTMLElement;
+    const view: string | undefined = targetEl.getAttribute('class')?.split(' ')[1];
+    if (view) {
+      localStorage.setItem('view', view);
     }
+    const newView = new ProductListComponent({
+      selector: 'app-product-list',
+      template: '',
+      childComponents: [],
+    });
+    newView.render();
+    window.location.search = `view=${view}`;
 
   }
 
@@ -67,7 +64,7 @@ export const controlComponent = new ControlComponent({
           <option value="">Product Name Z - A</option>
         </select>
       </div>
-      
+      <div class="view">
       <button class="button view-card">
         <svg class="icon">
           <title>View Cards</title>
@@ -79,7 +76,8 @@ export const controlComponent = new ControlComponent({
           <title>View List</title>
           <use xlink:href="./icons.svg#view-list"></use>
         </svg>
-      </button>    
+      </button>  
+      </div>  
     </div>
      
       
