@@ -64,7 +64,6 @@ export const controlComponent = new ControlComponent({
           <option value="">Product Name Z - A</option>
         </select>
       </div>
-      <div class="view">
       <button class="button view-card">
         <svg class="icon">
           <title>View Cards</title>
@@ -76,8 +75,7 @@ export const controlComponent = new ControlComponent({
           <title>View List</title>
           <use xlink:href="./icons.svg#view-list"></use>
         </svg>
-      </button>  
-      </div>  
+      </button>    
     </div>
      
       
