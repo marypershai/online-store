@@ -1,10 +1,30 @@
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
+import { productListComponent } from './product-list.component';
 
 class ControlComponent extends DMComponent {
   constructor(config: ComponentConfig) {
     super(config);
   }
+
+  public events(): Record<string, string> {
+    return {
+      'click .view-list': 'changeProductListView',
+      'click .view-card': 'changeProductListView',
+    };
+  }
+
+  private changeProductListView(event: Event): void {
+    const targetEl = event.currentTarget as HTMLElement;
+    const view: string | undefined = targetEl.getAttribute('class')?.split(' ')[1];
+    if (view) {
+      localStorage.setItem('view', view);
+    }
+    productListComponent.template = productListComponent.createListOfProducts();
+    productListComponent.render();
+    window.location.search = `view=${view}`;
+  }
+
 }
 
 export const controlComponent = new ControlComponent({
@@ -39,14 +59,13 @@ export const controlComponent = new ControlComponent({
           <option value="">Product Name Z - A</option>
         </select>
       </div>
-      
-      <button class="button">
+      <button class="button view-card">
         <svg class="icon">
           <title>View Cards</title>
           <use xlink:href="./icons.svg#view-cards"></use>
         </svg>
       </button>
-      <button class="button">
+      <button class="button view-list">
         <svg class="icon">
           <title>View List</title>
           <use xlink:href="./icons.svg#view-list"></use>

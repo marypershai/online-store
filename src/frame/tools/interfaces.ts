@@ -20,7 +20,7 @@ export interface ModuleConfig {
   components: Components[];
   bootstrap: AppComponent;
   routes: RoutesObj[];
-  dynamicRoutes: Function;
+  dynamicRoutes: (id: string) => void;
 }
 
 export interface FeatureComponentConfig {

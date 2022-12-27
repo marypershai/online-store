@@ -9,7 +9,7 @@ export class Module {
 
   private routes: RoutesObj[] | undefined;
 
-  private dynamicRoutes: Function;
+  private dynamicRoutes: (id: string) => void;
 
   constructor(private config: ModuleConfig) {
     this.components = config.components;
