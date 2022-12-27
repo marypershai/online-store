@@ -1,3 +1,4 @@
+import { sortProduct } from '../../app/service/product-list';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { productListComponent } from './product-list.component';
@@ -11,6 +12,7 @@ class ControlComponent extends DMComponent {
     return {
       'click .view-list': 'changeProductListView',
       'click .view-card': 'changeProductListView',
+      'change .schema-order': 'changeProductOrder',
     };
   }
 
@@ -25,6 +27,13 @@ class ControlComponent extends DMComponent {
     window.location.search = `view=${view}`;
   }
 
+  private changeProductOrder(): void {
+    const select = document.querySelector('.schema-order') as HTMLSelectElement | null;
+    const currentOption = select?.selectedIndex;
+    sortProduct(currentOption);
+    productListComponent.template = productListComponent.createListOfProducts();
+    productListComponent.render();
+  }
 }
 
 export const controlComponent = new ControlComponent({
@@ -51,12 +60,12 @@ export const controlComponent = new ControlComponent({
     <div class="controlpanel__item">
       <div class="sort-control">
         <p>Sort by</p>
-        <select class="custom-select" name="sort-order" aria-label="Sort By">
-          <option value="">Recommended</option>
-          <option value="">Price Low To High</option>
-          <option value="">Price High To Low</option>
-          <option value="">Product Name A - Z</option>
-          <option value="">Product Name Z - A</option>
+        <select class="custom-select schema-order" name="sort-order" aria-label="Sort By">
+          <option value="0">Recommended</option>
+          <option value="1">Price Low To High</option>
+          <option value="2">Price High To Low</option>
+          <option value="3">Product Name A - Z</option>
+          <option value="4">Product Name Z - A</option>
         </select>
       </div>
       <button class="button view-card">
