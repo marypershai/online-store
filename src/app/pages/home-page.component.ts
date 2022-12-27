@@ -14,7 +14,7 @@ class HomePageComponent extends DMComponent {
 export const homePageComponent = new HomePageComponent({
   selector: 'app-home-page',
   template: `
-        <main>
+        
           <app-search></app-search>
           <app-controlpanel></app-controlpanel>
           <section class="page__container workspace">
@@ -26,7 +26,7 @@ export const homePageComponent = new HomePageComponent({
           </section>
              
           </section> 
-        </main>        
+             
     `,
   childComponents: [searchComponent, controlComponent, filterComponent, productListComponent],
 });

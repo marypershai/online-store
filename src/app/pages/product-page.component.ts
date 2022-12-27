@@ -9,23 +9,79 @@ class ProductPageComponent extends DMComponent {
     this.createProductItem();
   }
 
+   
   createProductItem(): void {
     const id: string = router.getUrl().substring(10);
     const product: Product | undefined = getProduct(+id);
     if (product) {
       this.template = `
-        <div>
-          <div>Title ${product.title}</div>
-          <div>Price ${product.price}$</div>
-          <div>Discount ${product.discountPercentage}%</div>
-          <div>Rating ${product.rating}</div>
-          <div>In stock ${product.stock}</div>
-          <div>Description ${product.description}</div>
-          <div>      
+      
+        <div class="page__container product-detail-container">
+          <ol class="breadcrumb">
+            <li class="breadcrumb__item"><a href="/" class="breadcrumb__link">giftToProgrammers</a></li>
+            <li class="breadcrumb__item">${product.category}</li>
+            <li class="breadcrumb__item">${product.brand}</li>
+            <li class="breadcrumb__item">${product.title}</li>
+          </ol>
+          <div class="product__panel">
+              <div class="product__image-carousel">
+              <div class="product__image--wrapper">
+                <img class="product__image--primary" src="${product.images[0]}" alt="${product.title}">   
+              </div>
+                               
+              <div class="image__list__wrapper">
+                <ul class="image__list">  
+                  <li><img class="image__list__item image__list__item--active" src=${product.images[0]} width="60" height="60" alt=""></li>               
+        
         `;
+      for (let i = 1; i < product.images.length; i++) {
+        this.template += `<li><img class="image__list__item" src=${product.images[i]} width="60" height="60" alt=""></li>`; 
+      }
+    
+      this.template += `
+                </ul> 
+                </div>
+              </div>
+              <div class="product__info-section">
+                <h2>${product.title}</h2>
+                <div class="product__feature">${product.description}</div>
+                <div class="product__feature"><span class="bold">Category:</span> ${product.category}</div>
+                <div class="product__feature"><span class="bold">Brand:</span> ${product.brand}</div>
+                <div class="product__feature"><span class="bold">Rating:</span> ${product.rating}</div>  
+                <div class="product__feature"><span class="bold">Discount:</span> ${product.discountPercentage}%</div>
+                <div class="product__feature"><span class="bold">Price:</span> ${product.price}$</div>
+                <div class="product__feature"><span class="bold">In stock:</span> ${product.stock}</div>
+                <div class="pruduct__buttons">
+                  <button class="button button--card">Add to Cart</button>
+                  <button class="button button--buy">Buy Now</button>
+                </div>            
+              </div>
+            </div>
+          <div> `;
+    }
+  }
 
-      product.images.forEach((link) => { this.template += `<img src=${link} width="100px" height="100px">`; });
-      this.template += '</div></div>';
+  private selectionRemove():void {
+    const imageList: NodeListOf<Element> = document.querySelectorAll('.image__list__item');
+    imageList.forEach((el) => {
+      el.classList.remove('image__list__item--active');
+    });
+  }
+
+  private events(): Record<string, string> {
+    return {
+      'click .image__list': 'changeImage',
+    };
+  }
+ 
+  private changeImage(event: Event):void {
+    const targetEl = event.target as HTMLImageElement;
+    const mainImage: HTMLImageElement | null = document.querySelector('.product__image--primary');
+
+    if (targetEl.classList.contains('image__list__item') && mainImage) {
+      this.selectionRemove();
+      targetEl.classList.add('image__list__item--active');
+      mainImage.src = targetEl.src;
     }
   }
 
