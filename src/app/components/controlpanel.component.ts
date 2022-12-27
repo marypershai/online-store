@@ -1,6 +1,6 @@
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
-import { ProductListComponent } from './product-list.component';
+import { productListComponent } from './product-list.component';
 
 class ControlComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -14,20 +14,15 @@ class ControlComponent extends DMComponent {
     };
   }
 
-  private changeProductListView(event: Event) {
+  private changeProductListView(event: Event): void {
     const targetEl = event.currentTarget as HTMLElement;
     const view: string | undefined = targetEl.getAttribute('class')?.split(' ')[1];
     if (view) {
       localStorage.setItem('view', view);
     }
-    const newView = new ProductListComponent({
-      selector: 'app-product-list',
-      template: '',
-      childComponents: [],
-    });
-    newView.render();
+    productListComponent.template = productListComponent.createListOfProducts();
+    productListComponent.render();
     window.location.search = `view=${view}`;
-
   }
 
 }
