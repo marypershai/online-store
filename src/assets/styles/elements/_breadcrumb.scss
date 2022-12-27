@@ -1,0 +1,48 @@
+.breadcrumb {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 1em 0;
+  display: flex;
+  flex-direction:row;
+  justify-content: flex-start;  
+}
+
+
+.breadcrumb__item {    
+  align-items: center;
+  display: flex;
+  color: $breadcrumb;
+}
+
+.breadcrumb__link {
+  color: $breadcrumb;
+  text-decoration: none;
+  position: relative;
+  transition: 2s ease-in-out;
+}
+
+.breadcrumb__link:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: $breadcrumb;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.breadcrumb__link:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
+
+.breadcrumb__item:not(:last-child)::after {
+  content: "/";
+  color: $breadcrumb;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 0 .5em;
+}

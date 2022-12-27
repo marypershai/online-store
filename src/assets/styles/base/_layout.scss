@@ -1,9 +1,17 @@
+
+app-root,
 .page__body {
   min-width: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 1em;
+}
+
+
+
+main {
+flex-grow: 1;
 }
 
 .page__container {
