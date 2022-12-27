@@ -1,4 +1,4 @@
-import { sortProduct } from '../../app/service/product-list';
+import { productListCurrent, sortProduct } from '../../app/service/product-list';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { productListComponent } from './product-list.component';
@@ -55,7 +55,7 @@ export const controlComponent = new ControlComponent({
       <button class="button button--save button--underlined">Copy link</button>
     </div>
    
-      <p class="search-results">Results: 20</p>
+      <p class="search-results">Results: ${productListCurrent.length}</p>
     
     <div class="controlpanel__item">
       <div class="sort-control">
