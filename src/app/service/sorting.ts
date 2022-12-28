@@ -1,6 +1,6 @@
 import { SortFunction } from '../../frame/tools/types';
 import { Product } from './product';
-import { CopyProductList } from './product-list';
+import { copyProductList } from './product-list';
 
 
 function byField(field: string): SortFunction {
@@ -10,21 +10,21 @@ function byField(field: string): SortFunction {
 export function sortProduct(sortingType: number | undefined) {
   switch (sortingType) {
     case 0:
-      CopyProductList.sort(byField('id'));
+      copyProductList.sort(byField('id'));
       break;
     case 1:
-      CopyProductList.sort(byField('price'));
+      copyProductList.sort(byField('price'));
       break;
     case 2:
-      CopyProductList.sort(byField('price'));
-      CopyProductList.reverse();
+      copyProductList.sort(byField('price'));
+      copyProductList.reverse();
       break;
     case 3:
-      CopyProductList.sort(byField('title'));
+      copyProductList.sort(byField('title'));
       break;
     case 4:
-      CopyProductList.sort(byField('title'));
-      CopyProductList.reverse();
+      copyProductList.sort(byField('title'));
+      copyProductList.reverse();
       break;
   }
 }

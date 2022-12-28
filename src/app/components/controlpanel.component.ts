@@ -1,5 +1,5 @@
 import { sortProduct } from '../../app/service/sorting';
-import { CopyProductList } from '../../app/service/product-list';
+import { copyProductList } from '../../app/service/product-list';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { productListComponent } from './product-list.component';
@@ -56,7 +56,7 @@ export const controlComponent = new ControlComponent({
       <button class="button button--save button--underlined">Copy link</button>
     </div>
    
-      <p class="search-results">Results: ${CopyProductList.length}</p>
+      <p class="search-results">Results: ${copyProductList.length}</p>
     
     <div class="controlpanel__item">
       <div class="sort-control">

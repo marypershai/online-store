@@ -3,7 +3,7 @@ import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { addProductRoute } from '../app.routes';
 import { productPageComponent } from '../pages/product-page.component';
-import { CopyProductList } from '../service/product-list';
+import { copyProductList } from '../service/product-list';
 
 class ProductListComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -15,14 +15,14 @@ class ProductListComponent extends DMComponent {
     const view: string | null = localStorage.getItem('view');
     this.config.template = '<div class="product-list products">';
     if (view == 'view-card' || view == undefined) {
-      for (let i = 0; i < CopyProductList.length; i += 1) {
+      for (let i = 0; i < copyProductList.length; i += 1) {
         this.config.template += `
-          <div class="product__item" data-id=${CopyProductList[i].id}>
+          <div class="product__item" data-id=${copyProductList[i].id}>
             <div class="item__image">
-              <img class=" image" src="${CopyProductList[i].thumbnail}" alt="" decoding="async">
+              <img class=" image" src="${copyProductList[i].thumbnail}" alt="" decoding="async">
             
               <div class="item__links">
-                <button class="button button--card">${cart.checkButtonState(productListCurrent[i].id)}</button>
+                <button class="button button--card">${cart.checkButtonState(copyProductList[i].id)}</button>
                 <button class="button button--info">
                   <svg class="icon">
                     <title>Click to receive information</title>
@@ -33,15 +33,15 @@ class ProductListComponent extends DMComponent {
             </div>
     
             <div class="item__info">
-              <h3 class="item__name">${CopyProductList[i].title}</h3>
+              <h3 class="item__name">${copyProductList[i].title}</h3>
               <div class="info__details">
                 <div>
-                  <p class="item__brand">Brand: ${CopyProductList[i].brand}</p>
-                  <p class="item__category">Category: ${CopyProductList[i].category} </p>
+                  <p class="item__brand">Brand: ${copyProductList[i].brand}</p>
+                  <p class="item__category">Category: ${copyProductList[i].category} </p>
                 </div>
                 <div>
-                  <p class="item__price">Price, $: ${CopyProductList[i].price} </p>
-                  <p class="item__stock">Stock: ${CopyProductList[i].stock} </p>
+                  <p class="item__price">Price, $: ${copyProductList[i].price} </p>
+                  <p class="item__stock">Stock: ${copyProductList[i].stock} </p>
                 </div>
               </div>
             </div>
