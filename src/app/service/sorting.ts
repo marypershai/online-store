@@ -1,9 +1,9 @@
-import { sortFunction } from '../../frame/tools/types';
+import { SortFunction } from '../../frame/tools/types';
 import { Product } from './product';
 import { CopyProductList } from './product-list';
 
 
-function byField(field: string): sortFunction {
+function byField(field: string): SortFunction {
   return (a: Product, b: Product) => a[field as keyof Product] > b[field as keyof Product] ? 1 : -1;
 }
 
