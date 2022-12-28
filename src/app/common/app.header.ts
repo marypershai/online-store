@@ -28,7 +28,7 @@ export const appHeader = new AppHeader({
               <p class="cart__number">0</p>
             </div>
 
-            <div class="info__cart">
+            <div class="info__cart button">
               <svg class="icon">
                 <title>number of sku</title>
                 <use xlink:href="./icons.svg#Shopping Basket"></use>
