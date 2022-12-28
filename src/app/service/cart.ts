@@ -1,6 +1,6 @@
 import { CartData } from 'frame/tools/interfaces';
 
-class Cart {
+class CartService {
   private cart: CartData[];
 
   constructor() {
@@ -8,7 +8,8 @@ class Cart {
   }
 
   public addToCart(id: number, quantity: number): void {
-    if (this.cart.find(item => item.productID == id)) {
+    const productExist = this.cart.find(item => item.productID == id);
+    if (productExist) {
       console.log('update - not implemented now');
     }
     this.cart.push({ 'productID': id, 'quantity': quantity });
@@ -37,4 +38,4 @@ class Cart {
   }
 }
 
-export const cart = new Cart();
+export const cart = new CartService();
