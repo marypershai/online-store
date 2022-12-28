@@ -2,6 +2,7 @@ import { Product } from '../service/product';
 import { getProduct } from '../service/product-list';
 import { DMComponent, router } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
+import { cart } from '../service/cart';
 
 class ProductPageComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -9,7 +10,7 @@ class ProductPageComponent extends DMComponent {
     this.createProductItem();
   }
 
-   
+
   createProductItem(): void {
     const id: string = router.getUrl().substring(10);
     const product: Product | undefined = getProduct(+id);
@@ -35,9 +36,9 @@ class ProductPageComponent extends DMComponent {
         
         `;
       for (let i = 1; i < product.images.length; i++) {
-        this.template += `<li><img class="image__list__item" src=${product.images[i]} width="60" height="60" alt=""></li>`; 
+        this.template += `<li><img class="image__list__item" src=${product.images[i]} width="60" height="60" alt=""></li>`;
       }
-    
+
       this.template += `
                 </ul> 
                 </div>
@@ -52,7 +53,7 @@ class ProductPageComponent extends DMComponent {
                 <div class="product__feature"><span class="bold">Price:</span> ${product.price}$</div>
                 <div class="product__feature"><span class="bold">In stock:</span> ${product.stock}</div>
                 <div class="pruduct__buttons">
-                  <button class="button button--card">Add to Cart</button>
+                  <button class="button button--card">${cart.checkButtonState(product.id)}</button>
                   <button class="button button--buy">Buy Now</button>
                 </div>            
               </div>
@@ -61,7 +62,7 @@ class ProductPageComponent extends DMComponent {
     }
   }
 
-  private selectionRemove():void {
+  private selectionRemove(): void {
     const imageList: NodeListOf<Element> = document.querySelectorAll('.image__list__item');
     imageList.forEach((el) => {
       el.classList.remove('image__list__item--active');
@@ -71,10 +72,11 @@ class ProductPageComponent extends DMComponent {
   private events(): Record<string, string> {
     return {
       'click .image__list': 'changeImage',
+      'click .button--card': 'addProductToCart',
     };
   }
- 
-  private changeImage(event: Event):void {
+
+  private changeImage(event: Event): void {
     const targetEl = event.target as HTMLImageElement;
     const mainImage: HTMLImageElement | null = document.querySelector('.product__image--primary');
 
@@ -82,6 +84,19 @@ class ProductPageComponent extends DMComponent {
       this.selectionRemove();
       targetEl.classList.add('image__list__item--active');
       mainImage.src = targetEl.src;
+    }
+  }
+
+  private addProductToCart(event: Event): void {
+    const cartButton = event.currentTarget as HTMLElement;
+    console.log(cartButton);
+    const productID: string = router.getUrl().substring(10);
+    if (productID && cartButton.innerHTML == 'Add to cart') {
+      cart.addToCart(+productID, 1);
+      cartButton.innerHTML = 'Delete from cart';
+    } else if (productID) {
+      cart.delete(+productID);
+      cartButton.innerHTML = 'Add to cart';
     }
   }
 

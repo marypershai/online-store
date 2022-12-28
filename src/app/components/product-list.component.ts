@@ -1,3 +1,4 @@
+import { cart } from '../service/cart';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { addProductRoute } from '../app.routes';
@@ -21,7 +22,7 @@ class ProductListComponent extends DMComponent {
               <img class=" image" src="${CopyProductList[i].thumbnail}" alt="" decoding="async">
             
               <div class="item__links">
-                <button class="button button--card">Add to cart</button>
+                <button class="button button--card">${cart.checkButtonState(productListCurrent[i].id)}</button>
                 <button class="button button--info">
                   <svg class="icon">
                     <title>Click to receive information</title>
@@ -58,6 +59,7 @@ class ProductListComponent extends DMComponent {
   public events(): Record<string, string> {
     return {
       'click .product-list': 'showProduct',
+      'click .products': 'addProductToCart',
     };
   }
 
@@ -72,6 +74,20 @@ class ProductListComponent extends DMComponent {
         productPageComponent.createProductItem();
         addProductRoute(productHash);
       }
+    }
+  }
+
+  private addProductToCart(event: Event): void {
+    const targetEl = event.target as HTMLElement;
+    const parentEl = targetEl.closest('.product__item') as HTMLElement;
+    const productID: string | null = parentEl.getAttribute('data-id');
+    const cartButton = targetEl.closest('.button--card') as HTMLElement;
+    if (productID && cartButton.innerHTML == 'Add to cart') {
+      cart.addToCart(+productID, 1);
+      cartButton.innerText = 'Delete from cart';
+    } else if (productID) {
+      cart.delete(+productID);
+      cartButton.innerText = 'Add to cart';
     }
   }
 
