@@ -41,4 +41,15 @@
       </clipPath>
     </defs>
   </symbol>
+ 
+  <symbol fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 34" id="list-b">
+    <rect x="0.5" y="0.5" width="44" height="33" stroke="#111111"></rect>
+    <rect x="2" y="3" width="9" height="7" fill="#111111"></rect>
+    <rect x="2" y="13" width="9" height="8" fill="#111111"></rect>
+    <rect x="2" y="24" width="9" height="7" fill="#111111"></rect>
+    <rect x="13" y="3" width="30" height="7" fill="#111111"></rect>
+    <rect x="13" y="13" width="30" height="8" fill="#111111"></rect>
+    <rect x="13" y="24" width="30" height="7" fill="#111111"></rect>
+  </symbol>
+
 </svg>

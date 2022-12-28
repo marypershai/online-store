@@ -5,6 +5,7 @@ import { productListComponent } from './product-list.component';
 class ControlComponent extends DMComponent {
   constructor(config: ComponentConfig) {
     super(config);
+    this.template = this.createControlPanel();
   }
 
   public events(): Record<string, string> {
@@ -14,8 +15,8 @@ class ControlComponent extends DMComponent {
     };
   }
 
-  private changeProductListView(event: Event): void {
-    const targetEl = event.currentTarget as HTMLElement;
+  private changeProductListView(event: Event): void {    
+    const targetEl = event.currentTarget as HTMLElement;  
     const view: string | undefined = targetEl.getAttribute('class')?.split(' ')[1];
     if (view) {
       localStorage.setItem('view', view);
@@ -25,12 +26,10 @@ class ControlComponent extends DMComponent {
     window.location.search = `view=${view}`;
   }
 
-}
-
-export const controlComponent = new ControlComponent({
-  selector: 'app-controlpanel',
-  template: `
-  <section class="container--full controlpanel">
+  public createControlPanel(): string {
+    const view: string | null = localStorage.getItem('view'); 
+    this.config.template += ` 
+   <section class="container--full controlpanel">
     <h2 class="visibility-hidden">Panel to control SKUs flow</h2>
     <div class="page__container controlpanel__content">
     <div class="controlpanel__item">
@@ -58,24 +57,57 @@ export const controlComponent = new ControlComponent({
           <option value="">Product Name A - Z</option>
           <option value="">Product Name Z - A</option>
         </select>
+      </div>`;
+
+    if (view == 'view-card' || view == undefined) {
+      this.config.template += `
+        <button class="button view-card button-view button-view--active">
+        <svg class="icon">
+          <title>View Cards</title>
+          <use xlink:href="./icons.svg#view-cards"></use>
+        </svg>
+        </button>
+        <button class="button button-view view-list">
+          <svg class="icon">
+            <title>View List</title>
+            <use xlink:href="./icons.svg#list-b"></use>
+          </svg>
+        </button>    
       </div>
-      <button class="button view-card">
+    
+      `;
+    } else {
+      this.config.template += `
+        <button class="button view-card button-view ">
         <svg class="icon">
           <title>View Cards</title>
           <use xlink:href="./icons.svg#view-cards"></use>
         </svg>
       </button>
-      <button class="button view-list">
+      <button class="button button-view view-list button-view--active">
         <svg class="icon">
           <title>View List</title>
-          <use xlink:href="./icons.svg#view-list"></use>
+          <use xlink:href="./icons.svg#list-b"></use>
         </svg>
       </button>    
+    </div> 
+        `;
+    }
+
+    this.config.template += `
     </div>
-     
-      
-    </div>
-  </section>        
-    `,
+  </section> 
+   `;
+    return this.config.template;
+  }
+
+}
+
+export const controlComponent = new ControlComponent({
+  selector: 'app-controlpanel',
+  template: '',
+   
   childComponents: [],
 });
+
+
