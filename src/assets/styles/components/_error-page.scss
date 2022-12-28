@@ -1,0 +1,69 @@
+.error-page__block {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  row-gap: 2em;
+}
+
+.error-page__image {
+  height: 400px;
+  width: 400px;
+}
+
+.error-page__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+
+}
+
+
+
+.error-page__button {
+  text-decoration: none;
+  color: $text-colour;
+  text-decoration: none;
+}
+
+.error-page__button {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid $text-colour;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 16px;
+  transition: all .8s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.error-page__button:hover {
+  color: #fff;
+}
+
+.error-page__button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #252525;
+  transition: all .5s;
+  z-index: -1;
+  transform: translateX(-100%);
+}
+
+.error-page__button:hover::before {
+  transform: translateX(0);
+}
+
+.error-page__button:active::before {
+  background: #252525;
+}
