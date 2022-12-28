@@ -1,4 +1,5 @@
-import { productListCurrent, sortProduct } from '../../app/service/product-list';
+import { sortProduct } from '../../app/service/sorting';
+import { CopyProductList } from '../../app/service/product-list';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { productListComponent } from './product-list.component';
@@ -28,8 +29,8 @@ class ControlComponent extends DMComponent {
   }
 
   private changeProductOrder(): void {
-    const select = document.querySelector('.schema-order') as HTMLSelectElement | null;
-    const currentOption = select?.selectedIndex;
+    const select: HTMLSelectElement | null = document.querySelector('.schema-order');
+    const currentOption: number | undefined = select?.selectedIndex;
     sortProduct(currentOption);
     productListComponent.template = productListComponent.createListOfProducts();
     productListComponent.render();
@@ -55,7 +56,7 @@ export const controlComponent = new ControlComponent({
       <button class="button button--save button--underlined">Copy link</button>
     </div>
    
-      <p class="search-results">Results: ${productListCurrent.length}</p>
+      <p class="search-results">Results: ${CopyProductList.length}</p>
     
     <div class="controlpanel__item">
       <div class="sort-control">
