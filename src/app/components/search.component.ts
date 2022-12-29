@@ -10,7 +10,7 @@ class SearchComponent extends DMComponent {
 export const searchComponent = new SearchComponent({
   selector: 'app-search',
   template: `
-  <img  class="page__container--full image" src="https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671819843/rs-school/online/Accessories.png" alt="picture with slogan 'say goodbye to gifting guesswork'" width="2500" height="1060">
+  <img  class="page__container--full image" src="https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671819843/rs-school/online/Accessories.png" alt="picture with slogan 'say goodbye to gifting guesswork'" width="3000" height="400">
   <section>
     <h2 class="visibility-hidden">Search Gift</h2>
     <div class="page__container search">

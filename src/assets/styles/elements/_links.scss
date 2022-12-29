@@ -50,3 +50,46 @@
 .link:active {
   color: $link-active;
 }
+
+
+.link-as-button {
+  max-width: 20ch;
+  text-decoration: none;
+  color: $text-colour;
+  text-decoration: none;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid $text-colour;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 16px;
+  transition: all .8s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.link-as-button:hover {
+  color: #fff;
+}
+
+.link-as-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #252525;
+  transition: all .5s;
+  z-index: -1;
+  transform: translateX(-100%);
+}
+
+.link-as-button:hover::before {
+  transform: translateX(0);
+}
+
+.link-as-button:active::before {
+  background: #252525;
+}

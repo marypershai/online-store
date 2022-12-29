@@ -1,9 +1,22 @@
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
+import { cartPageComponent } from '../pages/cart-page.component';
 
 export class AppHeader extends DMComponent {
   constructor(config: ComponentConfig) {
     super(config);
+  }
+
+  public events(): Record<string, string> {
+    return {
+      'click .cart-nav': 'openCart',
+    };
+  }
+
+  private openCart(): void {
+    cartPageComponent.createCartPage();
+    window.location.hash = 'cart';
+    cartPageComponent.createCartPage();
   }
 }
 
@@ -28,12 +41,15 @@ export const appHeader = new AppHeader({
               <p class="cart__number">0</p>
             </div>
 
-            <div class="info__cart">
-              <svg class="icon">
-                <title>number of sku</title>
-                <use xlink:href="./icons.svg#Shopping Basket"></use>
-              </svg>
+            <div class="info__cart cart-nav">
+              
+                <svg class="icon button">
+                  <title>open cart</title>
+                  <use xlink:href="./icons.svg#Shopping Basket"></use>
+                </svg>
+              
               <p class="cart__number">0</p>
+              
             </div>
 
           </div>

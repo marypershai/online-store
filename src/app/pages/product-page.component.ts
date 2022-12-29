@@ -10,7 +10,6 @@ class ProductPageComponent extends DMComponent {
     this.createProductItem();
   }
 
-
   createProductItem(): void {
     const id: string = router.getUrl().substring(10);
     const product: Product | undefined = getProduct(+id);
@@ -89,7 +88,6 @@ class ProductPageComponent extends DMComponent {
 
   private addProductToCart(event: Event): void {
     const cartButton = event.currentTarget as HTMLElement;
-    console.log(cartButton);
     const productID: string = router.getUrl().substring(10);
     if (productID && cartButton.innerHTML == 'Add to cart') {
       cart.addToCart(+productID, 1);

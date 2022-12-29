@@ -1,0 +1,7 @@
+.cart__page {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  column-gap: 2em;
+  position: relative;
+  min-height: 60vh;
+}
