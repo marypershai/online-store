@@ -1,0 +1,74 @@
+table {
+  position: relative;
+  background-color: inherit;
+  border-top: 7px solid $text-secondary-colour;
+  border-collapse: collapse;
+  font-size: 0.87em;
+  margin: 0 0 1.5em 0;
+  text-align: left;
+  width: 100%;
+}
+
+
+caption {
+  padding: 14px 14px 14px 0;
+  font-size: 1em;
+  font-weight: 700;
+  text-align: left;
+}
+
+td,
+th {
+  border: 1px solid $text-secondary-colour;
+  border-left-width: 0;
+  border-right-width: 0;
+  padding: .3em;
+  vertical-align: center;
+  line-height: 1.2;
+}
+
+thead th,
+tfoot td {
+  font-weight: 700;
+}
+
+
+thead th {
+  background-color: #fafafa;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -4px;
+  z-index: 20;
+}
+
+thead th::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+}
+
+
+.text-right {
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+
+
+  td,
+  th {
+    padding: .9em;
+  }
+}
+
+
+.width180 {
+  width: 180px;
+}

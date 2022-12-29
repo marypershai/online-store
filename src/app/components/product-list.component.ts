@@ -12,12 +12,13 @@ class ProductListComponent extends DMComponent {
   }
 
   public createListOfProducts(): string {
-    const view: string | null = localStorage.getItem('view');
-    this.config.template = '<div class="product-list products">';
+    const view: string | null = localStorage.getItem('view');    
     if (view == 'view-card' || view == undefined) {
+
+      this.config.template = '<div class="product-list products sku-list skus">';
       for (let i = 0; i < copyProductList.length; i += 1) {
         this.config.template += `
-          <div class="product__item" data-id=${copyProductList[i].id}>
+          <div class="product__item sku" data-id=${copyProductList[i].id}>
             <div class="item__image">
               <img class=" image" src="${copyProductList[i].thumbnail}" alt="" decoding="async">
             
@@ -49,7 +50,54 @@ class ProductListComponent extends DMComponent {
           `;
       }
     } else {
-      this.config.template += 'new view';
+
+      this.config.template += `
+      <div class="products__table sku-list skus">
+        <table>
+         <caption class="visibility-hidden">Selected products in tabular form  </caption>
+         <thead class="sticky"> 
+           <th></th>
+           <th>Title</th>
+           <th>Category</th>
+           <th>Brand</th>
+           <th class="text-right">Price</th> 
+           <th class="text-right">Stock</th>
+           <th></th>
+           <th></th>
+         </thead>
+         <tbody>
+         `;
+
+
+      for (let i = 0; i < copyProductList.length; i += 1) {
+        this.config.template += `
+        <tr class="sku" data-id=${copyProductList[i].id}>
+          <td>  <img class="image--thumbnail" src="${copyProductList[i].thumbnail}" alt="" decoding="async"> </td>   
+          <td> <h3 class="item__name">${copyProductList[i].title}</h3></td>   
+          <td class="item__category">${copyProductList[i].category}</td>
+          <td class="item__brand">${copyProductList[i].brand} </td>
+          <td class="text-right item__price">${copyProductList[i].price}</td>
+          <td class="text-right item__stock">${copyProductList[i].stock}</td>
+          <td>
+            <button class="button button--info">
+              <svg class="icon">
+                <title>Click to receive information</title>
+                <use xlink:href="./icons.svg#info"></use>
+              </svg>
+            </button>
+          </td>
+          <td class="width180">
+            <button class="button button--card">Add to cart</button>
+          </td>
+        </tr>  
+         `;
+      }
+      this.config.template += `
+          </tbody>
+        </table> 
+        </div>
+         `;
+    
     }
 
     this.config.template += '</div>';
@@ -58,15 +106,18 @@ class ProductListComponent extends DMComponent {
 
   public events(): Record<string, string> {
     return {
-      'click .product-list': 'showProduct',
-      'click .products': 'addProductToCart',
+
+      'click .sku-list': 'showProduct',
+      'click .skus': 'addProductToCart',
+
     };
   }
 
   private showProduct(event: Event): void {
     const targetEl = event.target as HTMLElement;
+    console.log(targetEl);
     if (targetEl.classList.contains('icon')) {
-      const parentEl = targetEl.closest('.product__item') as HTMLElement;
+      const parentEl = targetEl.closest('.sku') as HTMLElement;
       const productID: string | null = parentEl.getAttribute('data-id');
       if (productID) {
         const productHash = `productID=${productID}`;
@@ -79,7 +130,7 @@ class ProductListComponent extends DMComponent {
 
   private addProductToCart(event: Event): void {
     const targetEl = event.target as HTMLElement;
-    const parentEl = targetEl.closest('.product__item') as HTMLElement;
+    const parentEl = targetEl.closest('.sku') as HTMLElement;
     const productID: string | null = parentEl.getAttribute('data-id');
     const cartButton = targetEl.closest('.button--card') as HTMLElement;
     if (productID && cartButton.innerHTML == 'Add to cart') {

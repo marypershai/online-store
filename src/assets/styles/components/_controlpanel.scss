@@ -39,15 +39,27 @@
 }
 
 .button--filter {
- display: flex;
- gap: 8px;
- align-items: center;
- font-weight: 700;
- font-size: 24px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-weight: 700;
+  font-size: 24px;
 }
 
 .button--restart,
-.button--save, 
+.button--save,
 .search-results {
   font-size: 20px;
+}
+
+.button-view--active {
+  position: relative;
+}
+
+.button-view--active::after {
+  position: absolute;
+  content: " . ";
+  font-size: 40px;
+  top: 8px;
+  left: 16px;
 }
