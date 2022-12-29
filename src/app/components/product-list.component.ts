@@ -1,8 +1,9 @@
+import { cart } from '../service/cart';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { addProductRoute } from '../app.routes';
 import { productPageComponent } from '../pages/product-page.component';
-import { productList } from '../service/product-list';
+import { copyProductList } from '../service/product-list';
 
 class ProductListComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -13,15 +14,16 @@ class ProductListComponent extends DMComponent {
   public createListOfProducts(): string {
     const view: string | null = localStorage.getItem('view');    
     if (view == 'view-card' || view == undefined) {
+
       this.config.template = '<div class="product-list products sku-list">';
-      for (let i = 0; i < productList.length; i += 1) {
+       for (let i = 0; i < copyProductList.length; i += 1) {
         this.config.template += `
-          <div class="product__item sku" data-id=${productList[i].id}>
+          <div class="product__item" data-id=${copyProductList[i].id}>
             <div class="item__image">
-              <img class=" image" src="${productList[i].thumbnail}" alt="" decoding="async">
+              <img class=" image" src="${copyProductList[i].thumbnail}" alt="" decoding="async">
             
               <div class="item__links">
-                <button class="button button--card">Add to cart</button>
+                <button class="button button--card">${cart.checkButtonState(copyProductList[i].id)}</button>
                 <button class="button button--info">
                   <svg class="icon">
                     <title>Click to receive information</title>
@@ -32,15 +34,15 @@ class ProductListComponent extends DMComponent {
             </div>
     
             <div class="item__info">
-              <h3 class="item__name">${productList[i].title}</h3>
+              <h3 class="item__name">${copyProductList[i].title}</h3>
               <div class="info__details">
                 <div>
-                  <p class="item__brand">Brand: ${productList[i].brand}</p>
-                  <p class="item__category">Category: ${productList[i].category} </p>
+                  <p class="item__brand">Brand: ${copyProductList[i].brand}</p>
+                  <p class="item__category">Category: ${copyProductList[i].category} </p>
                 </div>
                 <div>
-                  <p class="item__price">Price, $: ${productList[i].price} </p>
-                  <p class="item__stock">Stock: ${productList[i].stock} </p>
+                  <p class="item__price">Price, $: ${copyProductList[i].price} </p>
+                  <p class="item__stock">Stock: ${copyProductList[i].stock} </p>
                 </div>
               </div>
             </div>
@@ -104,7 +106,10 @@ class ProductListComponent extends DMComponent {
 
   public events(): Record<string, string> {
     return {
+
       'click .sku-list': 'showProduct',
+      'click .sku-list': 'addProductToCart',
+
     };
   }
 
@@ -120,6 +125,20 @@ class ProductListComponent extends DMComponent {
         productPageComponent.createProductItem();
         addProductRoute(productHash);
       }
+    }
+  }
+
+  private addProductToCart(event: Event): void {
+    const targetEl = event.target as HTMLElement;
+    const parentEl = targetEl.closest('.product__item') as HTMLElement;
+    const productID: string | null = parentEl.getAttribute('data-id');
+    const cartButton = targetEl.closest('.button--card') as HTMLElement;
+    if (productID && cartButton.innerHTML == 'Add to cart') {
+      cart.addToCart(+productID, 1);
+      cartButton.innerText = 'Delete from cart';
+    } else if (productID) {
+      cart.delete(+productID);
+      cartButton.innerText = 'Add to cart';
     }
   }
 

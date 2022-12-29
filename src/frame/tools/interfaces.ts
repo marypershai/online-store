@@ -41,3 +41,8 @@ export interface ProductData {
   thumbnail: string;
   images: string[];
 }
+
+export interface CartData {
+  productID: number;
+  quantity: number;
+}
