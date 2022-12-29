@@ -7,7 +7,7 @@
     "stock": 65,
     "rating": 5,
     "brand": "System76",
-    "category": "laptop",
+    "category": "Laptop",
     "description": "14 hours of battery life: A remote worker’s bliss. Quickly compile your code with a 12th Gen Intel Core i7 CPU and up to 40GB RAM, POP!_OS",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671808653/rs-school/online/lemur/lemur_th.jpg",
     "images": [
@@ -25,7 +25,7 @@
     "stock": 25,
     "rating": 5,
     "brand": "System76",
-    "category": "laptop",
+    "category": "Laptop",
     "description": "OLED 4k display, 16Gb GeForce RTX 3080 Ti with 7424 CUDA Cores, i7-12700H, 64Gb DDR5 4800 MHz, 2TB PCIe Gen4, POP!_OS",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671809061/rs-school/online/oryx/oryx_th.jpg",
     "images": [
@@ -43,7 +43,7 @@
     "stock": 205,
     "rating": 4.89,
     "brand": "Apple",
-    "category": "laptop",
+    "category": "Laptop",
     "description": "2022 MacBook Air Laptop with M2 chip: 13.6-inch Liquid Retina Display, 8GB RAM, 256GB SSD Storage, 1080p FaceTime HD Camera",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671809532/rs-school/online/macair/air_th.jpg",
     "images": [
@@ -60,7 +60,7 @@
     "stock": 105,
     "rating": 4.39,
     "brand": "3dRose",
-    "category": "mug",
+    "category": "Mug",
     "description": "Computer Coder Programmer Mug, 11 oz",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671810056/rs-school/online/mugeat/mug_th.jpg",
     "images": [
@@ -77,7 +77,7 @@
     "stock": 15,
     "rating": 4.99,
     "brand": "Proud Gifts",
-    "category": "mug",
+    "category": "Mug",
     "description": "Computer Coder Programmer Mug, 11 oz",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671810456/rs-school/online/mugnocloud/mug_th.jpg",
     "images": [
@@ -94,7 +94,7 @@
     "stock": 35,
     "rating": 5,
     "brand": "Proud Gifts",
-    "category": "mug",
+    "category": "Mug",
     "description": "Computer Coder Programmer Mug, 11 oz",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671810720/rs-school/online/mughate/mug_th.jpg",
     "images": [
@@ -111,7 +111,7 @@
     "stock": 35,
     "rating": 5,
     "brand": "HermanMiller",
-    "category": "chair",
+    "category": "Chair",
     "description": "The Aeron Chair is the benchmark for ergonomic seating since its debut in 1994.",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671810975/rs-school/online/aeron/aeron_th.jpg",
     "images": [
@@ -131,7 +131,7 @@
     "stock": 35,
     "rating": 4.8,
     "brand": "HermanMiller",
-    "category": "chair",
+    "category": "Chair",
     "description": "Provides total, weightless support – no adjustments necessary. Backed by a 12-year manufacturer’s warranty.",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671811943/rs-school/online/cosm/cosm_th.jpg",
     "images": [
@@ -150,7 +150,7 @@
     "stock": 35,
     "rating": 4.6,
     "brand": "HAG",
-    "category": "chair",
+    "category": "Chair",
     "description": "The HÅG SoFi is the ultimate task chair. Designed to create a neat impression, its complete user-friendliness makes it ideal for both your own desk, and multi-user working environments.",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671812126/rs-school/online/sofi/sofi_th.jpg",
     "images": [
@@ -169,7 +169,7 @@
     "stock": 315,
     "rating": 5,
     "brand": "Logitech",
-    "category": "keyboard",
+    "category": "Keyboard",
     "description": "With its unique shape and padded wrist rest, the Logitech Ergo K860 is a supremely comfortable ergonomic keyboard.",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671812431/rs-school/online/ergo/ergo_th.jpg",
     "images": [
@@ -187,7 +187,7 @@
     "stock": 305,
     "rating": 4.95,
     "brand": "Kinesis",
-    "category": "keyboard",
+    "category": "Keyboard",
     "description": "The Freestyle2 is an award-winning split keyboard designed to address the ergonomic risk factors related to typing by adjusting to your body.",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671812723/rs-school/online/Kinesis/kinesis_th.jpg",
     "images": [
@@ -205,7 +205,7 @@
     "stock": 305,
     "rating": 4.3,
     "brand": "System76",
-    "category": "keyboard",
+    "category": "Keyboard",
     "description": "Launch Configurable Keyboards are engineered to be comfortable, fully customizable, and make your workflow more efficient. 100% Open Source. Linux, Windows and macOS compatible.",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671812939/rs-school/online/launch/launch_th.jpg",
     "images": [
@@ -224,7 +224,7 @@
     "stock": 35,
     "rating": 4.9,
     "brand": "Errbbic",
-    "category": "power bank",
+    "category": "Power bank",
     "description": "Capacity: 20000mAh . Waterproof. Dual USB Charging, enable to charge 2 different interface accessories. Weight: 306g.",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357032/rs-school/online/solar/s_2.jpg",
     "images": [
@@ -242,7 +242,7 @@
     "stock": 305,
     "rating": 4.6,
     "brand": "Sceptre",
-    "category": "monitor",
+    "category": "Monitor",
     "description": "Sceptre Curved 30\"21: 9 Gaming LED Monitor 2560x1080p UltraWide Ultra Slim HDMI DisplayPort Up to 85Hz MPRT 1ms FPS-RTS Build-in Speakers, Machine Blue (C305W-2560UN)",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671813224/rs-school/online/spectre/spectre_th.jpg",
     "images": [
@@ -260,7 +260,7 @@
     "stock": 5,
     "rating": 3.8,
     "brand": "Dell",
-    "category": "monitor",
+    "category": "Monitor",
     "description": "Dell S2722QC 27-inch 4K USB-C Monitor - UHD (3840 x 2160) Display, 60Hz Refresh Rate, 8MS Grey-to-Grey Response Time (Normal Mode), Built-in Dual 3W Speakers, 1.07 Billion Colors - Platinum Silver",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671813407/rs-school/online/dell/dell_th.jpg",
     "images": [
@@ -278,7 +278,7 @@
     "stock": 5,
     "rating": 4.8,
     "brand": "Alician",
-    "category": "mug",
+    "category": "Mug",
     "description": "A sarcastic quote mug with the phrase \"Have You Tried Rebooting\" in black text printed on both sides of mug. Ideal gift for someone who is a programmer or works in IT Support.",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671813514/rs-school/online/mugrebooting/mug_th.jpg",
     "images": [
@@ -295,9 +295,8 @@
     "stock": 5,
     "rating": 2.8,
     "brand": "Apple",
-    "category": "keyboard",
+    "category": "Keyboard",
     "description": "Apple Magic Keyboard (Wireless, Rechargable) - US English - White",
-    "description": "A sarcastic quote mug with the phrase \"Have You Tried Rebooting\" in black text printed on both sides of mug. Ideal gift for someone who is a programmer or works in IT Support.",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671813721/rs-school/online/magic/magic_th.jpg",
     "images": [
       "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356748/rs-school/online/magic/MMMR3.jpg",
@@ -365,7 +364,7 @@
     "stock": 2,
     "rating": 5,
     "brand": "HP",
-    "category": "laptops",
+    "category": "Laptop",
     "description": "The Dev One is a very nice Linux machine that packs enough punch for developers or creatives without hitting top-tier laptop prices. Even more impressive is the work HP and System76 have put into making Linux work perfectly with the AMD chipset. Combining HP's hardware capabilities and industry experience with System76's Pop!_OS desktop has produced the best all-around Linux laptop you can buy right now.",
     "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671814299/rs-school/online/dev/devone_th.jpg",
     "images": [
