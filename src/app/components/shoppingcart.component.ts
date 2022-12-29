@@ -11,12 +11,24 @@ class ShoppingCartComponent extends DMComponent {
   }
 
 
+  private emptyCartNotion() {
+    this.config.template += `
+    <div class="cart--empty">
+      <h1>Your сart is empty</h1>
+      <p class="bold">Looks like the programmer is still without a gift </p>
+      <a class="button link-as-button" href="/">Continue Shopping</a>
+    </div>
+    `;
+  }
+
   private createShoppingCart(): string {
-    const currenCart: string | null = localStorage.getItem('cart');
-    if (currenCart) {
-      const cartList: CartData[]  | null = JSON.parse(currenCart); 
-          
-      this.config.template += `
+    const cart: string | null = localStorage.getItem('cart');
+    
+    if (cart) {
+      const cartList: CartData[]  | null = JSON.parse(cart); 
+      if (cartList && cartList.length > 0) {
+                  
+        this.config.template += `
     <section class="shopping-cart">
       <div class="cart__header">
         <h2>Shopping Cart </h2>
@@ -45,8 +57,6 @@ class ShoppingCartComponent extends DMComponent {
       </div>
       <ol class="cart__product">`;
 
-
-      if (cartList) {
         for (let i = 0; i < cartList.length; i++) {
           const id = cartList[i].productID;
           const product: Product | undefined = getProduct(+id);
@@ -84,30 +94,26 @@ class ShoppingCartComponent extends DMComponent {
           3000$
           </div>
           </li>
-
     `;
           }
         }
-      }
+      
    
-      this.config.template += `
+        this.config.template += `
       </ol>
     </section>
     `;
       
+      } else {
+        this.emptyCartNotion();
+      }
+    
     } else {
-      this.config.template += `
-      <div class="cart--empty">
-      <h1>Your сart is empty</h1>
-      <p class="bold">Looks like the programmer is still without a gift </p>
-      <a class="button link-as-button" href="/">Continue Shopping</a>
-      </div>
-    `;
+      this.emptyCartNotion();
     }
     return this.config.template;
+
   }
-
-
 }
 
 const shoppingCartComponent = new ShoppingCartComponent({
@@ -117,3 +123,4 @@ const shoppingCartComponent = new ShoppingCartComponent({
 });
 
 export { shoppingCartComponent, ShoppingCartComponent };
+

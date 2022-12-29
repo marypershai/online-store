@@ -6,21 +6,24 @@ import { shoppingCartComponent } from '../components/shoppingcart.component';
 class CartPageComponent extends DMComponent {
   constructor(config: ComponentConfig) {
     super(config);
+    this.createCartPage();
   }
+
+  public createCartPage(): string {
+    this.template = `
+    <div class="page__container cart__page">
+          <app-shopping-cart></app-shopping-cart>        
+          <app-summary-cart></app-summary-cart>       
+      </div
+    `;
+    return this.config.template;
+  }
+
 
 }
 
 export const cartPageComponent = new CartPageComponent({
   selector: 'app-cart-page',
-  template: `
-        <div class="page__container cart__page">
-          <app-shopping-cart></app-shopping-cart>
-          
-       
-          <app-summary-cart></app-summary-cart>
-          
-
-        </div
-    `,
+  template: '',
   childComponents: [shoppingCartComponent, summaryComponent],
 });
