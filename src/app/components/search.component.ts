@@ -1,11 +1,20 @@
-import { copyProductList } from '../service/product-list';
+// import { copyProductList } from '../service/product-list';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
+import { productListComponent } from './product-list.component';
 
 class SearchComponent extends DMComponent {
   constructor(config: ComponentConfig) {
     super(config);
     this.template = this.createSearchComponent(); 
+  }
+
+  public isSearchOn = false;
+
+  public searchWord():RegExp {
+    const searchInput = document.querySelector('.search__text-input') as HTMLInputElement;
+    const word: string | number = searchInput.value;
+    return new RegExp(word, 'gi');   
   }
 
   private createSearchComponent(): string {
@@ -18,7 +27,7 @@ class SearchComponent extends DMComponent {
           <title>Search</title>
           <use xlink:href="./icons.svg#search"></use>
         </svg>
-        <input type="search" class="search__text-input" placeholder="click and start typing to search" name="q"> 
+        <input type="search" class="search__text-input" placeholder="click and start typing to search" title="start typing" name="q"> 
       </div>
     </section>        
       `;
@@ -32,14 +41,11 @@ class SearchComponent extends DMComponent {
   }
 
   private filterBySearch() {
-    const searchInput = document.querySelector('.search__text-input') as HTMLInputElement;
-    const word: string | number = searchInput.value;
-    const regex = new RegExp(word, 'gi');
-    
-    const dataList = copyProductList.filter( item => item.brand.toString().match(regex) || item.category.toString().match(regex) || item.title.toString().match(regex) || item.description.toString().match(regex) || item.price.toString().match(regex) || item.stock.toString().match(regex)); 
-    
-    console.log(dataList);
-    
+
+    this.isSearchOn = true; 
+    productListComponent.template = productListComponent.createListOfProducts();
+    productListComponent.render();
+     
   }
 }
 
