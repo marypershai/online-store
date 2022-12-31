@@ -15,6 +15,11 @@ class ProductListComponent extends DMComponent {
     this.template = this.createListOfProducts();
   }
 
+  private showItemsQuantity(data: Product[]):void {
+    const searchResults = document.querySelector('.search-results') as HTMLElement;
+    searchResults.textContent = `Results: ${data.length}`;
+  }
+
   public createListOfProducts(): string {
     const view: string | null = localStorage.getItem('view'); 
     
@@ -25,7 +30,9 @@ class ProductListComponent extends DMComponent {
     } else {
       const regex = searchComponent.searchWord();     
       data = copyProductList.filter( item => item.brand.toString().match(regex) || item.category.toString().match(regex) || item.title.toString().match(regex) || item.price.toString().match(regex) || item.stock.toString().match(regex)); 
+      this.showItemsQuantity(data);
     }
+    
     
     let title: string;
     let brand: string;

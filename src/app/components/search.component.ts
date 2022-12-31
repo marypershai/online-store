@@ -41,7 +41,6 @@ class SearchComponent extends DMComponent {
   }
 
   private filterBySearch() {
-
     this.isSearchOn = true; 
     productListComponent.template = productListComponent.createListOfProducts();
     productListComponent.render();
