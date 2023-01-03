@@ -4,6 +4,8 @@ import { ComponentConfig } from '../../frame/tools/interfaces';
 import { addProductRoute } from '../app.routes';
 import { productPageComponent } from '../pages/product-page.component';
 import { copyProductList } from '../service/product-list';
+import { cartInfoSumComponent } from './cart-info-sum';
+import { cartInfoQuantityComponent } from './cart-info-quantity';
 
 class ProductListComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -140,6 +142,10 @@ class ProductListComponent extends DMComponent {
         cart.delete(+productID);
         cartButton.innerText = 'Add to cart';
       }
+      cartInfoSumComponent.createInfoSum();
+      cartInfoQuantityComponent.createInfoQuantitySum();
+      cartInfoSumComponent.render();
+      cartInfoQuantityComponent.render();
     }
   }
 
