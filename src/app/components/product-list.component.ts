@@ -6,6 +6,7 @@ import { productPageComponent } from '../pages/product-page.component';
 import { copyProductList } from '../service/product-list';
 import { Product } from '../service/product';
 import { searchComponent } from './search.component';
+import { filterService } from '../../app/service/filter';
 
 class ProductListComponent extends DMComponent {
   
@@ -33,7 +34,22 @@ class ProductListComponent extends DMComponent {
       this.showItemsQuantity(data);
     }
     
-    
+    if (filterService.filterCategoryArr.length > 0 && filterService.filterBrandArr.length === 0) {
+      data = data.filter( item => filterService.filterCategoryArr.includes(item.category));
+      this.showItemsQuantity(data);
+    }
+
+    if (filterService.filterCategoryArr.length === 0 && filterService.filterBrandArr.length > 0) {
+      data = data.filter( item => filterService.filterBrandArr.includes(item.brand));
+      this.showItemsQuantity(data);
+    }
+
+    if (filterService.filterCategoryArr.length > 0 && filterService.filterBrandArr.length > 0) {
+      data = data.filter( item => filterService.filterBrandArr.includes(item.brand) && filterService.filterCategoryArr.includes(item.category));
+      this.showItemsQuantity(data);
+    }
+
+
     let title: string;
     let brand: string;
     let category: string;

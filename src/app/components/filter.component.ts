@@ -1,7 +1,7 @@
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { copyProductList } from '../service/product-list';
-// import { Product } from '../service/product';
+import { filterByElement, filterService  } from '../../app/service/filter';
 
 class FilterComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -14,7 +14,7 @@ class FilterComponent extends DMComponent {
     arr.forEach( item => {
       if (result[item]) {
         result[item] += 1;
-      } else {
+      } else { 
         result[item] = 1;
       }
     });
@@ -34,7 +34,23 @@ class FilterComponent extends DMComponent {
     brandList.sort((a, b) => a > b ? 1 : -1);
     return this.objectCreate(brandList);
   };
-  
+
+  public events(): Record<string, string> {
+    return {
+      'input .categories-list': 'filterByCategories',
+      'input .brand-list': 'filterByBrand',
+    };
+  }
+
+
+  private filterByCategories(event: Event): void {
+    filterByElement(event, filterService.filterCategoryArr );
+  }
+
+  private filterByBrand(event: Event): void {
+    filterByElement(event, filterService.filterBrandArr);
+  }
+   
   private createFilterComponent(): string {
     this.config.template = `
         <section class="filter__content">
@@ -44,15 +60,15 @@ class FilterComponent extends DMComponent {
               <summary>
               <h3 class="">Category</h3>
               </summary>
-                <ul>`;
+                <ul class="categories-list">`;
 
     for (const key in this.categoriesList()) {
       this.config.template += `
       <li class="filter__item">
         <label>
           <input type="checkbox"/>
-          ${key}
-          <span>(${this.categoriesList()[key]})</span>
+          <span class="item__name">${key}</span>
+          <span class="item__number">(${this.categoriesList()[key]})</span>
         </label>
       </li>`;
     }
@@ -68,7 +84,7 @@ class FilterComponent extends DMComponent {
               <summary>
               <h3 class="">Brand</h3>
               </summary>
-                <ul> `;
+                <ul class="brand-list"> `;
 
 
     for (const key in this.brandList()) {
@@ -76,8 +92,8 @@ class FilterComponent extends DMComponent {
        <li class="filter__item">
          <label>
            <input type="checkbox"/>
-           ${key}
-           <span>(${this.brandList()[key]})</span>
+           <span class="item__name">${key}</span>
+           <span class="item__number">(${this.brandList()[key]})</span>
          </label>
        </li>`;
     }  
