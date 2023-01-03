@@ -1,3 +1,4 @@
+import { shoppingCartComponent } from '../../app/components/shoppingcart.component';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { cartPageComponent } from '../pages/cart-page.component';
@@ -14,9 +15,15 @@ export class AppHeader extends DMComponent {
   }
 
   private openCart(): void {
-    cartPageComponent.createCartPage();
     window.location.hash = 'cart';
+    console.log('1');
     cartPageComponent.createCartPage();
+    console.log('2');
+    shoppingCartComponent.createShoppingCart();
+    console.log('3');
+    shoppingCartComponent.render();
+
+
   }
 }
 
@@ -25,7 +32,7 @@ export const appHeader = new AppHeader({
   template: `
         <header class="page__container header">
           <div class="header__brand">
-            <a href="/">
+            <a href="#">
               <img class="header__logo" src="https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671804535/rs-school/online/store__logo.png" alt="">
             </a>
             <h1 class="header__title">giftsToProgrammers</h1>

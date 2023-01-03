@@ -44,7 +44,9 @@ export class Module {
     if (this.routes) {
       let route: RoutesObj | undefined = this.routes
         .find((currentRoute) => currentRoute.path === url);
+
       if (typeof route === 'undefined') {
+        router.clearSearch();
         route = this.routes.find((currentRoute) => currentRoute.path === '**');
       }
       if (route) {

@@ -20,6 +20,8 @@ export class Component {
     this.element = document.querySelector(this.selector) as HTMLElement;
     if (!this.element) throw new Error(`Component with selector ${this.selector} wasn't found`);
     this.element.innerHTML = this.template;
+    console.log('4');
+    // console.log(this.template);
     if (this.childComponents) {
       this.childComponents.forEach((component) => component.render());
     }

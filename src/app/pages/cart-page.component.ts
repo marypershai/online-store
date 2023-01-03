@@ -18,8 +18,6 @@ class CartPageComponent extends DMComponent {
     `;
     return this.config.template;
   }
-
-
 }
 
 export const cartPageComponent = new CartPageComponent({
