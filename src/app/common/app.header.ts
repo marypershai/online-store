@@ -1,7 +1,7 @@
+import { summaryComponent } from '../../app/components/summary.component';
 import { shoppingCartComponent } from '../../app/components/shoppingcart.component';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
-import { cartPageComponent } from '../pages/cart-page.component';
 
 export class AppHeader extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -16,14 +16,8 @@ export class AppHeader extends DMComponent {
 
   private openCart(): void {
     window.location.hash = 'cart';
-    console.log('1');
-    cartPageComponent.createCartPage();
-    console.log('2');
     shoppingCartComponent.createShoppingCart();
-    console.log('3');
-    shoppingCartComponent.render();
-
-
+    summaryComponent.createSummary();
   }
 }
 

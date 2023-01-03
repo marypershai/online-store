@@ -8,7 +8,7 @@ import { cart } from '../service/cart';
 class ShoppingCartComponent extends DMComponent {
   constructor(config: ComponentConfig) {
     super(config);
-    this.template = this.createShoppingCart();
+    this.createShoppingCart();
   }
 
 
@@ -22,16 +22,8 @@ class ShoppingCartComponent extends DMComponent {
     `;
   }
 
-  public create(): string {
-    this.config.template = 'I\'m here';
-    return this.config.template;
-  }
-
-
-  public createShoppingCart(): string {
-    console.log('getCart createShoppingCart()');
+  public createShoppingCart(): void {
     const currenCart = cart.getCart();
-
     if (currenCart && currenCart.length > 0) {
       this.config.template = `
         <section class="shopping-cart">
@@ -63,59 +55,52 @@ class ShoppingCartComponent extends DMComponent {
           <ol class="cart__product">`;
 
       for (let i = 0; i < currenCart.length; i++) {
-        console.log('currenCart.length');
-        console.log(currenCart.length);
         const id = currenCart[i].productID;
         const product: Product | undefined = getProduct(+id);
         if (product) {
           this.config.template += `
+            <li class="cart__item">
+              <img class="cart__image" src="${product.thumbnail}" alt="" decoding="async">
+              <div class="cart__item__desciption">
+                <h3 class="item__name">${product.title}</h3>
+                <p class="item__rating">Rating: ${product.rating}</p>
+                <p class="item__brand">Brand: ${product.brand}</p>
+                <p class="item__category">Category: ${product.category} </p>              
+                <p class="item__price">Price, $: ${product.price} </p>
+                <p class="item__stock">Stock: ${product.stock} </p>   
+                <p class="item__description">${product.description}</p>         
+              </div>
 
-          <li class="cart__item">
-            <img class="cart__image" src="${product.thumbnail}" alt="" decoding="async">
-            <div class="cart__item__desciption">
-              <h3 class="item__name">${product.title}</h3>
-              <p class="item__rating">Rating: ${product.rating}</p>
-              <p class="item__brand">Brand: ${product.brand}</p>
-              <p class="item__category">Category: ${product.category} </p>              
-              <p class="item__price">Price, $: ${product.price} </p>
-              <p class="item__stock">Stock: ${product.stock} </p>   
-              <p class="item__description">${product.description}</p>         
-            </div>
-
-            <div class="purchase__numbers">       
-              <button class="button">
-                <svg class="cart__icon">
-                  <title>minus</title>
-                  <use xlink:href="./icons.svg#remove"></use>
-                </svg>
-              </button>
-              <span class="purchase__quantity">1</span>
-              <button class="button" type="button" aria-label="plus">
-                <svg class="cart__icon">
-                  <title>plus</title>
-                  <use xlink:href="./icons.svg#add"></use>
-                </svg>
-              </button>
-            </div>
-            <div class="item__total-price">
-            3000$
-            </div>
+              <div class="purchase__numbers">       
+                <button class="button">
+                  <svg class="cart__icon">
+                    <title>minus</title>
+                    <use xlink:href="./icons.svg#remove"></use>
+                  </svg>
+                </button>
+                <span class="purchase__quantity">1</span>
+                <button class="button" type="button" aria-label="plus">
+                  <svg class="cart__icon">
+                    <title>plus</title>
+                    <use xlink:href="./icons.svg#add"></use>
+                  </svg>
+                </button>
+              </div>
+              <div class="item__total-price">
+              3000$
+              </div>
             </li>
-      `;
+          `;
         }
       }
-
       this.config.template += `
         </ol>
       </section>
       `;
-
-
     } else {
       this.emptyCartNotion();
     }
-    return this.config.template;
-
+    this.template = this.config.template;
   }
 }
 

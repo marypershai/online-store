@@ -15,8 +15,6 @@ class CartService {
     }
     this.cart.push({ 'productID': id, 'quantity': quantity });
     localStorage.setItem('cart', JSON.stringify(this.cart));
-    console.log('addTocart');
-    console.log(this.cart);
     return this.cart;
   }
 
@@ -27,8 +25,6 @@ class CartService {
       this.cart = this.cart.filter(item => item.productID !== id);
       localStorage.setItem('cart', JSON.stringify(this.cart));
     }
-    console.log('deleteFromCart');
-    console.log(this.cart);
     return this.cart;
   }
 
@@ -54,8 +50,6 @@ class CartService {
 
   public getCart(): CartData[] {
     this.updateCart();
-    console.log('getCart()');
-    console.log(this.cart);
     return this.cart;
   }
 }
