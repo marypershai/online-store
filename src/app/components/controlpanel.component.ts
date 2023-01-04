@@ -18,8 +18,8 @@ class ControlComponent extends DMComponent {
     };
   }
 
-  private changeProductListView(event: Event): void {    
-    const targetEl = event.currentTarget as HTMLElement;  
+  private changeProductListView(event: Event): void {
+    const targetEl = event.currentTarget as HTMLElement;
     const view: string | undefined = targetEl.getAttribute('class')?.split(' ')[1];
     if (view) {
       localStorage.setItem('view', view);
@@ -28,11 +28,11 @@ class ControlComponent extends DMComponent {
     productListComponent.render();
     window.location.search = `view=${view}`;
   }
-  
-  
+
+
   private changeProductOrder(): void {
-    const select: HTMLSelectElement | null = document.querySelector('.schema-order');
-    const currentOption: number | undefined = select?.selectedIndex;
+    const select = document.querySelector('.schema-order') as HTMLSelectElement;
+    const currentOption: number = select.selectedIndex;
     sortProduct(currentOption);
     productListComponent.template = productListComponent.createListOfProducts();
     productListComponent.render();
@@ -40,7 +40,7 @@ class ControlComponent extends DMComponent {
 
 
   public createControlPanel(): string {
-    const view: string | null = localStorage.getItem('view'); 
+    const view: string | null = localStorage.getItem('view');
     this.config.template += ` 
    <section class="container--full controlpanel">
     <h2 class="visibility-hidden">Panel to control SKUs flow</h2>
@@ -119,7 +119,7 @@ class ControlComponent extends DMComponent {
 export const controlComponent = new ControlComponent({
   selector: 'app-controlpanel',
   template: '',
-   
+
   childComponents: [],
 });
 

@@ -7,22 +7,25 @@ class CartService {
     this.cart = [];
   }
 
-  public addToCart(id: number, quantity: number): void {
+  public addToCart(id: number, quantity: number): CartData[] {
+    this.updateCart();
     const productExist = this.cart.find(item => item.productID == id);
     if (productExist) {
       console.log('update - not implemented now');
     }
     this.cart.push({ 'productID': id, 'quantity': quantity });
     localStorage.setItem('cart', JSON.stringify(this.cart));
+    return this.cart;
   }
 
-  public delete(id: number): void {
+  public delete(id: number): CartData[] {
     const currenCart: string | null = localStorage.getItem('cart');
     if (currenCart) {
       this.cart = JSON.parse(currenCart);
       this.cart = this.cart.filter(item => item.productID !== id);
       localStorage.setItem('cart', JSON.stringify(this.cart));
     }
+    return this.cart;
   }
 
   public checkButtonState(id: number): string {
@@ -35,6 +38,19 @@ class CartService {
       }
     }
     return buttonText;
+  }
+
+  private updateCart(): CartData[] {
+    const currenCart: string | null = localStorage.getItem('cart');
+    if (currenCart) {
+      this.cart = JSON.parse(currenCart);
+    }
+    return this.cart;
+  }
+
+  public getCart(): CartData[] {
+    this.updateCart();
+    return this.cart;
   }
 }
 

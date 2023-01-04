@@ -7,7 +7,7 @@ function byField(field: string): SortFunction {
   return (a: Product, b: Product) => a[field as keyof Product] > b[field as keyof Product] ? 1 : -1;
 }
 
-export function sortProduct(sortingType: number | undefined) {
+export function sortProduct(sortingType: number) {
   switch (sortingType) {
     case 0:
       copyProductList.sort(byField('id'));

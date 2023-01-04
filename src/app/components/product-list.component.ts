@@ -12,7 +12,7 @@ class ProductListComponent extends DMComponent {
   }
 
   public createListOfProducts(): string {
-    const view: string | null = localStorage.getItem('view');    
+    const view: string | null = localStorage.getItem('view');
     if (view == 'view-card' || view == undefined) {
 
       this.config.template = '<div class="product-list products sku-list skus">';
@@ -87,7 +87,7 @@ class ProductListComponent extends DMComponent {
             </button>
           </td>
           <td class="width180">
-            <button class="button button--card">Add to cart</button>
+            <button class="button button--card">${cart.checkButtonState(copyProductList[i].id)}</button>
           </td>
         </tr>  
          `;
@@ -97,7 +97,7 @@ class ProductListComponent extends DMComponent {
         </table> 
         </div>
          `;
-    
+
     }
 
     this.config.template += '</div>';
@@ -115,8 +115,7 @@ class ProductListComponent extends DMComponent {
 
   private showProduct(event: Event): void {
     const targetEl = event.target as HTMLElement;
-    console.log(targetEl);
-    if (targetEl.classList.contains('icon')) {
+    if (targetEl.closest('.button--info')) {
       const parentEl = targetEl.closest('.sku') as HTMLElement;
       const productID: string | null = parentEl.getAttribute('data-id');
       if (productID) {
@@ -130,15 +129,17 @@ class ProductListComponent extends DMComponent {
 
   private addProductToCart(event: Event): void {
     const targetEl = event.target as HTMLElement;
-    const parentEl = targetEl.closest('.sku') as HTMLElement;
-    const productID: string | null = parentEl.getAttribute('data-id');
-    const cartButton = targetEl.closest('.button--card') as HTMLElement;
-    if (productID && cartButton.innerHTML == 'Add to cart') {
-      cart.addToCart(+productID, 1);
-      cartButton.innerText = 'Delete from cart';
-    } else if (productID) {
-      cart.delete(+productID);
-      cartButton.innerText = 'Add to cart';
+    if (targetEl.classList.contains('button--card')) {
+      const parentEl = targetEl.closest('.sku') as HTMLElement;
+      const productID: string | null = parentEl.getAttribute('data-id');
+      const cartButton = targetEl.closest('.button--card') as HTMLElement;
+      if (productID && cartButton.innerText == 'Add to cart') {
+        cart.addToCart(+productID, 1);
+        cartButton.innerText = 'Delete from cart';
+      } else if (productID) {
+        cart.delete(+productID);
+        cartButton.innerText = 'Add to cart';
+      }
     }
   }
 
