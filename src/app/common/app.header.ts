@@ -2,6 +2,8 @@ import { summaryComponent } from '../../app/components/summary.component';
 import { shoppingCartComponent } from '../../app/components/shoppingcart.component';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
+import { cartInfoQuantityComponent } from '../../app/components/cart-info-quantity';
+import { cartInfoSumComponent } from '../../app/components/cart-info-sum';
 
 export class AppHeader extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -19,6 +21,7 @@ export class AppHeader extends DMComponent {
     shoppingCartComponent.createShoppingCart();
     summaryComponent.createSummary();
   }
+
 }
 
 export const appHeader = new AppHeader({
@@ -33,29 +36,11 @@ export const appHeader = new AppHeader({
           </div>
 
           <div class="header__info">
-
-            <div class="info__cart">
-              <svg class="icon">
-                <title>total sum</title>
-                <use xlink:href="./icons.svg#value"></use>
-              </svg>
-              <p class="cart__number">0</p>
-            </div>
-
-            <div class="info__cart cart-nav">
-              
-                <svg class="icon button">
-                  <title>open cart</title>
-                  <use xlink:href="./icons.svg#Shopping Basket"></use>
-                </svg>
-              
-              <p class="cart__number">0</p>
-              
-            </div>
-
+            <app-info-cart-sum></app-info-cart-sum>
+            <app-info-cart-quantity></app-info-cart-quantity>
           </div>
 
         </header>
     `,
-  childComponents: [],
+  childComponents: [cartInfoQuantityComponent, cartInfoSumComponent],
 });

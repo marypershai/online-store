@@ -1,4 +1,6 @@
 import { CartData } from 'frame/tools/interfaces';
+import { Product } from './product';
+import { getProduct } from './product-list';
 
 class CartService {
   private cart: CartData[];
@@ -51,6 +53,19 @@ class CartService {
   public getCart(): CartData[] {
     this.updateCart();
     return this.cart;
+  }
+
+  public cartSum(): number {
+    const sum = this.cart.reduce(function (cartSum: number, current: CartData): number {
+      const product = getProduct(current.productID) as Product;
+      return cartSum + product.price * current.quantity;
+    }, 0);
+    return sum;
+  }
+
+  public cartQuantitySum(): number {
+    const quantitySum = this.cart.reduce(function (quantity: number, current: CartData): number { return quantity + current.quantity; }, 0);
+    return quantitySum;
   }
 }
 

@@ -18,10 +18,10 @@ class SummaryComponent extends DMComponent {
             <h2>Summary</h2>
             <div class="total">
               <div class="total__product">
-                Products: <span class="total-number">3</span>
+                Products: <span class="total-number">${cart.cartQuantitySum()}</span>
               </div>
               <div class="total__price">
-                Total sum, $: <span class="total-value">5000</span>
+                Total sum, $: <span class="total-value">${cart.cartSum()}</span>
               </div>
             </div>
             <div class="applied-codes">
