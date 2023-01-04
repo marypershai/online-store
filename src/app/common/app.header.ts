@@ -16,10 +16,13 @@ export class AppHeader extends DMComponent {
     };
   }
 
-  private openCart(): void {
-    window.location.hash = 'cart';
-    shoppingCartComponent.createShoppingCart();
-    summaryComponent.createSummary();
+  private openCart(event: Event): void {
+    const targetEl = event.target as HTMLElement;
+    if (targetEl.closest('.cart-nav')) {
+      window.location.hash = 'cart';
+      shoppingCartComponent.createShoppingCart();
+      summaryComponent.createSummary();
+    }
   }
 
 }
