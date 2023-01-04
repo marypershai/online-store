@@ -69,6 +69,7 @@ class ShoppingCartComponent extends DMComponent {
         cartProductListComponent.createProductList();
         cartProductListComponent.render();
         (document.querySelector('app-summary-cart') as HTMLElement).classList.add('visibility-hidden');
+        (document.querySelector('.page__control') as HTMLElement).classList.add('visibility-hidden');
       } else {
         cart.delete(+productID);
         quantity.innerText = `${cart.getProductQuantity(+productID)}`;
