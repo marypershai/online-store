@@ -137,9 +137,9 @@ class ProductListComponent extends DMComponent {
       const cartButton = targetEl.closest('.button--card') as HTMLElement;
       if (productID && cartButton.innerText == 'Add to cart') {
         cart.addToCart(+productID, 1);
-        cartButton.innerText = 'Delete from cart';
+        cartButton.innerText = 'Drop from cart';
       } else if (productID) {
-        cart.delete(+productID);
+        cart.dropFromCart(+productID);
         cartButton.innerText = 'Add to cart';
       }
       cartInfoSumComponent.createInfoSum();

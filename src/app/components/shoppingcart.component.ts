@@ -1,8 +1,11 @@
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { DMComponent } from '../../frame/index';
 import { Product } from '../service/product';
-import { getProduct } from '../service/product-list';
+import { getProduct, getProductQuantity } from '../service/product-list';
 import { cart } from '../service/cart';
+import { summaryComponent } from './summary.component';
+import { cartInfoSumComponent } from './cart-info-sum';
+import { cartInfoQuantityComponent } from './cart-info-quantity';
 
 
 class ShoppingCartComponent extends DMComponent {
@@ -14,7 +17,7 @@ class ShoppingCartComponent extends DMComponent {
 
   private emptyCartNotion() {
     this.config.template += `
-    <div class="cart--empty">
+    <div class="cart--empty cartDecrease cartIncrease">
       <h1>Your сart is empty</h1>
       <p class="bold">Looks like the programmer is still without a gift </p>
       <a class="button link-as-button" href="/">Continue Shopping</a>
@@ -26,7 +29,7 @@ class ShoppingCartComponent extends DMComponent {
     const currenCart = cart.getCart();
     if (currenCart && currenCart.length > 0) {
       this.config.template = `
-        <section class="shopping-cart">
+        <section class="shopping-cart cartDecrease cartIncrease">
           <div class="cart__header">
             <h2>Shopping Cart </h2>
             <div class="page__control">
@@ -55,11 +58,11 @@ class ShoppingCartComponent extends DMComponent {
           <ol class="cart__product">`;
 
       for (let i = 0; i < currenCart.length; i++) {
-        const id = currenCart[i].productID;
+        const id: number = currenCart[i].productID;
         const product: Product | undefined = getProduct(+id);
         if (product) {
           this.config.template += `
-            <li class="cart__item">
+            <li class="cart__item" data-id=${id}>
               <img class="cart__image" src="${product.thumbnail}" alt="" decoding="async">
               <div class="cart__item__desciption">
                 <h3 class="item__name">${product.title}</h3>
@@ -72,14 +75,14 @@ class ShoppingCartComponent extends DMComponent {
               </div>
 
               <div class="purchase__numbers">       
-                <button class="button">
+                <button class="button button__decrease">
                   <svg class="cart__icon">
                     <title>minus</title>
                     <use xlink:href="./icons.svg#remove"></use>
                   </svg>
                 </button>
-                <span class="purchase__quantity">1</span>
-                <button class="button" type="button" aria-label="plus">
+                <span class="purchase__quantity">${cart.getProductQuantity(id)}</span>
+                <button class="button button__increase ${cart.checkPosibilityToAddToCart(id)}" type="button" aria-label="plus">
                   <svg class="cart__icon">
                     <title>plus</title>
                     <use xlink:href="./icons.svg#add"></use>
@@ -87,7 +90,7 @@ class ShoppingCartComponent extends DMComponent {
                 </button>
               </div>
               <div class="item__total-price">
-              3000$
+              ${cart.totalProductPrice(id)}$
               </div>
             </li>
           `;
@@ -101,6 +104,64 @@ class ShoppingCartComponent extends DMComponent {
       this.emptyCartNotion();
     }
     this.template = this.config.template;
+  }
+
+  public events(): Record<string, string> {
+    return {
+      'click .cartDecrease': 'decreasePurchaseQuantity',
+      'click .cartIncrease': 'increasePurchaseQuantity',
+    };
+  }
+
+  private decreasePurchaseQuantity(event: Event): void {
+    const targetEl = event.target as HTMLElement;
+    const targetParent = targetEl.closest('.button__decrease') as HTMLElement;
+    if (targetParent) {
+      const quantity = targetParent.nextElementSibling as HTMLElement;
+      const product = targetEl.closest('.cart__item') as HTMLElement;
+      const productID = product.getAttribute('data-id') as string;
+      cart.delete(+productID);
+      quantity.innerText = `${cart.getProductQuantity(+productID)}`;
+      const productInfo = targetEl.closest('.purchase__numbers') as HTMLElement;
+      const totalPrice = productInfo.nextElementSibling as HTMLElement;
+      totalPrice.innerText = cart.totalProductPrice(+productID) + '$';
+      const increaseButton = product.querySelector('.button__increase') as HTMLElement;
+      if (increaseButton) {
+        increaseButton.classList.remove('visibility-hidden');
+      }
+      summaryComponent.createSummary();
+      summaryComponent.render();
+      cartInfoSumComponent.createInfoSum();
+      cartInfoSumComponent.render();
+      cartInfoQuantityComponent.createInfoQuantitySum();
+      cartInfoQuantityComponent.render();
+    }
+  }
+
+  private increasePurchaseQuantity(event: Event): void {
+    const targetEl = event.target as HTMLElement;
+    const targetParent = targetEl.closest('.button__increase') as HTMLElement;
+    if (targetParent) {
+      const quantity = targetParent.previousElementSibling as HTMLElement;
+      const quantityNumber = +quantity.innerText;
+      const product = targetEl.closest('.cart__item') as HTMLElement;
+      const productID = product.getAttribute('data-id') as string;
+      cart.addToCart(+productID, quantityNumber);
+      quantity.innerText = `${cart.getProductQuantity(+productID)}`;
+      const productInfo = targetEl.closest('.purchase__numbers') as HTMLElement;
+      const totalPrice = productInfo.nextElementSibling as HTMLElement;
+      totalPrice.innerText = cart.totalProductPrice(+productID) + '$';
+      if (quantityNumber === getProductQuantity(+productID) - 1) {
+        targetParent.classList.add('visibility-hidden');
+      }
+      summaryComponent.createSummary();
+      summaryComponent.render();
+      cartInfoSumComponent.createInfoSum();
+      cartInfoSumComponent.render();
+      cartInfoQuantityComponent.createInfoQuantitySum();
+      cartInfoQuantityComponent.render();
+
+    }
   }
 }
 
