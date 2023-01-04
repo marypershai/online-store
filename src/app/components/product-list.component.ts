@@ -36,25 +36,47 @@ class ProductListComponent extends DMComponent {
 
       this.config.template = '<div class="product-list products sku-list skus">';  
 
-      for (let i = 0; i < copyProductList.length; i++) {
+    } else {
+      
+      this.config.template  = `
+      <div class="products__table sku-list skus">
+        <table>
+         <caption class="visibility-hidden">Selected products in tabular form  </caption>
+         <thead class="sticky"> 
+           <th></th>
+           <th>Title</th>
+           <th>Category</th>
+           <th>Brand</th>
+           <th class="text-right">Price</th> 
+           <th class="text-right">Stock</th>
+           <th></th>
+           <th></th>
+         </thead>
+         <tbody>
+         `;
+    }
+     
+          
+    for (let i = 0; i < copyProductList.length; i++) {
 
-        if (search.isSearchOn) {
-          const regex = search.searchWord();          
-          title = copyProductList[i].title.replace(regex, match => `<span class="search__highlight">${match}</span>`);
-          brand = copyProductList[i].brand.replace(regex, match => `<span class="search__highlight">${match}</span>`);
-          category = copyProductList[i].category.replace(regex, match => `<span class="search__highlight">${match}</span>`);
-          price = copyProductList[i].price.toString().replace(regex, match => `<span class="search__highlight">${match}</span>`);
-          stock = copyProductList[i].stock.toString().replace(regex, match => `<span class="search__highlight">${match}</span>`);
+      if (search.isSearchOn) {
+        const regex = search.searchWord();          
+        title = copyProductList[i].title.replace(regex, match => `<span class="search__highlight">${match}</span>`);
+        brand = copyProductList[i].brand.replace(regex, match => `<span class="search__highlight">${match}</span>`);
+        category = copyProductList[i].category.replace(regex, match => `<span class="search__highlight">${match}</span>`);
+        price = copyProductList[i].price.toString().replace(regex, match => `<span class="search__highlight">${match}</span>`);
+        stock = copyProductList[i].stock.toString().replace(regex, match => `<span class="search__highlight">${match}</span>`);
             
-        } else {
-          title = copyProductList[i].title;
-          brand = copyProductList[i].brand;
-          category = copyProductList[i].category;
-          price = copyProductList[i].price;
-          stock = copyProductList[i].stock;
-        } 
+      } else {
+        title = copyProductList[i].title;
+        brand = copyProductList[i].brand;
+        category = copyProductList[i].category;
+        price = copyProductList[i].price;
+        stock = copyProductList[i].stock;
+      } 
 
-           
+      if (view === 'view-card' || view === null) {      
+
         this.config.template += `
           <div class="product__item sku" data-id=${copyProductList[i].id}>
             <div class="item__image">
@@ -87,78 +109,46 @@ class ProductListComponent extends DMComponent {
           </div>
          
           `;
-      }
+    
+      } else {
+        this.config.template += `
+          <tr class="sku" data-id=${copyProductList[i].id}>
+            <td>  <img class="image--thumbnail" src="${copyProductList[i].thumbnail}" alt="" decoding="async"> </td>   
+            <td> <h3 class="item__name">${title}</h3></td>   
+            <td class="item__category">${category}</td>
+            <td class="item__brand">${brand} </td>
+            <td class="text-right item__price">${price}</td>
+            <td class="text-right item__stock">${stock}</td>
+            <td>
+              <button class="button button--info">
+                <svg class="icon">
+                  <title>Click to receive information</title>
+                  <use xlink:href="./icons.svg#info"></use>
+                </svg>
+              </button>
+            </td>
+            <td class="width180">
+              <button class="button button--card">Add to cart</button>
+            </td>
+          </tr>  
+           `;
+      }       
+    }
+        
+    if (view === 'view-card' || view === null) {      
+
       this.config.template += `
           </div>
-          `;
-      
+          `; 
+  
     } else {
-
-      this.config.template  = `
-      <div class="products__table sku-list skus">
-        <table>
-         <caption class="visibility-hidden">Selected products in tabular form  </caption>
-         <thead class="sticky"> 
-           <th></th>
-           <th>Title</th>
-           <th>Category</th>
-           <th>Brand</th>
-           <th class="text-right">Price</th> 
-           <th class="text-right">Stock</th>
-           <th></th>
-           <th></th>
-         </thead>
-         <tbody>
-         `;
-     
-      for (let i = 0; i < copyProductList.length; i++) {
-
-        if (search.isSearchOn) {
-          const regex = search.searchWord();          
-          title = copyProductList[i].title.replace(regex, match => `<span class="search__highlight">${match}</span>`);
-          brand = copyProductList[i].brand.replace(regex, match => `<span class="search__highlight">${match}</span>`);
-          category = copyProductList[i].category.replace(regex, match => `<span class="search__highlight">${match}</span>`);
-          price = copyProductList[i].price.toString().replace(regex, match => `<span class="search__highlight">${match}</span>`);
-          stock = copyProductList[i].stock.toString().replace(regex, match => `<span class="search__highlight">${match}</span>`);
-            
-        } else {
-          title = copyProductList[i].title;
-          brand = copyProductList[i].brand;
-          category = copyProductList[i].category;
-          price = copyProductList[i].price;
-          stock = copyProductList[i].stock;
-        } 
-
-           
-        this.config.template += `
-        <tr class="sku" data-id=${copyProductList[i].id}>
-          <td>  <img class="image--thumbnail" src="${copyProductList[i].thumbnail}" alt="" decoding="async"> </td>   
-          <td> <h3 class="item__name">${title}</h3></td>   
-          <td class="item__category">${category}</td>
-          <td class="item__brand">${brand} </td>
-          <td class="text-right item__price">${price}</td>
-          <td class="text-right item__stock">${stock}</td>
-          <td>
-            <button class="button button--info">
-              <svg class="icon">
-                <title>Click to receive information</title>
-                <use xlink:href="./icons.svg#info"></use>
-              </svg>
-            </button>
-          </td>
-          <td class="width180">
-            <button class="button button--card">Add to cart</button>
-          </td>
-        </tr>  
-         `;
-      }
       this.config.template += `
-          </tbody>
-        </table> 
-        </div>
-         `;
-    
+        </tbody>
+      </table> 
+      </div>
+       `;
     }
+
   
     return this.config.template;
   }

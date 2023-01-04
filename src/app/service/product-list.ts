@@ -1,7 +1,7 @@
 // import { searchComponent } from '../components/search.component';
 import { Product } from './product';
 import { search } from './search';
-import { filter } from './filter';
+// import { filter } from './filter';
 
 
 export const productList: [Product] = JSON.parse(JSON.stringify(require('../service/data/list.json')));
@@ -18,7 +18,7 @@ export function defineProductList(): Product[] {
     source = search.filter(productList);    
   }
   
-  filter.productList(source);
+  // filter.productList(source);
 
   return source;
 
