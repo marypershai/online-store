@@ -5,11 +5,11 @@ export class Product {
 
   public title: string;
 
-  public price: number;
+  public price: number | string;
 
   public discountPercentage: number;
 
-  public stock: number;
+  public stock: number | string;
 
   public rating: number;
 

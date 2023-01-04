@@ -1,7 +1,7 @@
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { copyProductList } from '../service/product-list';
-import { filterByElement, filterService  } from '../../app/service/filter';
+import { filterByElement, filter  } from '../../app/service/filter';
 
 class FilterComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -44,11 +44,11 @@ class FilterComponent extends DMComponent {
 
 
   private filterByCategories(event: Event): void {
-    filterByElement(event, filterService.filterCategoryArr );
+    filterByElement(event, filter.categoryArr );
   }
 
   private filterByBrand(event: Event): void {
-    filterByElement(event, filterService.filterBrandArr);
+    filterByElement(event, filter.brandArr);
   }
    
   private createFilterComponent(): string {

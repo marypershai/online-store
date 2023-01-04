@@ -10,7 +10,6 @@ class ShoppingCartComponent extends DMComponent {
     this.template = this.createShoppingCart();
   }
 
-
   private emptyCartNotion() {
     this.config.template += `
     <div class="cart--empty">
