@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "title": "rs",
+    "discountPercentage": 15
+  },
+  {
+    "id": 2,
+    "title": "epm",
+    "discountPercentage": 10
+  }
+]

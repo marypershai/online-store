@@ -1,6 +1,7 @@
-import { CartData, ComponentConfig } from '../../frame/tools/interfaces';
+import { CartData, ComponentConfig, Promocode } from '../../frame/tools/interfaces';
 import { DMComponent } from '../../frame/index';
 import { cart } from '../../app/service/cart';
+import { copypromocodeList as copyPromocodeList } from '../../app/service/promocode';
 
 
 class SummaryComponent extends DMComponent {
@@ -8,7 +9,6 @@ class SummaryComponent extends DMComponent {
     super(config);
     this.createSummary();
   }
-
 
   public createSummary(): void {
     const currentCart: CartData[] = cart.getCart();
@@ -27,7 +27,7 @@ class SummaryComponent extends DMComponent {
             <div class="applied-codes">
             </div>
             <div class="promo-code">
-              <input type="search" placeholder="Enter promotional code" maxlength="9">
+              <input type="search" class="promo-code-input" placeholder="Enter promotional code" maxlength="9">
               <p class="promo__description">promo for test: 'RS', 'EPM'</p>
             </div>
             <button class="button button--buy">Buy Now</button>
@@ -35,6 +35,52 @@ class SummaryComponent extends DMComponent {
         `;
     }
     this.template = this.config.template;
+  }
+
+  public events(): Record<string, string> {
+    return {
+      'keyup .promo-code-input': 'checkPromoCode',
+    };
+  }
+
+  private checkPromoCode(event: Event): void {
+    const targetEl = event.target as HTMLInputElement;
+    const promoCode: string = targetEl.value;
+    const promoExist: Promocode | undefined = copyPromocodeList.find((promo) => promo.title == promoCode);
+    if (promoExist) {
+      const promoBlock: HTMLDivElement = document.createElement('div');
+      (document.querySelector('.promo__description') as HTMLElement).append(promoBlock);
+      promoBlock.classList.add('promoblock');
+      const promoCodeTag: HTMLDivElement = document.createElement('div');
+      promoBlock.append(promoCodeTag);
+      promoCodeTag.classList.add('promotag');
+      promoCodeTag.innerHTML = `
+        <span class="purchase__quantity">${promoExist.title}</span>
+        <button class="button add-promocode" type="button" aria-label="plus">
+          <svg class="cart__icon">
+            <title>plus</title>
+            <use xlink:href="./icons.svg#add"></use>
+          </svg>
+        </button>
+      `;
+
+      const addPromoButton = promoCodeTag.querySelector('.add-promocode') as HTMLElement;
+      addPromoButton.addEventListener('click', function () {
+        const appliedCodesBlock = document.querySelector('.applied-codes') as HTMLElement;
+        const appliedPromoCodeTag: HTMLDivElement = document.createElement('div');
+        appliedCodesBlock.append(appliedPromoCodeTag);
+        appliedPromoCodeTag.innerHTML = `
+        <span class="purchase__quantity">${promoExist.title}</span>
+        <button class="button delete-promocode">
+          <svg class="cart__icon">
+            <title>minus</title>
+            <use xlink:href="./icons.svg#remove"></use>
+          </svg>
+        </button>
+      `;
+      });
+    }
+    console.log(promoCode);
   }
 }
 
