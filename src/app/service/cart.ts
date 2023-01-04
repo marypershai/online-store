@@ -56,20 +56,16 @@ class CartService {
   }
 
   public cartSum(): number {
-    let sum = 0;
-    this.cart.forEach((item) => {
-      const product = getProduct(item.productID) as Product;
-      sum += product.price * item.quantity;
-    });
+    const sum = this.cart.reduce(function (cartSum: number, current: CartData): number {
+      const product = getProduct(current.productID) as Product;
+      return cartSum + product.price * current.quantity;
+    }, 0);
     return sum;
   }
 
   public cartQuantitySum(): number {
-    let quantity = 0;
-    this.cart.forEach((item) => {
-      quantity += item.quantity;
-    });
-    return quantity;
+    const quantitySum = this.cart.reduce(function (quantity: number, current: CartData): number { return quantity + current.quantity; }, 0);
+    return quantitySum;
   }
 }
 
