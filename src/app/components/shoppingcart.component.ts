@@ -64,12 +64,15 @@ class ShoppingCartComponent extends DMComponent {
       const quantity = targetParent.nextElementSibling as HTMLElement;
       const product = targetEl.closest('.cart__item') as HTMLElement;
       const productID = product.getAttribute('data-id') as string;
-      if (cart.getProductQuantity(+productID) == 1) {
+      const cartProductQuantity = cart.getProductQuantity(+productID);
+      if (cartProductQuantity === 1) {
         cart.dropFromCart(+productID);
         cartProductListComponent.createProductList();
         cartProductListComponent.render();
-        (document.querySelector('app-summary-cart') as HTMLElement).classList.add('visibility-hidden');
-        (document.querySelector('.page__control') as HTMLElement).classList.add('visibility-hidden');
+        if (!cart.getCart()) {
+          (document.querySelector('app-summary-cart') as HTMLElement).classList.add('visibility-hidden');
+          (document.querySelector('.page__control') as HTMLElement).classList.add('visibility-hidden');
+        }
       } else {
         cart.delete(+productID);
         quantity.innerText = `${cart.getProductQuantity(+productID)}`;
@@ -83,9 +86,7 @@ class ShoppingCartComponent extends DMComponent {
       }
 
       summaryComponent.createSummary();
-      console.log('1');
       summaryComponent.render();
-      console.log(2);
       cartInfoSumComponent.createInfoSum();
       cartInfoSumComponent.render();
       cartInfoQuantityComponent.createInfoQuantitySum();
@@ -106,7 +107,8 @@ class ShoppingCartComponent extends DMComponent {
       const productInfo = targetEl.closest('.purchase__numbers') as HTMLElement;
       const totalPrice = productInfo.nextElementSibling as HTMLElement;
       totalPrice.innerText = cart.totalProductPrice(+productID) + '$';
-      if (quantityNumber === getProductQuantity(+productID) - 1) {
+      const productQuantity = getProductQuantity(+productID);
+      if (quantityNumber === productQuantity - 1) {
         targetParent.classList.add('visibility-hidden');
       }
       summaryComponent.createSummary();

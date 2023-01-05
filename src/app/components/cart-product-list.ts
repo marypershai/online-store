@@ -1,4 +1,4 @@
-import { ComponentConfig } from '../../frame/tools/interfaces';
+import { CartData, ComponentConfig } from '../../frame/tools/interfaces';
 import { DMComponent } from '../../frame/index';
 import { cart } from '../service/cart';
 import { Product } from '../../app/service/product';
@@ -13,8 +13,8 @@ class CartProductListComponent extends DMComponent {
 
 
   public createProductList(): void {
-    const currenCart = cart.getCart();
-    if (currenCart && currenCart.length > 0) {
+    const currenCart: CartData[] = cart.getCart();
+    if (currenCart.length > 0) {
       this.config.template = `
           <ol class="cart__product">`;
       for (let i = 0; i < currenCart.length; i++) {
