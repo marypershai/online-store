@@ -30,7 +30,6 @@ export class Component {
   private initEvents(): void {
     if (Object.getPrototypeOf(this).events) {
       const events = Object.getPrototypeOf(this).events();
-
       Object.keys(events).forEach((key) => {
         const listner = key.split(' ');
         if (this.element) {
