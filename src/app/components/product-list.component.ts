@@ -7,6 +7,7 @@ import { copyProductList } from '../service/product-list';
 import { cartInfoSumComponent } from './cart-info-sum';
 import { cartInfoQuantityComponent } from './cart-info-quantity';
 import { appHeader } from '../../app/common/app.header';
+import { cartProductListComponent } from './cart-product-list';
 
 class ProductListComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -145,6 +146,7 @@ class ProductListComponent extends DMComponent {
       }
       cartInfoSumComponent.createInfoSum();
       cartInfoQuantityComponent.createInfoQuantitySum();
+      cartProductListComponent.createProductList();
       appHeader.render();
     }
   }
