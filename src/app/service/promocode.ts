@@ -22,16 +22,11 @@ export function setPromoToLocalStorage(id: string): void {
 
 export function deletePromoFromLocalStorage(id: string): void {
   const promoList: Promocode[] = getPromoListFromLocalStorage();
-  if (promoList) {
-    const promoCodes: Promocode[] = promoList.filter(item => item.id !== id);
-    localStorage.setItem('promocodes', JSON.stringify(promoCodes));
-  }
+  const promoCodes: Promocode[] = promoList.filter(item => item.id !== id);
+  localStorage.setItem('promocodes', JSON.stringify(promoCodes));
 }
 
 export function checkPromoInLocalStorage(id: string): boolean {
-  const promoList: Promocode[] | null = getPromoListFromLocalStorage();
-  if (promoList) {
-    return !!promoList.find((promo: Promocode) => promo.id == id);
-  }
-  return false;
+  const promoList: Promocode[] = getPromoListFromLocalStorage();
+  return !!promoList.find((promo: Promocode) => promo.id == id);
 }

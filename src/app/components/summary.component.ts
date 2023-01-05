@@ -103,7 +103,7 @@ class SummaryComponent extends DMComponent {
 
   private checkAvaliblePromo(): string {
     let resultBlock = '';
-    const promoListLength: number | undefined = getPromoListFromLocalStorage().length;
+    const promoListLength: number = getPromoListFromLocalStorage().length;
     if (promoListLength) {
       getPromoListFromLocalStorage().forEach((promo) => {
         resultBlock += `
@@ -133,7 +133,7 @@ class SummaryComponent extends DMComponent {
         const totalNewSum = document.querySelector('.total__sum span') as HTMLElement;
         totalNewSum.innerText = `${cart.getSumWithDiscount()}`;
       }
-      const promoListLength: number | undefined = getPromoListFromLocalStorage().length;
+      const promoListLength: number = getPromoListFromLocalStorage().length;
       if (promoListLength == 0) {
         (document.querySelector('.total__sum') as HTMLElement).remove();
         (document.querySelector('.total-value') as HTMLElement).classList.remove('cross-text');
