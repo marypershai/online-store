@@ -1,12 +1,12 @@
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { DMComponent } from '../../frame/index';
-import { Product } from '../service/product';
-import { getProduct, getProductQuantity } from '../service/product-list';
+import { getProductQuantity } from '../service/product-list';
 import { cart } from '../service/cart';
 import { summaryComponent } from './summary.component';
 import { cartInfoSumComponent } from './cart-info-sum';
 import { cartInfoQuantityComponent } from './cart-info-quantity';
 import { appHeader } from '../../app/common/app.header';
+
 
 
 class ShoppingCartComponent extends DMComponent {
@@ -15,25 +15,13 @@ class ShoppingCartComponent extends DMComponent {
     this.createShoppingCart();
   }
 
-
-  private emptyCartNotion() {
-    this.config.template += `
-    <div class="cart--empty cartDecrease cartIncrease">
-      <h1>Your сart is empty</h1>
-      <p class="bold">Looks like the programmer is still without a gift </p>
-      <a class="button link-as-button" href="/">Continue Shopping</a>
-    </div>
-    `;
-  }
-
   public createShoppingCart(): void {
-    const currenCart = cart.getCart();
-    if (currenCart && currenCart.length > 0) {
-      this.config.template = `
+    const visabilityPagination: string = cart.getCart().length > 0 ? '' : 'visibility-hidden';
+    this.config.template = `
         <section class="shopping-cart cartDecrease cartIncrease">
           <div class="cart__header">
             <h2>Shopping Cart </h2>
-            <div class="page__control">
+            <div class="page__control ${visabilityPagination}">
               <div class="itemslimit">
                 <p>items</p>
                 <input class="page__control__input" type="text">
@@ -56,54 +44,10 @@ class ShoppingCartComponent extends DMComponent {
               </div>
             </div>
           </div>
-          <ol class="cart__product">`;
-
-      for (let i = 0; i < currenCart.length; i++) {
-        const id: number = currenCart[i].productID;
-        const product: Product | undefined = getProduct(+id);
-        if (product) {
-          this.config.template += `
-            <li class="cart__item" data-id=${id}>
-              <img class="cart__image" src="${product.thumbnail}" alt="" decoding="async">
-              <div class="cart__item__desciption">
-                <h3 class="item__name">${product.title}</h3>
-                <p class="item__rating">Rating: ${product.rating}</p>
-                <p class="item__brand">Brand: ${product.brand}</p>
-                <p class="item__category">Category: ${product.category} </p>              
-                <p class="item__price">Price, $: ${product.price} </p>
-                <p class="item__stock">Stock: ${product.stock} </p>   
-                <p class="item__description">${product.description}</p>         
-              </div>
-
-              <div class="purchase__numbers">       
-                <button class="button button__decrease">
-                  <svg class="cart__icon">
-                    <title>minus</title>
-                    <use xlink:href="./icons.svg#remove"></use>
-                  </svg>
-                </button>
-                <span class="purchase__quantity">${cart.getProductQuantity(id)}</span>
-                <button class="button button__increase ${cart.checkPosibilityToAddToCart(id)}" type="button" aria-label="plus">
-                  <svg class="cart__icon">
-                    <title>plus</title>
-                    <use xlink:href="./icons.svg#add"></use>
-                  </svg>
-                </button>
-              </div>
-              <div class="item__total-price">
-              ${cart.totalProductPrice(id)}$
-              </div>
-            </li>
-          `;
-        }
-      }
-      this.config.template += `
-        </ol>
+          <app-cart-product-list></app-cart-product-list>
       </section>
       `;
-    } else {
-      this.emptyCartNotion();
-    }
+
     this.template = this.config.template;
   }
 
@@ -121,21 +65,32 @@ class ShoppingCartComponent extends DMComponent {
       const quantity = targetParent.nextElementSibling as HTMLElement;
       const product = targetEl.closest('.cart__item') as HTMLElement;
       const productID = product.getAttribute('data-id') as string;
-      cart.delete(+productID);
-      quantity.innerText = `${cart.getProductQuantity(+productID)}`;
-      const productInfo = targetEl.closest('.purchase__numbers') as HTMLElement;
-      const totalPrice = productInfo.nextElementSibling as HTMLElement;
-      totalPrice.innerText = cart.totalProductPrice(+productID) + '$';
-      const increaseButton = product.querySelector('.button__increase') as HTMLElement;
-      if (increaseButton) {
-        increaseButton.classList.remove('visibility-hidden');
+      const cartProductQuantity = cart.getProductQuantity(+productID);
+      if (cartProductQuantity === 1) {
+        cart.dropFromCart(+productID);
+        cartProductListComponent.createProductList();
+        cartProductListComponent.render();
+        if (!cart.getCart()) {
+          (document.querySelector('app-summary-cart') as HTMLElement).classList.add('visibility-hidden');
+          (document.querySelector('.page__control') as HTMLElement).classList.add('visibility-hidden');
+        }
+      } else {
+        cart.delete(+productID);
+        quantity.innerText = `${cart.getProductQuantity(+productID)}`;
+        const productInfo = targetEl.closest('.purchase__numbers') as HTMLElement;
+        const totalPrice = productInfo.nextElementSibling as HTMLElement;
+        totalPrice.innerText = cart.totalProductPrice(+productID) + '$';
+        const increaseButton = product.querySelector('.button__increase') as HTMLElement;
+        if (increaseButton) {
+          increaseButton.classList.remove('visibility-hidden');
+        }
       }
+
       summaryComponent.createSummary();
       summaryComponent.render();
       cartInfoSumComponent.createInfoSum();
-      cartInfoSumComponent.render();
       cartInfoQuantityComponent.createInfoQuantitySum();
-      cartInfoQuantityComponent.render();
+      appHeader.render();
     }
   }
 
@@ -152,7 +107,8 @@ class ShoppingCartComponent extends DMComponent {
       const productInfo = targetEl.closest('.purchase__numbers') as HTMLElement;
       const totalPrice = productInfo.nextElementSibling as HTMLElement;
       totalPrice.innerText = cart.totalProductPrice(+productID) + '$';
-      if (quantityNumber === getProductQuantity(+productID) - 1) {
+      const productQuantity = getProductQuantity(+productID);
+      if (quantityNumber === productQuantity - 1) {
         targetParent.classList.add('visibility-hidden');
       }
       summaryComponent.createSummary();
@@ -167,7 +123,7 @@ class ShoppingCartComponent extends DMComponent {
 const shoppingCartComponent = new ShoppingCartComponent({
   selector: 'app-shopping-cart',
   template: '',
-  childComponents: [],
+  childComponents: [cartProductListComponent],
 });
 
 export { shoppingCartComponent, ShoppingCartComponent };
