@@ -51,5 +51,4 @@ export interface Promocode {
   id: string;
   title: string;
   discountPercentage: number;
-  avaliable?: boolean;
 }
