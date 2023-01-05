@@ -6,6 +6,7 @@ import { productPageComponent } from '../pages/product-page.component';
 import { copyProductList } from '../service/product-list';
 import { cartInfoSumComponent } from './cart-info-sum';
 import { cartInfoQuantityComponent } from './cart-info-quantity';
+import { appHeader } from '../../app/common/app.header';
 
 class ProductListComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -144,8 +145,7 @@ class ProductListComponent extends DMComponent {
       }
       cartInfoSumComponent.createInfoSum();
       cartInfoQuantityComponent.createInfoQuantitySum();
-      cartInfoSumComponent.render();
-      cartInfoQuantityComponent.render();
+      appHeader.render();
     }
   }
 

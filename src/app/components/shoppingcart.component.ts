@@ -5,7 +5,8 @@ import { cart } from '../service/cart';
 import { summaryComponent } from './summary.component';
 import { cartInfoSumComponent } from './cart-info-sum';
 import { cartInfoQuantityComponent } from './cart-info-quantity';
-import { cartProductListComponent } from './cart-product-list';
+import { appHeader } from '../../app/common/app.header';
+
 
 
 class ShoppingCartComponent extends DMComponent {
@@ -88,9 +89,8 @@ class ShoppingCartComponent extends DMComponent {
       summaryComponent.createSummary();
       summaryComponent.render();
       cartInfoSumComponent.createInfoSum();
-      cartInfoSumComponent.render();
       cartInfoQuantityComponent.createInfoQuantitySum();
-      cartInfoQuantityComponent.render();
+      appHeader.render();
     }
   }
 
@@ -114,10 +114,8 @@ class ShoppingCartComponent extends DMComponent {
       summaryComponent.createSummary();
       summaryComponent.render();
       cartInfoSumComponent.createInfoSum();
-      cartInfoSumComponent.render();
       cartInfoQuantityComponent.createInfoQuantitySum();
-      cartInfoQuantityComponent.render();
-
+      appHeader.render();
     }
   }
 }
