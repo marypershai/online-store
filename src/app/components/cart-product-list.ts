@@ -14,7 +14,7 @@ class CartProductListComponent extends DMComponent {
 
   public createProductList(): void {
     const currenCart: CartData[] = cart.getCart();
-    if (currenCart.length > 0) {
+    if (currenCart && currenCart.length > 0) {
       this.config.template = `
           <ol class="cart__product">`;
       for (let i = 0; i < currenCart.length; i++) {
