@@ -56,7 +56,8 @@ class SummaryComponent extends DMComponent {
     if (promoExist) {
       promoCodeTag.innerHTML = `
         <span class="purchase__quantity">${promoExist.title} - ${promoExist.discountPercentage} %</span>`;
-      if (!checkPromoInLocalStorage(promoExist.id)) {
+      const isPromoInLocalStorage = checkPromoInLocalStorage(promoExist.id);
+      if (!isPromoInLocalStorage) {
         promoCodeTag.innerHTML += `
           <button class="button add-promocode" type="button" aria-label="plus">
             <svg class="cart__icon">
@@ -94,6 +95,7 @@ class SummaryComponent extends DMComponent {
             `;
             totalBlock.append(totalNewSum);
           }
+          (document.querySelector('.total-value') as HTMLElement).classList.add('cross-text');
         });
       }
     }
@@ -101,8 +103,9 @@ class SummaryComponent extends DMComponent {
 
   private checkAvaliblePromo(): string {
     let resultBlock = '';
-    if (getPromoListFromLocalStorage()?.length) {
-      getPromoListFromLocalStorage()?.forEach((promo) => {
+    const promoListLength: number | undefined = getPromoListFromLocalStorage().length;
+    if (promoListLength) {
+      getPromoListFromLocalStorage().forEach((promo) => {
         resultBlock += `
         <div class="applied-promo">
             <span class="purchase__quantity" data-id="${promo.id}">${promo.title} - ${promo.discountPercentage} %</span>
@@ -130,7 +133,8 @@ class SummaryComponent extends DMComponent {
         const totalNewSum = document.querySelector('.total__sum span') as HTMLElement;
         totalNewSum.innerText = `${cart.getSumWithDiscount()}`;
       }
-      if (getPromoListFromLocalStorage()?.length == 0) {
+      const promoListLength: number | undefined = getPromoListFromLocalStorage().length;
+      if (promoListLength == 0) {
         (document.querySelector('.total__sum') as HTMLElement).remove();
         (document.querySelector('.total-value') as HTMLElement).classList.remove('cross-text');
       }
@@ -138,15 +142,8 @@ class SummaryComponent extends DMComponent {
   }
 
   private checkNewSum(): string {
-    let resultBlock = '';
-    if (getPromoListFromLocalStorage()?.length) {
-      resultBlock = `
-        <div class="total__sum">
-          New Sum, $: <span class="total-number">${cart.getSumWithDiscount()}</span>
-        </div>
-      `;
-    }
-    return resultBlock;
+    const isPromoList = getPromoListFromLocalStorage().length;
+    return isPromoList ? `<div class="total__sum"> New Sum, $: <span class="total-number">${cart.getSumWithDiscount()}</span> </div>` : ' ';
   }
 }
 

@@ -8,24 +8,20 @@ export function findPromoCode(id: string): Promocode | undefined {
   return copyPromocodeList.find((promo: Promocode) => promo.id == id);
 }
 
-export function getPromoListFromLocalStorage(): Promocode[] | null {
-  const currenPromocodeList: string | null = localStorage.getItem('promocodes');
-  if (currenPromocodeList) return JSON.parse(currenPromocodeList);
-  return null;
+export function getPromoListFromLocalStorage(): Promocode[] {
+  const currenPromocodeList: string = localStorage.getItem('promocodes') ?? '[ ]';
+  return JSON.parse(currenPromocodeList);
 }
 
 export function setPromoToLocalStorage(id: string): void {
   const currentPromo = findPromoCode(id) as Promocode;
-  let promoList: Promocode[] | null = getPromoListFromLocalStorage();
-  if (!promoList) {
-    promoList = [];
-  }
+  const promoList: Promocode[] = getPromoListFromLocalStorage();
   promoList.push(currentPromo);
   localStorage.setItem('promocodes', JSON.stringify(promoList));
 }
 
 export function deletePromoFromLocalStorage(id: string): void {
-  const promoList = getPromoListFromLocalStorage();
+  const promoList: Promocode[] = getPromoListFromLocalStorage();
   if (promoList) {
     const promoCodes: Promocode[] = promoList.filter(item => item.id !== id);
     localStorage.setItem('promocodes', JSON.stringify(promoCodes));
@@ -33,11 +29,9 @@ export function deletePromoFromLocalStorage(id: string): void {
 }
 
 export function checkPromoInLocalStorage(id: string): boolean {
-  const promoList = getPromoListFromLocalStorage();
-  let promoCode: Promocode | undefined;
+  const promoList: Promocode[] | null = getPromoListFromLocalStorage();
   if (promoList) {
-    promoCode = promoList.find((promo: Promocode) => promo.id == id);
-    if (promoCode) return true;
+    return !!promoList.find((promo: Promocode) => promo.id == id);
   }
   return false;
 }
