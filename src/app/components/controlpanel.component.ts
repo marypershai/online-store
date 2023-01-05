@@ -24,7 +24,7 @@ class ControlComponent extends DMComponent {
     if (view) {
       localStorage.setItem('view', view);
     }
-    productListComponent.template = productListComponent.createListOfProducts();
+    // productListComponent.template = productListComponent.createListOfProducts();
     productListComponent.render();
     window.location.search = `view=${view}`;
   }
@@ -34,7 +34,8 @@ class ControlComponent extends DMComponent {
     const select: HTMLSelectElement | null = document.querySelector('.schema-order');
     const currentOption: number | undefined = select?.selectedIndex;
     sortProduct(currentOption);
-    productListComponent.template = productListComponent.createListOfProducts();
+    productListComponent.createListOfProducts();
+    // productListComponent.template = productListComponent.createListOfProducts();
     productListComponent.render();
   }
 

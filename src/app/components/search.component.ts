@@ -1,9 +1,8 @@
-// import { copyProductList } from '../service/product-list';
-import { search } from '../service/search';
+import { searchService } from '../service/search';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
+import { getFilterProducts } from '../service/product-list';
 import { productListComponent } from './product-list.component';
-
 
 class SearchComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -16,10 +15,11 @@ class SearchComponent extends DMComponent {
     };
   }
 
-  private filterBySearch() {
-    search.isSearchOn = true; 
-    productListComponent.template = productListComponent.createListOfProducts();
-    productListComponent.render();  
+  protected filterBySearch() {
+    const filteredProducts = getFilterProducts();
+    productListComponent.createListOfProducts(filteredProducts);
+    productListComponent.render();
+    searchService.highlightFoundText();
   }
 }
 

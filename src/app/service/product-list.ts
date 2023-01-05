@@ -1,8 +1,5 @@
-// import { searchComponent } from '../components/search.component';
 import { Product } from './product';
-import { search } from './search';
-// import { filter } from './filter';
-
+import { searchService } from './search';
 
 export const productList: [Product] = JSON.parse(JSON.stringify(require('../service/data/list.json')));
 
@@ -11,17 +8,6 @@ export function getProduct(id: number): Product | undefined {
 }
 
 
-export function defineProductList(): Product[] {
-  let source: Product[] = productList;
-  
-  if (search.isSearchOn) {
-    source = search.filter(productList);    
-  }
-  
-  // filter.productList(source);
+export const getFilterProducts = (): Product[]  => searchService.filterBySearchValue([...productList]);
 
-  return source;
-
-}
-
-export const copyProductList: Product[] = defineProductList();
+export const copyProductList: Product[] = [...productList];

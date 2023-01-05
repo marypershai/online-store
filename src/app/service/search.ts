@@ -1,42 +1,54 @@
 import { Product } from './product';
 // import { copyProductList } from './product-list';
 
+type ElementsOfSearch = HTMLHeadElement | HTMLParagraphElement;
 
 class SearchService {
 
-  public isSearchOn = false;
-
-  public searchWord = ():RegExp => {
+  private getsearchValue = (): RegExp => {
     const searchInput = document.querySelector('.search__text-input') as HTMLInputElement;
     const word: string | number = searchInput.value;
     return new RegExp(word, 'gi');  
   };
 
-  public filter(arr: Product[]): Product[] {
-    const word = this.searchWord();
-    const newArr = arr.filter( item => item.brand.toString().match(word) || item.category.toString().match(word) || item.title.toString().match(word) || item.price.toString().match(word) || item.stock.toString().match(word)); 
+  public filterBySearchValue(arr: Product[]): Product[] {
+    const word: RegExp = this.getsearchValue();
+    const newArr = arr.filter(item => item.brand.match(word)
+      || item.category.match(word)
+      || item.title.match(word)
+      || item.price.toString().match(word)
+      || item.stock.toString().match(word),
+    ); 
     this.showItemsQuantity(newArr);
     return newArr;
   }
 
 
   private showItemsQuantity(data: Product[]):void {
-    const searchResults = document.querySelector('.search-results') as HTMLElement;
+    const searchResults = document.querySelector('.search-results') as HTMLParagraphElement;
     searchResults.textContent = `Results: ${data.length}`;
   }
 
-  public productList(arr: Product[]): void {
-    const word = this.searchWord();
-    return arr.forEach( item => {
-      item.title = item.title.replace(word, match => `<span class="search__highlight">${match}</span>`);
-      item.brand = item.brand.replace(word, match => `<span class="search__highlight">${match}</span>`);
-      item.category = item.category.replace(word, match => `<span class="search__highlight">${match}</span>`);
-      item.price = item.price.toString().replace(word, match => `<span class="search__highlight">${match}</span>`);
-      item.stock = item.stock.toString().replace(word, match => `<span class="search__highlight">${match}</span>`);
+  public highlightFoundText(): void {
+    const word: RegExp = this.getsearchValue();
+    let elementstToSearch: ElementsOfSearch[] | null = null;
+
+    elementstToSearch ??= [...(document.querySelectorAll('h3.item__name') as NodeListOf<HTMLHeadElement>)];
+    elementstToSearch.push(...(document.querySelectorAll('.item__brand') as NodeListOf<HTMLParagraphElement>));
+    elementstToSearch.push(...(document.querySelectorAll('.item__category') as NodeListOf<HTMLParagraphElement>));
+    elementstToSearch.push(...(document.querySelectorAll('.item__price') as NodeListOf<HTMLParagraphElement>));
+    elementstToSearch.push(...(document.querySelectorAll('.item__stock') as NodeListOf<HTMLParagraphElement>));
+    
+    elementstToSearch.forEach(name => {
+      let text = name.innerText;
+      const overlap = text.match(word);
+
+      if (overlap && !overlap.includes('')) {
+        text = text.replace(overlap[0], `<span class="search__highlight">${overlap}</span>`);
+        name.innerHTML = text;
+      }
     });
   }
-  
-
 }
 
-export const search = new SearchService; 
+export const searchService = new SearchService(); 

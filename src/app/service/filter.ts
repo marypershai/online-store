@@ -48,7 +48,7 @@ export function filterByElement(event: Event, arr: string[]): void {
 
   }  
   
-  productListComponent.template = productListComponent.createListOfProducts();
+  // productListComponent.template = productListComponent.createListOfProducts();
   productListComponent.render();
 }
 
