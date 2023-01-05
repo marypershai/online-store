@@ -6,6 +6,7 @@ import { summaryComponent } from './summary.component';
 import { cartInfoSumComponent } from './cart-info-sum';
 import { cartInfoQuantityComponent } from './cart-info-quantity';
 import { appHeader } from '../../app/common/app.header';
+import { cartProductListComponent } from './cart-product-list';
 
 
 
