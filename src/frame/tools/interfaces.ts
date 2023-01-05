@@ -48,7 +48,8 @@ export interface CartData {
 }
 
 export interface Promocode {
-  id: number;
+  id: string;
   title: string;
   discountPercentage: number;
+  avaliable?: boolean;
 }
