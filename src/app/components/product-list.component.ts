@@ -3,11 +3,14 @@ import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { addProductRoute } from '../app.routes';
 import { productPageComponent } from '../pages/product-page.component';
-import { copyProductList } from '../service/product-list';
 import { cartInfoSumComponent } from './cart-info-sum';
 import { cartInfoQuantityComponent } from './cart-info-quantity';
 import { appHeader } from '../../app/common/app.header';
 import { cartProductListComponent } from './cart-product-list';
+
+import { productList } from '../service/product-list';
+import { Product } from '../service/product';
+
 
 class ProductListComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -15,9 +18,13 @@ class ProductListComponent extends DMComponent {
     this.template = this.createListOfProducts();
   }
 
-  public createListOfProducts(): string {
+  public createListOfProducts(sortedProductList?: Product[]): string {
+
+    const copyProductList: Product[] = sortedProductList ?? [...productList];
     const view: string | null = localStorage.getItem('view');
-    if (view == 'view-card' || view == undefined) {
+
+
+    if (view == 'view-card' || view == null) {
 
       this.config.template = '<div class="product-list products sku-list skus">';
       for (let i = 0; i < copyProductList.length; i += 1) {
@@ -53,9 +60,12 @@ class ProductListComponent extends DMComponent {
           </div>
           `;
       }
+
+      this.config.template += '</div>';
+
     } else {
 
-      this.config.template += `
+      this.config.template = `
       <div class="products__table sku-list skus">
         <table>
          <caption class="visibility-hidden">Selected products in tabular form  </caption>
@@ -103,8 +113,7 @@ class ProductListComponent extends DMComponent {
          `;
 
     }
-
-    this.config.template += '</div>';
+    
     return this.config.template;
   }
 
@@ -117,7 +126,7 @@ class ProductListComponent extends DMComponent {
     };
   }
 
-  private showProduct(event: Event): void {
+  protected showProduct(event: Event): void {
     const targetEl = event.target as HTMLElement;
     if (targetEl.closest('.button--info')) {
       const parentEl = targetEl.closest('.sku') as HTMLElement;
@@ -131,7 +140,7 @@ class ProductListComponent extends DMComponent {
     }
   }
 
-  private addProductToCart(event: Event): void {
+  protected addProductToCart(event: Event): void {
     const targetEl = event.target as HTMLElement;
     if (targetEl.classList.contains('button--card')) {
       const parentEl = targetEl.closest('.sku') as HTMLElement;

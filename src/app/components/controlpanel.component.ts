@@ -3,6 +3,8 @@ import { copyProductList } from '../../app/service/product-list';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { productListComponent } from './product-list.component';
+import { homePageComponent } from '../pages/home-page.component';
+import { filter } from '../service/filter-service';
 
 class ControlComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -15,6 +17,7 @@ class ControlComponent extends DMComponent {
       'click .view-list': 'changeProductListView',
       'click .view-card': 'changeProductListView',
       'change .schema-order': 'changeProductOrder',
+      'click .button--restart': 'clearFilter',
     };
   }
 
@@ -36,6 +39,12 @@ class ControlComponent extends DMComponent {
     sortProduct(currentOption);
     productListComponent.template = productListComponent.createListOfProducts();
     productListComponent.render();
+  }
+
+  private clearFilter() {
+    filter.clearFilter();
+    productListComponent.template = productListComponent.createListOfProducts();
+    homePageComponent.render();
   }
 
 
@@ -64,7 +73,7 @@ class ControlComponent extends DMComponent {
       <div class="sort-control">
         <p>Sort by</p>
         <select class="custom-select schema-order" name="sort-order" aria-label="Sort By">
-          <option value="0">Recommended</option>
+          <option value="0">Default</option>
           <option value="1">Price Low To High</option>
           <option value="2">Price High To Low</option>
           <option value="3">Product Name A - Z</option>

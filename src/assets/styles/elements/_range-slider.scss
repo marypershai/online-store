@@ -10,6 +10,17 @@
 .sliders_control {
   position: relative;
   min-height: 20px;
+
+  & > label {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+    z-index: -1000;
+    user-select: none;
+  }
 }
 
 .range__info {
