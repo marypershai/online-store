@@ -1,6 +1,7 @@
 import { CartData } from 'frame/tools/interfaces';
 import { Product } from './product';
 import { getProduct } from './product-list';
+import { getPromoListFromLocalStorage } from './promocode';
 
 class CartService {
   private cart: CartData[];
@@ -101,6 +102,15 @@ class CartService {
     } else {
       return '';
     }
+  }
+
+  public getSumWithDiscount(): number {
+    const sum = this.cartSum();
+    const discountPercentage: number = getPromoListFromLocalStorage().reduce((discSum, promo) => {
+      return discSum + promo.discountPercentage;
+    }, 0);
+    if (discountPercentage) return Math.trunc(sum - sum * discountPercentage / 100);
+    return sum;
   }
 }
 

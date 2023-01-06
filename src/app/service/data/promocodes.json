@@ -1,0 +1,12 @@
+[
+  {
+    "id": "rs",
+    "title": "Rolling Scopes School",
+    "discountPercentage": 15
+  },
+  {
+    "id": "epm",
+    "title": "EPAM Systems",
+    "discountPercentage": 10
+  }
+]

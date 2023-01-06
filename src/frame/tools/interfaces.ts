@@ -46,3 +46,9 @@ export interface CartData {
   productID: number;
   quantity: number;
 }
+
+export interface Promocode {
+  id: string;
+  title: string;
+  discountPercentage: number;
+}
