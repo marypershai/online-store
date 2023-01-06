@@ -1,0 +1,60 @@
+:root {
+  --off-white: #f2f4ef;
+  --white: #fff;
+  --primary-color: #e68c74;
+  --secondary-color: #7a5059;
+  --light-accent-color: #dcb5a0;
+  --dark-accent-color: #ed7b6d;
+  --success-color: #7aa55b;
+  --error-color: #f44336;
+}
+
+.form-control small {
+  color: var(--error-color);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+}
+
+.form-control.error small {
+  visibility: visible;
+}
+
+.form {
+  padding: 3rem 4rem;
+}
+
+.form-control {
+  margin-bottom: 1rem;
+  padding-bottom: 2rem;
+  position: relative;
+}
+
+.form-control input {
+  width: 100%;
+  background-color: #fff;
+  height: 30 px;
+  padding: 3px 7px;
+  line-height: normal;
+  border: 1px solid #888C8C;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(15, 17, 17, .15) inset;
+  outline: 0;
+  color: #0F1111;
+  margin: 0;
+  font-size: 100%;
+}
+
+.form-control input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+}
+
+.form-control.success input {
+  border-color: var(--success-color);
+}
+
+.form-control.error input {
+  border-color: var(--error-color);
+}
