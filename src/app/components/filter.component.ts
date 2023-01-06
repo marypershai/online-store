@@ -31,6 +31,8 @@ class FilterComponent extends DMComponent {
     const filteredProducts = getFilteredProducts();
     productListComponent.template = productListComponent.createListOfProducts(filteredProducts);
     productListComponent.render();
+    filterConstructor.brandListUpdate();
+    filterConstructor.categoriesListUpdate();
     searchService.highlightFoundText();
   }
 
@@ -109,7 +111,8 @@ class FilterComponent extends DMComponent {
           <label>
             <input type="checkbox"/>
             <span class="item__name">${key}</span>
-            <span class="item__number">(${filterConstructor.categoriesList()[key]})</span>
+            <span class="item__number categories__number--current" data-category="${key}">(${filterConstructor.categoriesList()[key]}</span>
+            <span class="item__number">/ ${filterConstructor.categoriesList()[key]})</span>
           </label>
         </li>`;
     }
@@ -134,7 +137,8 @@ class FilterComponent extends DMComponent {
           <label>
             <input type="checkbox"/>
             <span class="item__name">${key}</span>
-            <span class="item__number">(${filterConstructor.brandList()[key]})</span>
+            <span class="item__number brand__number--current" data-brand="${key}">(${filterConstructor.brandList()[key]}</span>
+            <span class="item__number brand__number--total">/ ${filterConstructor.brandList()[key]})</span>
           </label>
         </li>`;
     }  

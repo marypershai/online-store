@@ -1,4 +1,5 @@
-import { copyProductList } from './product-list';
+import { Product } from './product';
+import { copyProductList, getFilteredProducts } from './product-list';
 
 class FilterConstructor {
 
@@ -14,9 +15,18 @@ class FilterConstructor {
     return result;
   }
 
+
   public categoriesList = (): Record<string, number> => {   
     const categoriesList: string[] = [];
     copyProductList.forEach( item => categoriesList.push(item.category));
+    categoriesList.sort((a, b) => a > b ? 1 : -1);
+    return this.objectCreate(categoriesList);
+  };
+
+  private categoriesListCurrent = (): Record<string, number> => {   
+    const categoriesList: string[] = [];
+    const data: Product[] = getFilteredProducts();
+    data.forEach( item => categoriesList.push(item.category));
     categoriesList.sort((a, b) => a > b ? 1 : -1);
     return this.objectCreate(categoriesList);
   };
@@ -27,6 +37,40 @@ class FilterConstructor {
     brandList.sort((a, b) => a > b ? 1 : -1);
     return this.objectCreate(brandList);
   };
+
+  private brandListCurrent = (): Record<string, number> => {
+    const brandList: string[] = [];
+    const data: Product[] = getFilteredProducts();
+    data.forEach(item => brandList.push(item.brand));
+    brandList.sort((a, b) => a > b ? 1 : -1);
+    return this.objectCreate(brandList);
+  };
+
+  public brandListUpdate() {
+    const brandList = this.brandListCurrent();
+    const brandsInStockNumber = document.querySelectorAll('.brand__number--current') as NodeListOf<HTMLElement>;
+    brandsInStockNumber.forEach(item => {
+      const brand = item.dataset.brand as string; 
+      let brandNumber = `${brandList[brand]}`; 
+      if (brandNumber === 'undefined') {
+        brandNumber = '0';
+      }
+      item.textContent = `(${brandNumber}`;
+    });     
+  }
+
+  public categoriesListUpdate() {
+    const categoriesList = this.categoriesListCurrent();
+    const categoriesInStockNumber = document.querySelectorAll('.categories__number--current') as NodeListOf<HTMLElement>;
+    categoriesInStockNumber.forEach(item => {
+      const brand = item.dataset.category as string; 
+      let categoryNumber = `${categoriesList[brand]}`; 
+      if (categoryNumber === 'undefined') {
+        categoryNumber = '0';
+      }
+      item.textContent = `(${categoryNumber}`;
+    });     
+  }
 
 }
 

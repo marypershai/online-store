@@ -1,7 +1,6 @@
 import { SortFunction } from '../../frame/tools/types';
 import { Product } from './product';
 import { getFilteredProducts } from './product-list';
-// import { getFilteredProducts } from './product-list';
 
 
 function byField(field: string): SortFunction {
