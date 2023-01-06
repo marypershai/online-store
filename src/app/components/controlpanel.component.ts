@@ -5,6 +5,10 @@ import { ComponentConfig } from '../../frame/tools/interfaces';
 import { productListComponent } from './product-list.component';
 import { homePageComponent } from '../pages/home-page.component';
 import { filter } from '../service/filter-service';
+import { Product } from '../service/product';
+import { searchService } from '../service/search';
+
+
 
 class ControlComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -37,8 +41,11 @@ class ControlComponent extends DMComponent {
     const select = document.querySelector('.schema-order') as HTMLSelectElement;
     const currentOption: number = select.selectedIndex;
     sortProduct(currentOption);
-    productListComponent.template = productListComponent.createListOfProducts();
+    const sortedList: Product[] = sortProduct(currentOption);
+    productListComponent.template = productListComponent.createListOfProducts(sortedList);
     productListComponent.render();
+    searchService.highlightFoundText();
+    
   }
 
   private clearFilter() {

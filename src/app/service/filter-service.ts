@@ -1,4 +1,5 @@
 // import { productListComponent } from '../components/product-list.component';
+
 import { Product } from './product';
 import { searchService } from './search';
 
@@ -27,6 +28,10 @@ class FilterService {
 
   public getFilteredProducts(arr: Product[]): Product[] {
     let newArr;
+    const minPrice = document.querySelector('.min-price__number') as HTMLElement; 
+    const maxPrice = document.querySelector('.max-price__number') as HTMLElement; 
+    const minStock = document.querySelector('.min-stock__number') as HTMLElement; 
+    const maxStock = document.querySelector('.max-stock__number') as HTMLElement; 
 
     if (this.categoryArr.length > 0 && this.brandArr.length === 0) {
       newArr = arr.filter( item => this.categoryArr.includes(item.category));
@@ -37,14 +42,17 @@ class FilterService {
     } else {
       newArr = arr;
     }
-    searchService.showItemsQuantity(newArr);
-    return newArr;
+
+    const finalArr = newArr.filter( item => Number(item.price) <= Number(maxPrice.textContent) && Number(item.price) >= Number(minPrice.textContent) && Number(item.stock) <= Number(maxStock.textContent) && Number(item.stock) >= Number(minStock.textContent));
+    searchService.showItemsQuantity(finalArr);
+    return finalArr;
   }
 
   public clearFilter() {
     this.brandArr = [];
     this.categoryArr = [];    
   }
+
 
 }
 

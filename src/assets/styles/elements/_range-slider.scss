@@ -74,9 +74,18 @@ input[type="range"] {
   pointer-events: none;
 }
 
-#fromSlider {
+
+#min-price,
+#min-stock {
   height: 0;
   z-index: 1;
 }
 
+
+.max-price__number, 
+.min-price__number, 
+.max-stock__number, 
+.min-stock__number {
+  color: rgba($color: $text-colour, $alpha: .8);
+}
  
