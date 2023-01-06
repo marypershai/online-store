@@ -33,6 +33,7 @@ class FilterComponent extends DMComponent {
     productListComponent.render();
     filterConstructor.brandListUpdate();
     filterConstructor.categoriesListUpdate();
+    // filterConstructor.priceUpdate();
     searchService.highlightFoundText();
   }
 
@@ -154,7 +155,7 @@ class FilterComponent extends DMComponent {
                 <h3 class="">Price</h3>
                 </summary>
 
-              <div class="range_container">
+              <div class="range_container price__block">
                 <div class="sliders_control sliders_control--price">
                   <label for="min-price">Minimum price</label>
                   <input id="min-price" class="min-price" type="range" value="${rangeSlider.getMinMaxPrice().min}" min="0" max="5000" step="1">

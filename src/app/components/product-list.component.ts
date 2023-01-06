@@ -24,11 +24,17 @@ class ProductListComponent extends DMComponent {
     const view: string | null = localStorage.getItem('view');
 
 
-    if (view == 'view-card' || view == null) {
 
-      this.config.template = '<div class="product-list products sku-list skus">';
-      for (let i = 0; i < copyProductList.length; i += 1) {
-        this.config.template += `
+    if (copyProductList.length === 0) {
+      this.config.template = '<p class="alert__text">Item not found</p>';
+    } else {
+   
+
+      if (view == 'view-card' || view == null) {
+
+        this.config.template = '<div class="product-list products sku-list skus">';
+        for (let i = 0; i < copyProductList.length; i += 1) {
+          this.config.template += `
           <div class="product__item sku" data-id=${copyProductList[i].id}>
             <div class="item__image">
               <img class=" image" src="${copyProductList[i].thumbnail}" alt="" decoding="async">
@@ -59,13 +65,13 @@ class ProductListComponent extends DMComponent {
             </div>
           </div>
           `;
-      }
+        }
 
-      this.config.template += '</div>';
+        this.config.template += '</div>';
 
-    } else {
+      } else {
 
-      this.config.template = `
+        this.config.template = `
       <div class="products__table sku-list skus">
         <table>
          <caption class="visibility-hidden">Selected products in tabular form  </caption>
@@ -83,8 +89,8 @@ class ProductListComponent extends DMComponent {
          `;
 
 
-      for (let i = 0; i < copyProductList.length; i += 1) {
-        this.config.template += `
+        for (let i = 0; i < copyProductList.length; i += 1) {
+          this.config.template += `
         <tr class="sku" data-id=${copyProductList[i].id}>
           <td>  <img class="image--thumbnail" src="${copyProductList[i].thumbnail}" alt="" decoding="async"> </td>   
           <td> <h3 class="item__name">${copyProductList[i].title}</h3></td>   
@@ -105,13 +111,14 @@ class ProductListComponent extends DMComponent {
           </td>
         </tr>  
          `;
-      }
-      this.config.template += `
+        }
+        this.config.template += `
           </tbody>
         </table> 
         </div>
          `;
 
+      }
     }
     
     return this.config.template;

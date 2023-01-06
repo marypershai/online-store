@@ -27,6 +27,7 @@ class SearchService {
   public showItemsQuantity(data: Product[]):void {
     const searchResults = document.querySelector('.search-results') as HTMLParagraphElement;
     searchResults.textContent = `Results: ${data.length}`;
+   
   }
 
   public highlightFoundText(): void {

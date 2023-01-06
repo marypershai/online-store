@@ -1,3 +1,4 @@
+// import { rangeSlider } from './filter-range-slider';
 import { Product } from './product';
 import { copyProductList, getFilteredProducts } from './product-list';
 
@@ -46,7 +47,7 @@ class FilterConstructor {
     return this.objectCreate(brandList);
   };
 
-  public brandListUpdate() {
+  public brandListUpdate(): void {
     const brandList = this.brandListCurrent();
     const brandsInStockNumber = document.querySelectorAll('.brand__number--current') as NodeListOf<HTMLElement>;
     brandsInStockNumber.forEach(item => {
@@ -59,7 +60,7 @@ class FilterConstructor {
     });     
   }
 
-  public categoriesListUpdate() {
+  public categoriesListUpdate(): void {
     const categoriesList = this.categoriesListCurrent();
     const categoriesInStockNumber = document.querySelectorAll('.categories__number--current') as NodeListOf<HTMLElement>;
     categoriesInStockNumber.forEach(item => {
@@ -71,6 +72,7 @@ class FilterConstructor {
       item.textContent = `(${categoryNumber}`;
     });     
   }
+  
 
 }
 
