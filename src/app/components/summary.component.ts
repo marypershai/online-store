@@ -45,6 +45,7 @@ class SummaryComponent extends DMComponent {
     return {
       'keyup .promo-code-input': 'setPromoCode',
       'click .applied-codes': 'deletePromoCode',
+      'click .button--buy': 'makeOrder',
     };
   }
 
@@ -144,6 +145,10 @@ class SummaryComponent extends DMComponent {
   private checkNewSum(): string {
     const isPromoList = getPromoListFromLocalStorage().length;
     return isPromoList ? `<div class="total__sum"> New Sum, $: <span class="total-number">${cart.getSumWithDiscount()}</span> </div>` : ' ';
+  }
+
+  private makeOrder() {
+    (document.querySelector('.order-modal') as HTMLElement).classList.remove('visibility-hidden');
   }
 }
 
