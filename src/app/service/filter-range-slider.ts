@@ -1,79 +1,117 @@
+import { filterConstructor } from './filter-constructor';
 import { copyProductList } from './product-list';
 
 
 class RangeSlider {
 
-  getMinMaxPrice(): Record<string, number> {
-    const res = { min: 0, max: 0 };
-    const values: number[] = [];
-    copyProductList.forEach( item => values.push(item.price));
-    res.min = Math.min(...values);
-    res.max = Math.max(...values);
-    return res;
+  getMinMaxPrice(): Record<string, number | undefined> {     
+    const prices = copyProductList.map( item => item.price).sort((a, b) => a - b);
+    return { min: prices.at(0), max: prices.at(-1) };
   }
 
-  getMinMaxStock(): Record<string, number> {
-    const res = { min: 0, max: 0 };
-    const values: number[] = [];
-    copyProductList.forEach( item => values.push(item.stock));
-    res.min = Math.min(...values);
-    res.max = Math.max(...values);
-    return res;
+  getMinMaxStock(): Record<string, number | undefined> {
+    const stocks = copyProductList.map( item => item.stock).sort((a, b) => a - b);
+    return { min: stocks.at(0), max: stocks.at(-1) };
   }
 
  
-  public fillSlider(from: HTMLInputElement, to: HTMLInputElement, sliderColor: string, rangeColor: string, controlSlider: HTMLElement) {
-    const rangeDistance = Number(to.max) - Number(to.min);
-    const fromPosition = Number(from.value) - Number(to.min);
-    const toPosition = Number(to.value) - Number(to.min);
-    controlSlider.style.background = `linear-gradient(
-      to right,
-      ${sliderColor} 0%,
-      ${sliderColor} ${(fromPosition) / (rangeDistance) * 100}%,
-      ${rangeColor} ${((fromPosition) / (rangeDistance)) * 100}%,
-      ${rangeColor} ${(toPosition) / (rangeDistance) * 100}%, 
-      ${sliderColor} ${(toPosition) / (rangeDistance) * 100}%, 
-      ${sliderColor} 100%)`;
-  }
+  public priceRangeUpdate():void {
+    
+    const pricePanel = document.querySelector('.range__panel--price') as HTMLElement;
+    const duration = pricePanel.clientWidth; 
 
-  public setToggleAccessible(currentElement: HTMLInputElement) {
-    const toSlider = document.querySelector('#toSlider') as HTMLInputElement;
-    if (toSlider) {
-      if (Number(currentElement.value) <= 0 ) {
-        toSlider.style.zIndex = '2';
-      } else {
-        toSlider.style.zIndex = '0';
-      }
-    }
-  }
+    const minPrice = filterConstructor.priceMinMaxUpdate().min;
+    const maxPrice = filterConstructor.priceMinMaxUpdate().max;
+    const minPriceMarker = document.querySelector('.price-marker--min') as HTMLElement;
+    const maxPriceMarker = document.querySelector('.price-marker--max') as HTMLElement;
+    const priceInfo = document.querySelector('.range__info--price') as HTMLElement;
+    
 
-  private getParsed(currentFrom: HTMLInputElement, currentTo: HTMLInputElement) {
-    const from = parseInt(currentFrom.value, 10);
-    const to = parseInt(currentTo.value, 10);
-    return [from, to];
-  }
-
-  public controlFromSlider(fromSlider: HTMLInputElement, toSlider: HTMLInputElement, fromInput: HTMLElement) {
-    const [from, to] = this.getParsed(fromSlider, toSlider);
-    this.fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
-    if (from > to) {
-      fromSlider.value = `${to}`;
-      fromInput.textContent = `${to}`;
+    if (maxPrice === undefined || minPrice === undefined) {
+      minPriceMarker.style.left = '0';
+      maxPriceMarker.style.left = `${duration}` + 'px';
+      priceInfo.textContent = 'Item not found';
+      const secondPart = document.querySelector('.range__two--price') as HTMLElement;
+      secondPart.style.backgroundColor = '#fff';
+    
+    } else if (minPrice === maxPrice) {
+      const maxRangePrice = maxPrice + 300; 
+      minPriceMarker.style.left = (minPrice * duration / maxRangePrice)  + 'px';
+      maxPriceMarker.style.left = minPriceMarker.style.left;
+      priceInfo.innerHTML = `one price: ${minPrice}`;
+      this.pricePanelColor(minPrice, maxPrice, maxRangePrice, '#c1c2c5');
     } else {
-      fromInput.textContent = `${from}`;
-    }
+      const maxRangePrice = maxPrice + 300; 
+      minPriceMarker.style.left = (minPrice * duration / maxRangePrice)  + 'px';
+      maxPriceMarker.style.left = (maxPrice * duration / maxRangePrice)  + 'px';
+      priceInfo.innerHTML = `min-max: ${minPrice}` + ' — ' + `${maxPrice}`;
+      this.pricePanelColor(minPrice, maxPrice, maxRangePrice, '#c1c2c5'); 
+    }     
+
   }
 
-  public controlToSlider(fromSlider: HTMLInputElement, toSlider: HTMLInputElement, toInput: HTMLElement) {
-    const [from, to] = this.getParsed(fromSlider, toSlider);
-    this.fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
-    if (from < to) {
-      toSlider.value = `${to}`;
-      toInput.textContent = `${to}`;
+
+  private pricePanelColor(minPrice: number, maxPrice: number, maxRangePrice: number, color: string) {
+    const pricePanel = document.querySelector('.range__panel--price') as HTMLElement;
+    const duration = pricePanel.clientWidth; 
+ 
+
+    const firstPart = document.querySelector('.range__one--price') as HTMLElement;
+    const secondPart = document.querySelector('.range__two--price') as HTMLElement;
+    secondPart.style.backgroundColor = color;
+
+    firstPart.style.width = (minPrice * duration /  maxRangePrice) + 'px';
+    secondPart.style.width = (maxPrice - minPrice)  * duration /  maxRangePrice + 'px';
+
+  }
+
+
+  public stockRangeUpdate():void {
+    
+    const stockPanel = document.querySelector('.range__panel--stock') as HTMLElement;
+    const duration = stockPanel.clientWidth; 
+
+    const minStock = filterConstructor.stockMinMaxUpdate().min;
+    const maxStock = filterConstructor.stockMinMaxUpdate().max;
+    const minStockMarker = document.querySelector('.stock-marker--min') as HTMLElement;
+    const maxStockMarker = document.querySelector('.stock-marker--max') as HTMLElement;
+    const stockInfo = document.querySelector('.range__info--stock') as HTMLElement;
+    
+
+    if (maxStock === undefined || minStock === undefined) {
+      minStockMarker.style.left = '0';
+      maxStockMarker.style.left = `${duration}` + 'px';
+      stockInfo.textContent = 'Item not found';
+      const secondPart = document.querySelector('.range__two--stock') as HTMLElement;
+      secondPart.style.backgroundColor = '#fff';
+    
+    } else if (minStock === maxStock) {
+      const maxRangeStock = 400; 
+      minStockMarker.style.left = (minStock * duration / maxRangeStock)  + 'px';
+      maxStockMarker.style.left = minStockMarker.style.left;
+      stockInfo.innerHTML = `stock range: ${minStock}`;
+      this.stockPanelColor(minStock, maxStock, maxRangeStock, '#c1c2c5');
     } else {
-      toInput.textContent = `${from}`;
-      toSlider.value = `${from}`;
-    }
+      const maxRangeStock = 400; 
+      minStockMarker.style.left = (minStock * duration / maxRangeStock)  + 'px';
+      maxStockMarker.style.left = (maxStock * duration / maxRangeStock)  + 'px';
+      stockInfo.innerHTML = `stock range: ${minStock}` + ' — ' + `${maxStock}`;
+      this.stockPanelColor(minStock, maxStock, maxRangeStock, '#c1c2c5'); 
+    }     
+
+  }
+
+  private stockPanelColor(minStock: number, maxStock: number, maxRangeStock: number, color: string) {
+    const stockPanel = document.querySelector('.range__panel--stock') as HTMLElement;
+    const duration = stockPanel.clientWidth;  
+
+    const firstPart = document.querySelector('.range__one--stock') as HTMLElement;
+    const secondPart = document.querySelector('.range__two--stock') as HTMLElement;
+    secondPart.style.backgroundColor = color;
+
+    firstPart.style.width = (minStock * duration /  maxRangeStock) + 'px';
+    secondPart.style.width = (maxStock - minStock)  * duration /  maxRangeStock + 'px';
+
   }
 
 

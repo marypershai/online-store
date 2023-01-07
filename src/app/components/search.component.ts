@@ -3,6 +3,8 @@ import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { getSearchProducts } from '../service/product-list';
 import { productListComponent } from './product-list.component';
+import { filterConstructor } from '../service/filter-constructor';
+import { rangeSlider } from '../service/filter-range-slider';
 
 class SearchComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -19,6 +21,10 @@ class SearchComponent extends DMComponent {
     const searchedProducts = getSearchProducts();
     productListComponent.template = productListComponent.createListOfProducts(searchedProducts);
     productListComponent.render();
+    filterConstructor.brandAmountUpdate();
+    filterConstructor.categoriesAmountUpdate();
+    rangeSlider.priceRangeUpdate();
+    rangeSlider.stockRangeUpdate();
     searchService.highlightFoundText();
   }
 }

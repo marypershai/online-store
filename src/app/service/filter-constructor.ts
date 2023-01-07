@@ -1,10 +1,26 @@
 // import { rangeSlider } from './filter-range-slider';
+
 import { Product } from './product';
 import { copyProductList, getFilteredProducts } from './product-list';
 
 class FilterConstructor {
 
-  private objectCreate(arr: string[]): Record<string, number> {
+  public categoriesListCreate = (): Record<string, number> => {   
+    const categoriesList: string[] = [];
+    copyProductList.forEach( item => categoriesList.push(item.category));
+    categoriesList.sort((a, b) => a > b ? 1 : -1);
+    return this.objectValuesCount(categoriesList);
+  };
+
+  public brandListCreate = (): Record<string, number> => {
+    const brandList: string[] = [];
+    copyProductList.forEach(item => brandList.push(item.brand));
+    brandList.sort((a, b) => a > b ? 1 : -1);
+    return this.objectValuesCount(brandList);
+  };
+
+
+  private objectValuesCount(arr: string[]): Record<string, number> {
     const result: Record<string, number> = {};
     arr.forEach( item => {
       if (result[item]) {
@@ -16,39 +32,26 @@ class FilterConstructor {
     return result;
   }
 
-
-  public categoriesList = (): Record<string, number> => {   
-    const categoriesList: string[] = [];
-    copyProductList.forEach( item => categoriesList.push(item.category));
-    categoriesList.sort((a, b) => a > b ? 1 : -1);
-    return this.objectCreate(categoriesList);
-  };
-
-  private categoriesListCurrent = (): Record<string, number> => {   
+  private actualCategoriesListCreate = (): Record<string, number> => {   
     const categoriesList: string[] = [];
     const data: Product[] = getFilteredProducts();
     data.forEach( item => categoriesList.push(item.category));
     categoriesList.sort((a, b) => a > b ? 1 : -1);
-    return this.objectCreate(categoriesList);
+    return this.objectValuesCount(categoriesList);
   };
 
-  public brandList = (): Record<string, number> => {
-    const brandList: string[] = [];
-    copyProductList.forEach(item => brandList.push(item.brand));
-    brandList.sort((a, b) => a > b ? 1 : -1);
-    return this.objectCreate(brandList);
-  };
 
-  private brandListCurrent = (): Record<string, number> => {
+  private actualBrandListCreate = (): Record<string, number> => {
     const brandList: string[] = [];
     const data: Product[] = getFilteredProducts();
     data.forEach(item => brandList.push(item.brand));
     brandList.sort((a, b) => a > b ? 1 : -1);
-    return this.objectCreate(brandList);
+    return this.objectValuesCount(brandList);
   };
 
-  public brandListUpdate(): void {
-    const brandList = this.brandListCurrent();
+
+  public brandAmountUpdate(): void {
+    const brandList = this.actualBrandListCreate();
     const brandsInStockNumber = document.querySelectorAll('.brand__number--current') as NodeListOf<HTMLElement>;
     brandsInStockNumber.forEach(item => {
       const brand = item.dataset.brand as string; 
@@ -60,8 +63,9 @@ class FilterConstructor {
     });     
   }
 
-  public categoriesListUpdate(): void {
-    const categoriesList = this.categoriesListCurrent();
+
+  public categoriesAmountUpdate(): void {
+    const categoriesList = this.actualCategoriesListCreate();
     const categoriesInStockNumber = document.querySelectorAll('.categories__number--current') as NodeListOf<HTMLElement>;
     categoriesInStockNumber.forEach(item => {
       const brand = item.dataset.category as string; 
@@ -72,8 +76,22 @@ class FilterConstructor {
       item.textContent = `(${categoryNumber}`;
     });     
   }
-  
+
+
+  public priceMinMaxUpdate():Record<string, number | undefined> {    
+    const data: Product[] = getFilteredProducts();
+    const prices = data.map( item => item.price).sort((a, b) => a - b);
+    return { min: prices.at(0), max: prices.at(-1) };
+  }
+
+  public stockMinMaxUpdate():Record<string, number | undefined> {    
+    const data: Product[] = getFilteredProducts();
+    const stock = data.map( item => item.stock).sort((a, b) => a - b);
+    return { min: stock.at(0), max: stock.at(-1) };
+  }
 
 }
+  
+
 
 export const filterConstructor = new FilterConstructor;

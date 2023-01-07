@@ -26,7 +26,7 @@ class ProductListComponent extends DMComponent {
 
 
     if (copyProductList.length === 0) {
-      this.config.template = '<p class="alert__text">Item not found</p>';
+      this.config.template = '<p class="alert__text sku-list skus">Item not found</p>';
     } else {
    
 

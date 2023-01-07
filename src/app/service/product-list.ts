@@ -19,6 +19,8 @@ export function getProductQuantity(id: number): number {
 const searchProducts = (): Product[]  => searchService.filterBySearchValue([...productList]);
 const filteredProducts = (): Product[] => filter.getFilteredProducts([...productList]);
 
+
 export const getSearchProducts = (): Product[]  => filteredProducts() ? searchService.filterBySearchValue(filteredProducts()) : searchService.filterBySearchValue([...productList]);
 
 export const getFilteredProducts = (): Product[] => searchProducts() ? filter.getFilteredProducts(searchProducts()) : filter.getFilteredProducts([...productList]);
+

@@ -28,11 +28,7 @@ class FilterService {
 
   public getFilteredProducts(arr: Product[]): Product[] {
     let newArr;
-    const minPrice = document.querySelector('.min-price__number') as HTMLElement; 
-    const maxPrice = document.querySelector('.max-price__number') as HTMLElement; 
-    const minStock = document.querySelector('.min-stock__number') as HTMLElement; 
-    const maxStock = document.querySelector('.max-stock__number') as HTMLElement; 
-
+   
     if (this.categoryArr.length > 0 && this.brandArr.length === 0) {
       newArr = arr.filter( item => this.categoryArr.includes(item.category));
     } else if (this.categoryArr.length === 0 && this.brandArr.length > 0) {
@@ -43,10 +39,30 @@ class FilterService {
       newArr = arr;
     }
 
-    const finalArr = newArr.filter( item => Number(item.price) <= Number(maxPrice.textContent) && Number(item.price) >= Number(minPrice.textContent) && Number(item.stock) <= Number(maxStock.textContent) && Number(item.stock) >= Number(minStock.textContent));
-    searchService.showItemsQuantity(finalArr);
-    return finalArr;
+    searchService.showItemsQuantity(newArr);
+    return newArr;
   }
+
+  public getFilteredProductsByPrice(arr: Product[]): Product[] {
+    const minPrice = document.querySelector('.min-price__number') as HTMLElement; 
+    const maxPrice = document.querySelector('.max-price__number') as HTMLElement; 
+
+    const newArr = arr.filter( item => Number(item.price) <= Number(maxPrice.textContent) && Number(item.price) >= Number(minPrice.textContent));
+    searchService.showItemsQuantity(newArr);
+    return newArr;
+  }
+
+  private getFilteredByStock(arr: Product[]): Product[] {
+    
+    const minStock = document.querySelector('.min-stock__number') as HTMLElement; 
+    const maxStock = document.querySelector('.max-stock__number') as HTMLElement;
+
+    const newArr = arr.filter( item => Number(item.stock) <= Number(maxStock.textContent) && Number(item.stock) >= Number(minStock.textContent));
+    searchService.showItemsQuantity(newArr);
+    return newArr;
+
+  }
+
 
   public clearFilter() {
     this.brandArr = [];

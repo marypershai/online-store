@@ -9,7 +9,6 @@ import { Product } from '../service/product';
 import { searchService } from '../service/search';
 
 
-
 class ControlComponent extends DMComponent {
   constructor(config: ComponentConfig) {
     super(config);
@@ -24,6 +23,8 @@ class ControlComponent extends DMComponent {
       'click .button--restart': 'clearFilter',
     };
   }
+
+
 
   private changeProductListView(event: Event): void {
     const targetEl = event.currentTarget as HTMLElement;
