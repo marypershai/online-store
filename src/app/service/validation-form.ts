@@ -55,7 +55,8 @@ export function checkLength(input: HTMLInputElement, countWord: number, minLengt
         input,
       )} must be more contain minimum ${countWord} words and each word must be more than ${minLength} characters long`,
     );
-
+  } else {
+    showSuccess(input);
   }
 }
 
@@ -67,5 +68,33 @@ export function checkPhone(input: HTMLInputElement): void {
     showError(input, 'Phone number is invalid.');
   }
 }
+
+export function checkCardNumber(input: HTMLInputElement): string {
+  const cards = {
+    'amex': /^3(4|7)\d{14}$/,
+    'mastercard': /^5\d{15}$/,
+    'visa': /^4(\d{15})$/,
+  };
+  for (const card in cards) {
+    if (cards[card as keyof typeof cards].test(input.value)) {
+      showSuccess(input);
+      return card;
+    } else {
+      showError(input, 'Card number is invalid.');
+    }
+  }
+  return '';
+}
+
+export function checkCvv(input: HTMLInputElement): void {
+  const re = /^[0-9]{3}$/;
+  if (re.test(input.value)) {
+    showSuccess(input);
+  } else {
+    showError(input, 'CVV is invalid.');
+  }
+}
+
+
 
 
