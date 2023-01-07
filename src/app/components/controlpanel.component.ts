@@ -3,6 +3,11 @@ import { copyProductList } from '../../app/service/product-list';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { productListComponent } from './product-list.component';
+import { homePageComponent } from '../pages/home-page.component';
+import { filter } from '../service/filter-service';
+import { Product } from '../service/product';
+import { searchService } from '../service/search';
+
 
 class ControlComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -15,8 +20,11 @@ class ControlComponent extends DMComponent {
       'click .view-list': 'changeProductListView',
       'click .view-card': 'changeProductListView',
       'change .schema-order': 'changeProductOrder',
+      'click .button--restart': 'clearFilter',
     };
   }
+
+
 
   private changeProductListView(event: Event): void {
     const targetEl = event.currentTarget as HTMLElement;
@@ -34,8 +42,17 @@ class ControlComponent extends DMComponent {
     const select = document.querySelector('.schema-order') as HTMLSelectElement;
     const currentOption: number = select.selectedIndex;
     sortProduct(currentOption);
-    productListComponent.template = productListComponent.createListOfProducts();
+    const sortedList: Product[] = sortProduct(currentOption);
+    productListComponent.template = productListComponent.createListOfProducts(sortedList);
     productListComponent.render();
+    searchService.highlightFoundText();
+    
+  }
+
+  private clearFilter() {
+    filter.clearFilter();
+    productListComponent.template = productListComponent.createListOfProducts();
+    homePageComponent.render();
   }
 
 
@@ -64,7 +81,7 @@ class ControlComponent extends DMComponent {
       <div class="sort-control">
         <p>Sort by</p>
         <select class="custom-select schema-order" name="sort-order" aria-label="Sort By">
-          <option value="0">Recommended</option>
+          <option value="0">Default</option>
           <option value="1">Price Low To High</option>
           <option value="2">Price High To Low</option>
           <option value="3">Product Name A - Z</option>

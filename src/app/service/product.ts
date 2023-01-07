@@ -1,6 +1,7 @@
 import { ProductData } from 'frame/tools/interfaces';
 
 export class Product {
+
   public id: number;
 
   public title: string;
@@ -37,3 +38,4 @@ export class Product {
     this.images = product.images;
   }
 }
+

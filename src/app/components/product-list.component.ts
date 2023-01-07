@@ -3,11 +3,14 @@ import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { addProductRoute } from '../app.routes';
 import { productPageComponent } from '../pages/product-page.component';
-import { copyProductList } from '../service/product-list';
 import { cartInfoSumComponent } from './cart-info-sum';
 import { cartInfoQuantityComponent } from './cart-info-quantity';
 import { appHeader } from '../../app/common/app.header';
 import { cartProductListComponent } from './cart-product-list';
+
+import { productList } from '../service/product-list';
+import { Product } from '../service/product';
+
 
 class ProductListComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -15,13 +18,23 @@ class ProductListComponent extends DMComponent {
     this.template = this.createListOfProducts();
   }
 
-  public createListOfProducts(): string {
-    const view: string | null = localStorage.getItem('view');
-    if (view == 'view-card' || view == undefined) {
+  public createListOfProducts(sortedProductList?: Product[]): string {
 
-      this.config.template = '<div class="product-list products sku-list skus">';
-      for (let i = 0; i < copyProductList.length; i += 1) {
-        this.config.template += `
+    const copyProductList: Product[] = sortedProductList ?? [...productList];
+    const view: string | null = localStorage.getItem('view');
+
+
+
+    if (copyProductList.length === 0) {
+      this.config.template = '<p class="alert__text sku-list skus">Item not found</p>';
+    } else {
+   
+
+      if (view == 'view-card' || view == null) {
+
+        this.config.template = '<div class="product-list products sku-list skus">';
+        for (let i = 0; i < copyProductList.length; i += 1) {
+          this.config.template += `
           <div class="product__item sku" data-id=${copyProductList[i].id}>
             <div class="item__image">
               <img class=" image" src="${copyProductList[i].thumbnail}" alt="" decoding="async">
@@ -52,10 +65,13 @@ class ProductListComponent extends DMComponent {
             </div>
           </div>
           `;
-      }
-    } else {
+        }
 
-      this.config.template += `
+        this.config.template += '</div>';
+
+      } else {
+
+        this.config.template = `
       <div class="products__table sku-list skus">
         <table>
          <caption class="visibility-hidden">Selected products in tabular form  </caption>
@@ -73,8 +89,8 @@ class ProductListComponent extends DMComponent {
          `;
 
 
-      for (let i = 0; i < copyProductList.length; i += 1) {
-        this.config.template += `
+        for (let i = 0; i < copyProductList.length; i += 1) {
+          this.config.template += `
         <tr class="sku" data-id=${copyProductList[i].id}>
           <td>  <img class="image--thumbnail" src="${copyProductList[i].thumbnail}" alt="" decoding="async"> </td>   
           <td> <h3 class="item__name">${copyProductList[i].title}</h3></td>   
@@ -95,16 +111,16 @@ class ProductListComponent extends DMComponent {
           </td>
         </tr>  
          `;
-      }
-      this.config.template += `
+        }
+        this.config.template += `
           </tbody>
         </table> 
         </div>
          `;
 
+      }
     }
-
-    this.config.template += '</div>';
+    
     return this.config.template;
   }
 
@@ -117,7 +133,7 @@ class ProductListComponent extends DMComponent {
     };
   }
 
-  private showProduct(event: Event): void {
+  protected showProduct(event: Event): void {
     const targetEl = event.target as HTMLElement;
     if (targetEl.closest('.button--info')) {
       const parentEl = targetEl.closest('.sku') as HTMLElement;
@@ -131,7 +147,7 @@ class ProductListComponent extends DMComponent {
     }
   }
 
-  private addProductToCart(event: Event): void {
+  protected addProductToCart(event: Event): void {
     const targetEl = event.target as HTMLElement;
     if (targetEl.classList.contains('button--card')) {
       const parentEl = targetEl.closest('.sku') as HTMLElement;

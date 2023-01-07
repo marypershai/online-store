@@ -1,9 +1,31 @@
+import { searchService } from '../service/search';
 import { DMComponent } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
+import { getSearchProducts } from '../service/product-list';
+import { productListComponent } from './product-list.component';
+import { filterConstructor } from '../service/filter-constructor';
+import { rangeSlider } from '../service/filter-range-slider';
 
 class SearchComponent extends DMComponent {
   constructor(config: ComponentConfig) {
     super(config);
+  }
+
+  public events(): Record<string, string> {
+    return {
+      'keyup .search__text-input': 'filterBySearch',
+    };
+  }
+
+  public filterBySearch() {
+    const searchedProducts = getSearchProducts();
+    productListComponent.template = productListComponent.createListOfProducts(searchedProducts);
+    productListComponent.render();
+    filterConstructor.brandAmountUpdate();
+    filterConstructor.categoriesAmountUpdate();
+    rangeSlider.priceRangeUpdate();
+    rangeSlider.stockRangeUpdate();
+    searchService.highlightFoundText();
   }
 }
 
@@ -18,7 +40,7 @@ export const searchComponent = new SearchComponent({
         <title>Search</title>
         <use xlink:href="./icons.svg#search"></use>
       </svg>
-      <input type="search" class="search__text-input" placeholder="click and start typing to search" name="q"> 
+      <input type="search" class="search__text-input" placeholder="click and start typing to search" title="start typing" name="q"> 
     </div>
   </section>        
     `,

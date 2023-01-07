@@ -29,6 +29,7 @@ export interface FeatureComponentConfig {
 }
 
 export interface ProductData {
+  [key: string]: number | string | string[];
   id: number;
   title: string;
   price: number;
