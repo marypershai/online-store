@@ -112,6 +112,23 @@ class CartService {
     if (discountPercentage) return Math.trunc(sum - sum * discountPercentage / 100);
     return sum;
   }
+
+  public removeSummary():void {
+    const sum = this.cartSum();
+    const summary = document.querySelector('.cart-summary') as HTMLElement;
+    const pagination = document.querySelector('.page__control') as HTMLElement; 
+
+    if (sum === 0) {
+      summary.classList.add('visibility-hidden');
+      summary.classList.remove('cart-summary');
+      pagination.classList.add('visibility-hidden');
+    } else {
+      summary.classList.remove('visibility-hidden');
+      summary.classList.add('cart-summary');
+      pagination.classList.remove('visibility-hidden');
+    }
+
+  }
 }
 
 export const cart = new CartService();

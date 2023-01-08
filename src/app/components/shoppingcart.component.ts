@@ -72,7 +72,7 @@ class ShoppingCartComponent extends DMComponent {
         cartProductListComponent.createProductList();
         cartProductListComponent.render();
         if (!cart.getCart()) {
-          (document.querySelector('app-summary-cart') as HTMLElement).classList.add('visibility-hidden');
+          (document.querySelector('.cart-summary') as HTMLElement).classList.add('visibility-hidden');
           (document.querySelector('.page__control') as HTMLElement).classList.add('visibility-hidden');
         }
       } else {
@@ -92,6 +92,9 @@ class ShoppingCartComponent extends DMComponent {
       cartInfoSumComponent.createInfoSum();
       cartInfoQuantityComponent.createInfoQuantitySum();
       appHeader.render();
+      cart.removeSummary();
+
+      
     }
   }
 
