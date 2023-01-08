@@ -106,25 +106,6 @@ class ProductPageComponent extends DMComponent {
     appHeader.render();
   }
 
-  // protected addProductToCart(event: Event): void {
-  //   const targetEl = event.target as HTMLElement;
-  //   if (targetEl.classList.contains('button--card')) {
-  //     const parentEl = targetEl.closest('.sku') as HTMLElement;
-  //     const productID: string | null = parentEl.getAttribute('data-id');
-  //     const cartButton = targetEl.closest('.button--card') as HTMLElement;
-  //     if (productID && cartButton.innerText == 'Add to cart') {
-  //       cart.addToCart(+productID, 1);
-  //       cartButton.innerText = 'Drop from cart';
-  //     } else if (productID) {
-  //       cart.dropFromCart(+productID);
-  //       cartButton.innerText = 'Add to cart';
-  //     }
-  //     cartInfoSumComponent.createInfoSum();
-  //     cartInfoQuantityComponent.createInfoQuantitySum();
-  //     cartProductListComponent.createProductList();
-  //     appHeader.render();
-  //   }
-  // }
 
 }
 
