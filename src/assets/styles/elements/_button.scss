@@ -1,0 +1,18 @@
+.button {
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.button--underlined {
+  text-decoration: underline;
+  text-decoration-thickness: max(.055rem, 0.0625rem);
+  text-underline-offset: 0.1em;
+}
+
+.button--underlined:hover {
+  text-decoration-thickness: max(0.1875rem, 0.12rem);
+  -webkit-text-decoration-skip-ink: none;
+  text-decoration-skip-ink: none;
+  -webkit-text-decoration-skip: none;
+  text-decoration-skip: none;
+}

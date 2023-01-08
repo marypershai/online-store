@@ -1,0 +1,376 @@
+[
+  {
+    "id": 1,
+    "title": "Lemur Pro",
+    "price": 1149,
+    "discountPercentage": 1,
+    "stock": 65,
+    "rating": 5,
+    "brand": "System76",
+    "category": "Laptop",
+    "description": "14 hours of battery life: A remote worker’s bliss. Quickly compile your code with a 12th Gen Intel Core i7 CPU and up to 40GB RAM, POP!_OS",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671808653/rs-school/online/lemur/lemur_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356622/rs-school/online/lemur/lemur_keyboard.png",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356621/rs-school/online/lemur/lemur_angle-blank.png",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356623/rs-school/online/lemur/lemur_smooth-coding.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356623/rs-school/online/lemur/lemur_work-untethered.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Oryx Pro",
+    "price": 4196,
+    "discountPercentage": 0,
+    "stock": 25,
+    "rating": 5,
+    "brand": "System76",
+    "category": "Laptop",
+    "description": "OLED 4k display, 16Gb GeForce RTX 3080 Ti with 7424 CUDA Cores, i7-12700H, 64Gb DDR5 4800 MHz, 2TB PCIe Gen4, POP!_OS",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671809061/rs-school/online/oryx/oryx_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356922/rs-school/online/oryx/oryp9topdown.png",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356920/rs-school/online/oryx/armholdingoryx.png",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356920/rs-school/online/oryx/openoryxpro.png",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356920/rs-school/online/oryx/oryxwith3dprinter.png"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "MacBook Air",
+    "price": 1149,
+    "discountPercentage": 0,
+    "stock": 205,
+    "rating": 4.89,
+    "brand": "Apple",
+    "category": "Laptop",
+    "description": "2022 MacBook Air Laptop with M2 chip: 13.6-inch Liquid Retina Display, 8GB RAM, 256GB SSD Storage, 1080p FaceTime HD Camera",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671809532/rs-school/online/macair/air_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356719/rs-school/online/macair/macair.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356719/rs-school/online/macair/macair_2.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356719/rs-school/online/macair/macair_inboxjpg.jpg"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Eat.Sleep.Code",
+    "price": 11,
+    "discountPercentage": 3,
+    "stock": 105,
+    "rating": 4.39,
+    "brand": "3dRose",
+    "category": "Mug",
+    "description": "Computer Coder Programmer Mug, 11 oz",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671810056/rs-school/online/mugeat/mug_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356784/rs-school/online/mugeat/m1.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356784/rs-school/online/mugeat/m2.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356784/rs-school/online/mugeat/m3.jpg"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "No Cloud",
+    "price": 11,
+    "discountPercentage": 3,
+    "stock": 15,
+    "rating": 4.99,
+    "brand": "Proud Gifts",
+    "category": "Mug",
+    "description": "Computer Coder Programmer Mug, 11 oz",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671810456/rs-school/online/mugnocloud/mug_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356861/rs-school/online/mugnocloud/m2.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356861/rs-school/online/mugnocloud/m1.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356861/rs-school/online/mugnocloud/m3.jpg"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Hate programming",
+    "price": 21,
+    "discountPercentage": 1,
+    "stock": 35,
+    "rating": 5,
+    "brand": "Proud Gifts",
+    "category": "Mug",
+    "description": "Computer Coder Programmer Mug, 11 oz",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671810720/rs-school/online/mughate/mug_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356818/rs-school/online/mughate/m1.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356818/rs-school/online/mughate/m2.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356818/rs-school/online/mughate/m3.jpg"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Aeron Chair",
+    "price": 1560,
+    "discountPercentage": 1,
+    "stock": 35,
+    "rating": 5,
+    "brand": "HermanMiller",
+    "category": "Chair",
+    "description": "The Aeron Chair is the benchmark for ergonomic seating since its debut in 1994.",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671810975/rs-school/online/aeron/aeron_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671355831/rs-school/online/aeron/aeron_chair.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671355830/rs-school/online/aeron/aeron_chair_03.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671355830/rs-school/online/aeron/aeron_chair_02.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671355830/rs-school/online/aeron/aeron_chair_01.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671355830/rs-school/online/aeron/aeron_chair_05.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671355830/rs-school/online/aeron/aeron_chair_04.jpg"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Cosm Chair",
+    "price": 1495,
+    "discountPercentage": 13,
+    "stock": 35,
+    "rating": 4.8,
+    "brand": "HermanMiller",
+    "category": "Chair",
+    "description": "Provides total, weightless support – no adjustments necessary. Backed by a 12-year manufacturer’s warranty.",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671811943/rs-school/online/cosm/cosm_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356217/rs-school/online/cosm/studio_white_mineral_f.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356217/rs-school/online/cosm/cosm_2.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356217/rs-school/online/cosm/cosm_3.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356219/rs-school/online/cosm/cosm_5.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356219/rs-school/online/cosm/cosm_4.jpg"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "SoFi",
+    "price": 1295,
+    "discountPercentage": 10,
+    "stock": 35,
+    "rating": 4.6,
+    "brand": "HAG",
+    "category": "Chair",
+    "description": "The HÅG SoFi is the ultimate task chair. Designed to create a neat impression, its complete user-friendliness makes it ideal for both your own desk, and multi-user working environments.",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671812126/rs-school/online/sofi/sofi_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357002/rs-school/online/sofi/SoFi_1.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357001/rs-school/online/sofi/SoFi_2.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357001/rs-school/online/sofi/SoFi_3.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357001/rs-school/online/sofi/SoFi_4.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357002/rs-school/online/sofi/SoFi_5.jpg"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Ergo K860",
+    "price": 130,
+    "discountPercentage": 10,
+    "stock": 315,
+    "rating": 5,
+    "brand": "Logitech",
+    "category": "Keyboard",
+    "description": "With its unique shape and padded wrist rest, the Logitech Ergo K860 is a supremely comfortable ergonomic keyboard.",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671812431/rs-school/online/ergo/ergo_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356443/rs-school/online/ergo/ergo-k860-new.png",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356443/rs-school/online/ergo/ergo-k860_1.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356443/rs-school/online/ergo/ergo-k860.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356443/rs-school/online/ergo/ergo-k860_2.jpg"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Freestyle2",
+    "price": 99,
+    "discountPercentage": 10,
+    "stock": 305,
+    "rating": 4.95,
+    "brand": "Kinesis",
+    "category": "Keyboard",
+    "description": "The Freestyle2 is an award-winning split keyboard designed to address the ergonomic risk factors related to typing by adjusting to your body.",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671812723/rs-school/online/Kinesis/kinesis_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356533/rs-school/online/Kinesis/kinesis.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356534/rs-school/online/Kinesis/kinesis_03.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356533/rs-school/online/Kinesis/kinesis_02.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356533/rs-school/online/Kinesis/kinesis_01.jpg"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Launch Mechanical Keyboard",
+    "price": 199,
+    "discountPercentage": 5,
+    "stock": 305,
+    "rating": 4.3,
+    "brand": "System76",
+    "category": "Keyboard",
+    "description": "Launch Configurable Keyboards are engineered to be comfortable, fully customizable, and make your workflow more efficient. 100% Open Source. Linux, Windows and macOS compatible.",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671812939/rs-school/online/launch/launch_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356585/rs-school/online/launch/launch.png",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356582/rs-school/online/launch/Launch_1.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356582/rs-school/online/launch/Launch_2.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356582/rs-school/online/launch/Launch_3.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356583/rs-school/online/launch/Launch_4.jpg"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Solar Portable Power Bank",
+    "price": 24,
+    "discountPercentage": 5,
+    "stock": 35,
+    "rating": 4.9,
+    "brand": "Errbbic",
+    "category": "Power bank",
+    "description": "Capacity: 20000mAh . Waterproof. Dual USB Charging, enable to charge 2 different interface accessories. Weight: 306g.",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357032/rs-school/online/solar/s_2.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357032/rs-school/online/solar/s_1.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357032/rs-school/online/solar/s_2.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357032/rs-school/online/solar/s_3.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357032/rs-school/online/solar/s_4.jpg"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Curved Monitor",
+    "price": 250,
+    "discountPercentage": 5,
+    "stock": 305,
+    "rating": 4.6,
+    "brand": "Sceptre",
+    "category": "Monitor",
+    "description": "Sceptre Curved 30\"21: 9 Gaming LED Monitor 2560x1080p UltraWide Ultra Slim HDMI DisplayPort Up to 85Hz MPRT 1ms FPS-RTS Build-in Speakers, Machine Blue (C305W-2560UN)",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671813224/rs-school/online/spectre/spectre_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356971/rs-school/online/spectre/Sceptre_1.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356971/rs-school/online/spectre/Sceptre_3.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356971/rs-school/online/spectre/Sceptre_2.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356971/rs-school/online/spectre/Sceptre_4.jpg"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Dell Monitor",
+    "price": 250,
+    "discountPercentage": 5,
+    "stock": 5,
+    "rating": 3.8,
+    "brand": "Dell",
+    "category": "Monitor",
+    "description": "Dell S2722QC 27-inch 4K USB-C Monitor - UHD (3840 x 2160) Display, 60Hz Refresh Rate, 8MS Grey-to-Grey Response Time (Normal Mode), Built-in Dual 3W Speakers, 1.07 Billion Colors - Platinum Silver",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671813407/rs-school/online/dell/dell_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356292/rs-school/online/dell/dell_1.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356292/rs-school/online/dell/dell_2.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356292/rs-school/online/dell/dell_3.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356292/rs-school/online/dell/dell_4.jpg"
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Sarcastic quote mug",
+    "price": 25,
+    "discountPercentage": 5,
+    "stock": 5,
+    "rating": 4.8,
+    "brand": "Alician",
+    "category": "Mug",
+    "description": "A sarcastic quote mug with the phrase \"Have You Tried Rebooting\" in black text printed on both sides of mug. Ideal gift for someone who is a programmer or works in IT Support.",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671813514/rs-school/online/mugrebooting/mug_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356887/rs-school/online/mugrebooting/il_1140xN.2694725601_185n.webp",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356887/rs-school/online/mugrebooting/il_1140xN.2647062594_lh7z.webp",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356887/rs-school/online/mugrebooting/il_1140xN.2859637382_gmsq.webp"
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Magic Keyboard",
+    "price": 99,
+    "discountPercentage": 5,
+    "stock": 5,
+    "rating": 2.8,
+    "brand": "Apple",
+    "category": "Keyboard",
+    "description": "Apple Magic Keyboard (Wireless, Rechargable) - US English - White",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671813721/rs-school/online/magic/magic_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356748/rs-school/online/magic/MMMR3.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356748/rs-school/online/magic/MMMR3_AV1.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356748/rs-school/online/magic/MMMR3_AV2.jpg"
+    ]
+  },
+  {
+    "id": 18,
+    "title": "USB C Hub",
+    "price": 23,
+    "discountPercentage": 5,
+    "stock": 15,
+    "rating": 5,
+    "brand": "Hiearcool",
+    "category": "Adapter USB",
+    "description": "7 in 1 USB C to HDMI Multport Adapter Compatible for USB C Laptops and Other Type C Devices (4K HDMI USB3.0 SD/TF Card Reader 100W PD)",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671813856/rs-school/online/Hiearcool/h_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356489/rs-school/online/Hiearcool/h_1.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356489/rs-school/online/Hiearcool/h_2.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356489/rs-school/online/Hiearcool/h_3.jpg"
+    ]
+  },
+  {
+    "id": 19,
+    "title": "USB C Hub",
+    "price": 32,
+    "discountPercentage": 5,
+    "stock": 5,
+    "rating": 4,
+    "brand": "Syntech",
+    "category": "Adapter USB",
+    "description": "5-in-1 USB C to HDMI Adapter with SD MicroSD Card Reader and 2 USB 3 Ports for MacBook Pro, MacBook Air 2020, iPad Pro 2020, Surface Go and More",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671813972/rs-school/online/syntech/s_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357058/rs-school/online/syntech/s_1.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357058/rs-school/online/syntech/s_2.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357058/rs-school/online/syntech/s_3.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671357058/rs-school/online/syntech/s_4.jpg"
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Portable Power Bank",
+    "price": 50,
+    "discountPercentage": 5,
+    "stock": 35,
+    "rating": 5,
+    "brand": "Anker",
+    "category": "Power bank",
+    "description": "Capacity: 20100mAh. Output Ports: 2 x USB-A. Weight: 356g.",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671814121/rs-school/online/anker/anker_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671355931/rs-school/online/anker/anker_1.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671355931/rs-school/online/anker/anker_2.jpg",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671355931/rs-school/online/anker/anker_3.jpg"
+    ]
+  },
+  {
+    "id": 21,
+    "title": "Dev One",
+    "price": 1100,
+    "discountPercentage": 1,
+    "stock": 2,
+    "rating": 5,
+    "brand": "HP",
+    "category": "Laptop",
+    "description": "The Dev One is a very nice Linux machine that packs enough punch for developers or creatives without hitting top-tier laptop prices. Even more impressive is the work HP and System76 have put into making Linux work perfectly with the AMD chipset. Combining HP's hardware capabilities and industry experience with System76's Pop!_OS desktop has produced the best all-around Linux laptop you can buy right now.",
+    "thumbnail": "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671814299/rs-school/online/dev/devone_th.jpg",
+    "images": [
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356348/rs-school/online/dev/DevOne.png",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356348/rs-school/online/dev/DevOne_1.png",
+      "https://res.cloudinary.com/bartoshevich/image/upload/f_auto,q_auto/v1671356348/rs-school/online/dev/terminal.png"
+    ]
+  }
+]

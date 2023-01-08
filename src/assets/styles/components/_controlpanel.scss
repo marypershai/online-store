@@ -1,0 +1,65 @@
+.controlpanel {
+  padding: .6em 0;
+  border-top: 1px solid $text-colour;
+  border-bottom: 1px solid $text-colour;
+}
+
+.controlpanel__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  font-size: 20px;
+}
+
+.controlpanel__item {
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+}
+
+.custom-select {
+  background-color: transparent;
+  background-position: right .1875rem center;
+  background-size: .375rem;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  border: 1px dashed rgba($color: $text-colour, $alpha: .6);
+  font-size: .875rem;
+  margin: 0;
+  outline: none;
+  padding: 4px 0 4px 1px;
+  width: auto;
+}
+
+.button--filter {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.button--restart,
+.button--save,
+.search-results {
+  font-size: 20px;
+}
+
+.button-view--active {
+  position: relative;
+}
+
+.button-view--active::after {
+  position: absolute;
+  content: " . ";
+  font-size: 40px;
+  top: 8px;
+  left: 16px;
+}

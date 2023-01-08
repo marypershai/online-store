@@ -1,0 +1,20 @@
+.visibility-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  z-index: -1000;
+  user-select: none;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.alert__text {
+  margin-top: 40px;
+  font-size: 40px;
+  font-weight: 700;
+}

@@ -1,0 +1,164 @@
+.range_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 90%;
+  margin: 1.3em 0 0 0;
+  padding: 0;
+}
+
+.sliders_control {
+  position: relative;
+  min-height: 20px;
+
+  &>label {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+    z-index: -1000;
+    user-select: none;
+  }
+}
+
+.range__info {
+  padding-top: .5em;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  gap: .5em;
+  font-size: 16px;
+  color: $text-colour;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  pointer-events: all;
+  width: 14px;
+  height: 14px;
+  background-color: $text-secondary-colour;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba($color: $text-colour, $alpha: .5);
+  cursor: pointer;
+}
+
+input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  pointer-events: all;
+  width: 14px;
+  height: 14px;
+  background-color: $text-secondary-colour;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba($color: $text-colour, $alpha: .5);
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  background: #f7f7f7;
+}
+
+input[type=range]::-webkit-slider-thumb:active {
+  box-shadow: inset 0 0 3px $text-colour, 0 0 9px $text-colour;
+  -webkit-box-shadow: inset 0 0 3px $text-colour, 0 0 9px $text-colour;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  width: 100%;
+  position: absolute;
+  background-color: $text-secondary-colour;
+  pointer-events: none;
+}
+
+
+#min-price,
+#min-stock {
+  height: 0;
+  z-index: 1;
+}
+
+
+.max-price__number,
+.min-price__number,
+.max-stock__number,
+.min-stock__number {
+  color: rgba($color: $text-colour, $alpha: .8);
+}
+
+
+
+// new range 
+
+.stock__container,
+.price__container {
+  margin: 1em 0;
+  padding-right: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+}
+
+.range__panel {
+  // background: #5e5e5e;
+  width: 90%;
+  height: 4px;
+  border-radius: 5px;
+  transition: width .1s linear;
+  position: relative;
+  border: .5px solid #5e5e5e;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.marker {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #5e5e5e;
+  background-color: #5e5e5e;
+  display: grid;
+  place-content: center;
+  -o-object-position: 50% 50%;
+  object-position: 50% 50%;
+  border-radius: 100vw;
+  z-index: 1;
+}
+
+.price-marker--min {
+  left: 0;
+}
+
+.price-marker--max {
+  left: 95%;
+}
+
+
+.stock-marker--min {
+  left: 0;
+}
+
+.stock-marker--max {
+  left: 79%;
+}
+
+
+.range__one--price,
+.range__one--stock {
+  background-color: #fff;
+  height: 100%;
+  
+}
+
+.range__two--price, 
+.range__two--stock {
+  background-color: #c1c2c5;
+  height: 100%;
+  
+}

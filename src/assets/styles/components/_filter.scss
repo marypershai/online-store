@@ -1,0 +1,34 @@
+.filter {
+  margin-top: 48px;
+  padding-top: 0;
+  position: sticky;
+  top: 0;
+  width: 0%;  
+  display: flex;
+  flex-direction: column;  
+  transform: translateX(-2000px);
+  transition: all .2s linear;
+  
+}
+
+.filter--open {
+  width: 20%;
+  margin-right: 2em;
+  border-right: 1px dashed $text-colour;
+  transform: translateX(0);  
+}
+
+.filter__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.filter__item {
+  list-style: none;
+  padding-bottom: .3em;;
+}
+
+.item__number {
+  color: rgba($color: $text-colour, $alpha: .6);
+}

@@ -1,0 +1,122 @@
+.shopping-cart {
+  background-color: #eeeeee;
+  padding: 1em;
+  margin-bottom: 1.5em;
+}
+
+.page__control {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 2em;
+}
+
+.cart__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.page__control__input {
+    width: 2rem;
+    text-align: center;
+    outline: none;
+    border: 1px solid $text-colour;
+    border-radius: .2rem;
+    background-color: transparent;
+    font-size: 140%;
+}
+
+.itemslimit {
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.purchase__numbers,
+.page-numbers {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  gap: .5em;
+}
+
+.purchase__quantity {
+  font-size: 120%;  
+}
+
+.page__quantity {
+  font-size: 140%;  
+  margin-bottom: 3px;
+}
+
+.cart__product { 
+  margin: 1em 0; 
+}
+
+.cart__image {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+
+.cart__item {
+  border-top: .0625rem solid rgba(9,9,9,.15);
+  padding: 1em 1em 1em 2em; 
+  display: grid;
+  grid-template-columns: min-content 160px minmax(20ch, 70ch) 1fr 1fr;
+  column-gap: 1.3em;
+}
+
+.cart__product > ol {
+  list-style: none;
+  counter-reset: my-counter;
+}
+
+.cart__product > li {
+  counter-increment: my-counter;
+}
+
+.cart__product > li:before {
+  content: counter(my-counter);
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid $text-colour;
+  border-radius: 50%;
+  display: inline-block;
+  line-height: 2rem;
+  text-align: center;
+  // margin-right: 0.5rem;
+  margin-top: 60px;
+}
+
+.cart__icon {
+  width: 30px;
+  height: 30px;
+}
+
+.item__total-price {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 120%;
+  margin: 0 1em 0 1em;
+}
+
+.cart__item__desciption {
+  max-width: 60ch;
+}
+
+.cart--empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 60vh;
+  margin-left: 80px;
+  gap: 1.3em;
+} 
