@@ -3,6 +3,10 @@ import { getProduct } from '../service/product-list';
 import { DMComponent, router } from '../../frame/index';
 import { ComponentConfig } from '../../frame/tools/interfaces';
 import { cart } from '../service/cart';
+import { appHeader } from '../common/app.header';
+import { cartInfoQuantityComponent } from '../components/cart-info-quantity';
+import { cartInfoSumComponent } from '../components/cart-info-sum';
+import { cartProductListComponent } from '../components/cart-product-list';
 
 class ProductPageComponent extends DMComponent {
   constructor(config: ComponentConfig) {
@@ -96,7 +100,12 @@ class ProductPageComponent extends DMComponent {
       cart.delete(+productID);
       cartButton.innerHTML = 'Add to cart';
     }
+    cartInfoSumComponent.createInfoSum();
+    cartInfoQuantityComponent.createInfoQuantitySum();
+    cartProductListComponent.createProductList();
+    appHeader.render();
   }
+
 
 }
 

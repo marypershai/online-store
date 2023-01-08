@@ -13,7 +13,10 @@ class SummaryComponent extends DMComponent {
   public createSummary(): void {
     const currentCart: CartData[] = cart.getCart();
     const crossClass: string = cart.cartSum() === cart.getSumWithDiscount() ? '' : 'cross-text';
-    if (currentCart && currentCart.length > 0) {
+    
+    
+
+    if (currentCart && cart.cartSum() !== 0 ) {
       this.config.template = `
           <div class="cart-summary">
             <h2>Summary</h2>
@@ -38,6 +41,7 @@ class SummaryComponent extends DMComponent {
           </div>
         `;
     }
+
     this.template = this.config.template;
   }
 
